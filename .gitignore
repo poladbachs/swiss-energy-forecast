@@ -1,0 +1,15 @@
+.env
+docs/technical-decisions.md
+__pycache__/
+*.pyc
+.venv/
+mlflow_data/
+.DS_Store
+.serena/
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+node_modules/
+dist/
+docs/
+.vercel/

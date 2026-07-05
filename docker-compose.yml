@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: energy
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v3.13.0
+    ports:
+      - "5001:5000"  # 5001 on the host because macOS AirPlay sits on 5000
+    volumes:
+      - mldata:/mldata
+    command: mlflow server --host 0.0.0.0 --backend-store-uri sqlite:////mldata/mlflow.db --artifacts-destination /mldata/artifacts --serve-artifacts
+
+volumes:
+  pgdata:
+  mldata:
