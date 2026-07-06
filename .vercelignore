@@ -6,3 +6,5 @@ __pycache__
 tests
 *.pyc
 docker-compose.yml
+pyproject.toml
+pixi.lock
