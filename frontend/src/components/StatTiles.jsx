@@ -38,13 +38,13 @@ export default function StatTiles({ forecasts, summary }) {
       <Tile
         label="Confirmed surplus"
         value={`${summary.confirmed_surplus_hours} / ${forecasts.length} h`}
-        sub={`${STATUS_META.confirmed_surplus.glyph} renewables beat demand even in the worst case`}
+        sub={`${STATUS_META.confirmed_surplus.glyph} renewables cover demand even in the worst case`}
         accent={STATUS.confirmed_surplus}
       />
       <Tile
         label="Possible surplus"
         value={`${summary.possible_surplus_hours} / ${forecasts.length} h`}
-        sub="interval straddles zero"
+        sub="forecast range crosses zero"
         accent={STATUS.possible_surplus}
       />
       <Tile
@@ -56,7 +56,7 @@ export default function StatTiles({ forecasts, summary }) {
       <Tile
         label="Next surplus window"
         value={surplusWin ?? 'none'}
-        sub={surplusWin ? `${surplusKind} surplus` : 'in the next 48h'}
+        sub={surplusWin ? `${surplusKind} surplus` : 'none in the next 48h'}
       />
     </div>
   )

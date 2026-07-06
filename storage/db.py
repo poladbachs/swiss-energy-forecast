@@ -40,6 +40,7 @@ def create_schema() -> None:
 
 def upsert(df: pd.DataFrame) -> int:
     """Insert rows, updating on timestamp conflict. Returns row count."""
+    df = df.sort_values("timestamp").drop_duplicates(subset=["timestamp"], keep="last")
     rows = [tuple(row) for row in df[_COLS].itertuples(index=False, name=None)]
     sql = """
         INSERT INTO energy_hourly
@@ -72,4 +73,6 @@ def query(start=None, end=None) -> pd.DataFrame:
     where = ("WHERE " + " AND ".join(clauses)) if clauses else ""
     sql = f"SELECT {', '.join(_COLS)} FROM energy_hourly {where} ORDER BY timestamp"
     with _conn() as conn:
-        return pd.read_sql(sql, conn, params=params or None, parse_dates=["timestamp"])
+        df = pd.read_sql(sql, conn, params=params or None, parse_dates=["timestamp"])
+    df["timestamp"] = pd.to_datetime(df["timestamp"], utc=True)
+    return df

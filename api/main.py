@@ -20,6 +20,7 @@ from pydantic import BaseModel
 from data.weather import fetch_forecast
 from features.engineer import inference_features, get_feature_cols
 from models.conformal import predict_with_intervals
+from models.mlflow_utils import configure_mlflow
 from storage.db import query as db_query
 
 _TARGETS = ["demand_mw", "solar_mw", "wind_mw"]
@@ -28,7 +29,7 @@ _models: dict = {}  # target → fitted MapieRegressor
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", "http://localhost:5001"))
+    configure_mlflow()
     for target in _TARGETS:
         name = target.replace("_mw", "") + "-lgbm"
         _models[target] = mlflow.sklearn.load_model(f"models:/{name}@champion")

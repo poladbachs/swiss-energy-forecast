@@ -30,17 +30,15 @@ function InfoPopover() {
       </summary>
       <div className="absolute right-0 z-10 mt-2 w-80 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg text-xs text-gray-600 dark:text-gray-300 space-y-2">
         <p>
-          Each shaded band is a <strong>90% conformal prediction interval</strong>, calibrated on
-          held-out data so that at least 90% of future observations fall inside it.
+          The shaded band is the forecast range. It is based on past errors, so it should cover
+          about 9 out of 10 future hours.
         </p>
         <p>
-          The supply gap is demand minus (solar + wind). Its bounds pair high demand with
-          low renewables, so an hour is only marked <strong>✓ confirmed surplus</strong> when
-          renewables beat demand even in the worst case.
+          The supply gap is demand minus solar and wind. An hour is only marked
+          <strong>✓ confirmed surplus</strong> when renewables still cover demand in the worst case.
         </p>
         <p>
-          The sliders scale the solar and wind forecasts and their bounds before the gap
-          is recomputed, so counterfactual scenarios keep calibrated uncertainty.
+          The sliders change the solar and wind forecasts before the gap is recalculated.
         </p>
       </div>
     </details>
@@ -88,8 +86,8 @@ export default function App() {
           <div>
             <h1 className="text-2xl font-bold">Swiss Energy Forecast</h1>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 max-w-2xl">
-              48-hour forecast of Swiss electricity demand, solar and wind, with conformal
-              prediction intervals that carry a provable 90% coverage guarantee.
+              48-hour forecast of Swiss electricity demand, solar and wind. It also shows the
+              supply gap and the forecast range around it.
             </p>
           </div>
           <div className="flex items-center gap-4">

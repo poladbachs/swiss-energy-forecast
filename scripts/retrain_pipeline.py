@@ -17,6 +17,8 @@ from data.ingest import ingest
 from models.export import export_promoted
 from models.registry import promote_best
 from models.train import run_pipeline
+from scripts.static_backtest import main as refresh_backtest
+from scripts.static_forecast import main as refresh_forecast
 
 BACKTEST_PATH = Path(__file__).resolve().parent.parent / "frontend" / "public" / "backtest.json"
 COVERAGE_FLOOR = 80.0
@@ -43,6 +45,8 @@ def main() -> None:
     run_pipeline()
     promoted = promote_best()
     export_promoted(promoted)
+    refresh_forecast()
+    refresh_backtest()
     check_drift()
 
 

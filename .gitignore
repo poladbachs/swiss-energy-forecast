@@ -1,4 +1,5 @@
 .env
+.env.example
 docs/technical-decisions.md
 __pycache__/
 *.pyc

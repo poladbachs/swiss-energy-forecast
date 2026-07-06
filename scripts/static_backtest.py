@@ -4,12 +4,11 @@ against what actually happened, for the last BACKTEST_DAYS days.
 
 Same "no sklearn/mapie" serving path as static_forecast.py: exported LightGBM
 boosters plus the fixed conformal radius. Historical actuals (energy + weather)
-are pulled straight from ENTSO-E / Open-Meteo, no database needed, so this runs
-in the same CI job as the forecast refresh.
+are pulled straight from the database so this can run in the same CI job as the
+forecast refresh.
 
 Run:
     python -m scripts.static_backtest
-Needs ENTSOE_API_KEY in the environment.
 """
 import json
 from datetime import date, timedelta
@@ -21,9 +20,8 @@ import pandas as pd
 from dotenv import load_dotenv
 load_dotenv()
 
-from data.entsoe import fetch_energy
-from data.weather import fetch_historical
 from features.engineer import build_training_frame, get_feature_cols
+from storage.db import query as db_query
 
 TARGETS = ["demand_mw", "solar_mw", "wind_mw"]
 HORIZON_H = 24        # fixed lead time being backtested
@@ -48,17 +46,17 @@ def iso_utc(ts) -> str:
 
 
 def main() -> None:
-    now = pd.Timestamp.now(tz="UTC").floor("h")
-    window_start = now - pd.Timedelta(days=BACKTEST_DAYS)
-    fetch_start = date.today() - timedelta(days=BACKTEST_DAYS + LOOKBACK_DAYS)
-    # the Open-Meteo archive endpoint lags a few days behind real time; energy
-    # actuals come from ENTSO-E instead and are available almost immediately
-    weather_end = date.today() - timedelta(days=3)
+    history = db_query(start=pd.Timestamp.now(tz="UTC") - pd.Timedelta(days=180))
+    if history.empty:
+        raise ValueError("No history rows available for backtest generation")
 
-    energy = fetch_energy(fetch_start, date.today() + timedelta(days=1))
-    weather = fetch_historical(fetch_start, weather_end)
-    history = energy.merge(weather, on="timestamp", how="inner")
-    history = history[history["timestamp"] <= now]
+    now = history["timestamp"].max().floor("h")
+    window_start = now - pd.Timedelta(days=BACKTEST_DAYS)
+    fetch_start = now - pd.Timedelta(days=BACKTEST_DAYS + LOOKBACK_DAYS)
+
+    history = history[(history["timestamp"] >= fetch_start) & (history["timestamp"] <= now)]
+    if history.empty:
+        raise ValueError("No history rows available for backtest generation")
 
     radii = json.loads((ART / "radii.json").read_text())
     series = {}

@@ -23,8 +23,6 @@ jobs:
       - name: retrain, gate-promote, export, check drift
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          ENTSOE_API_KEY: ${{ secrets.ENTSOE_API_KEY }}
-          DATA_SOURCE: entsoe
           MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
           MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
@@ -34,6 +32,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add models/artifacts/
-          git diff --cached --quiet || git commit -m "chore: promote retrained model(s) $(date -u +%F)"
+          git add models/artifacts/ frontend/public/
+          git diff --cached --quiet || git commit -m "chore: promote retrained model(s) $(date -u +%F) [skip ci]"
           git push

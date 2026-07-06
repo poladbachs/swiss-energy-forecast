@@ -21,6 +21,7 @@ load_dotenv()
 
 from features.engineer import build_training_frame, get_feature_cols
 from models.conformal import predict_with_intervals
+from models.mlflow_utils import configure_mlflow
 from storage.db import query as db_query
 
 ART = Path(__file__).resolve().parent / "artifacts"
@@ -54,7 +55,7 @@ def export_promoted(promoted_targets: list[str]) -> None:
     if not promoted_targets:
         print("[export] nothing promoted this run, skipping")
         return
-    mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", "http://localhost:5001"))
+    configure_mlflow()
     df = db_query()
     for target in promoted_targets:
         export_target(target, df)

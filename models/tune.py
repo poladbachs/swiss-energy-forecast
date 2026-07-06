@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from models.train import train, run_target, EXPERIMENT
+from models.mlflow_utils import configure_mlflow
 from storage.db import query as db_query
 
 
@@ -46,7 +47,7 @@ def tune(df: pd.DataFrame, target: str, n_trials: int = 50) -> dict:
 
 
 def main() -> None:
-    mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", "http://localhost:5001"))
+    configure_mlflow()
     parser = argparse.ArgumentParser()
     parser.add_argument("--target", choices=["demand_mw", "solar_mw", "wind_mw"], required=True)
     parser.add_argument("--trials", type=int, default=50)

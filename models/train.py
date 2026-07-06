@@ -17,6 +17,7 @@ load_dotenv()
 
 from features.engineer import build_training_frame, get_feature_cols
 from models.conformal import calibrate
+from models.mlflow_utils import configure_mlflow
 from storage.db import query as db_query
 
 EXPERIMENT = "swiss-energy-forecast"
@@ -59,7 +60,7 @@ def train(df: pd.DataFrame, target: str, params: dict | None = None) -> tuple[LG
 
 def run_pipeline() -> None:
     """Load data, train all targets, calibrate MAPIE, log one MLflow run per target."""
-    mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", "http://localhost:5001"))
+    configure_mlflow()
     mlflow.set_experiment(EXPERIMENT)
 
     df = db_query()

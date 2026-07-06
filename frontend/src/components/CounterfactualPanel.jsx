@@ -26,12 +26,12 @@ export default function CounterfactualPanel({ multipliers, onChange, summary, ba
     <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 space-y-4 transition-colors hover:border-gray-300 dark:hover:border-gray-600">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="font-semibold text-gray-900 dark:text-gray-100">
-          What if Switzerland had more capacity?
+          What if solar or wind were higher?
         </h2>
         <div className="flex items-center gap-2">
           {multipliers.bandMultiplier !== 1.0 && (
             <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-violet-100 text-violet-800 dark:bg-violet-900/40 dark:text-violet-300">
-              band ×{multipliers.bandMultiplier.toFixed(1)} uncertainty
+              range ×{multipliers.bandMultiplier.toFixed(1)}
             </span>
           )}
           {diff !== null && !isBaseline && (
@@ -40,7 +40,7 @@ export default function CounterfactualPanel({ multipliers, onChange, summary, ba
               : diff < 0 ? 'bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300'
               : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300'
             }`}>
-              {diff > 0 ? '+' : ''}{diff} confirmed green hours vs today's grid
+              {diff > 0 ? '+' : ''}{diff} confirmed surplus hours vs today
             </span>
           )}
         </div>
@@ -90,7 +90,7 @@ export default function CounterfactualPanel({ multipliers, onChange, summary, ba
 
       <div className="pt-3 border-t border-gray-100 dark:border-gray-800">
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
-          Stress scenarios — widen the conformal band to show the forecast getting less certain
+          Simple scenarios
         </p>
         <div className="flex flex-wrap gap-2">
           {SHOCKS.map(p => (

@@ -68,16 +68,15 @@ export default function BacktestReplay({ backtest, dark }) {
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <div>
           <h2 className="font-semibold text-gray-900 dark:text-gray-100">
-            Backtest: {backtest.horizon_h}h-ahead predictions vs actuals
+            Backtest: {backtest.horizon_h}h ahead
           </h2>
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            Each point is the observed hour in UTC; the forecast was made {backtest.horizon_h} hours earlier.
+            Each point is one observed hour in UTC.
           </p>
         </div>
         <span className="text-xs text-gray-500 dark:text-gray-400">
-          {coveredSoFar} / {revealed} hours covered so far
+          {coveredSoFar} / {revealed} covered
           <span className="ml-1 font-mono tabular-nums font-medium text-gray-700 dark:text-gray-300">({pct}%)</span>
-          <span className="ml-1">— target 90%</span>
         </span>
       </div>
 
@@ -110,7 +109,7 @@ export default function BacktestReplay({ backtest, dark }) {
       </div>
       <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
         <span className="inline-flex items-center gap-1.5">
-          <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: colors.gap }} /> predicted (90% band)
+          <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: colors.gap }} /> forecast range
         </span>
         <span className="inline-flex items-center gap-1.5">
           <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: actualColor, borderTop: `1.5px dashed ${actualColor}` }} /> actual

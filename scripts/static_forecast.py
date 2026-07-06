@@ -1,18 +1,16 @@
 """
 Generate a static 48h forecast JSON for the deployed dashboard.
 
-Pulls recent actuals straight from ENTSO-E (no database needed) plus the
-Open-Meteo weather forecast, runs the exported LightGBM boosters, applies the
-conformal radii, and writes frontend/public/forecast.json in the same shape
-as the /forecast API response at 1.0x multipliers. The frontend applies
-counterfactual multipliers client side.
+Pulls recent actuals from the database, uses the Open-Meteo weather forecast,
+runs the exported LightGBM boosters, applies the conformal radii, and writes
+frontend/public/forecast.json in the same shape as the /forecast API response
+at 1.0x multipliers. The frontend applies counterfactual multipliers client
+side.
 
 Run:
     python -m scripts.static_forecast
-Needs ENTSOE_API_KEY in the environment.
 """
 import json
-import os
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -22,13 +20,11 @@ import pandas as pd
 from dotenv import load_dotenv
 load_dotenv()
 
-from data.entsoe import fetch_energy, fetch_generation
 from data.weather import fetch_forecast
 from features.engineer import inference_features, get_feature_cols
+from storage.db import query as db_query
 
 TARGETS = ["demand_mw", "solar_mw", "wind_mw"]
-# nuclear plus hydro (pumped storage, run-of-river, reservoir)
-CLEAN_BASELOAD_TYPES = ["B14", "B10", "B11", "B12"]
 HORIZON = 48
 ART = Path(__file__).resolve().parent.parent / "models" / "artifacts"
 OUT = Path(__file__).resolve().parent.parent / "frontend" / "public" / "forecast.json"
@@ -42,32 +38,15 @@ def classify(gap_pt: float, gap_hi: float) -> str:
     return "deficit"
 
 
-def clean_baseload_profile() -> dict[int, float]:
-    """
-    Typical nuclear + hydro generation by hour of day, from the last 14 days.
-    These are dispatchable (or baseload) sources, so a recent hourly profile is
-    a more honest reference than a weather-driven forecast would be.
-    """
-    start, end = date.today() - timedelta(days=14), date.today() + timedelta(days=1)
-    total = None
-    for psr in CLEAN_BASELOAD_TYPES:
-        df = fetch_generation(psr, start, end)
-        if df.empty:
-            continue
-        s = df.set_index("timestamp")["mw"]
-        total = s if total is None else total.add(s, fill_value=0)
-    prof = total.groupby(total.index.hour).mean()
-    return {int(h): float(v) for h, v in prof.items()}
-
-
 def main() -> None:
-    now = pd.Timestamp.now(tz="UTC").floor("h")
-    # 168h lags plus slack; ENTSO-E publishes with a few hours delay
-    history = fetch_energy(date.today() - timedelta(days=10), date.today() + timedelta(days=1))
+    history = db_query(start=pd.Timestamp.now(tz="UTC") - pd.Timedelta(days=180))
+    if history.empty:
+        raise ValueError("No history rows available for forecast generation")
+    now = history["timestamp"].max().floor("h")
+    # 168h lags plus slack; the database already contains the Swissgrid-backed history.
     history = history[history["timestamp"] <= now]
     weather = fetch_forecast(horizon_hours=HORIZON)
 
-    clean_profile = clean_baseload_profile()
     radii = json.loads((ART / "radii.json").read_text())
     preds = {}
     for target in TARGETS:
@@ -91,7 +70,7 @@ def main() -> None:
         ts = now + pd.Timedelta(hours=h + 1)
         hours.append({
             "timestamp": ts.isoformat(),
-            "clean_mw": round(clean_profile.get(ts.hour, 0.0), 1),
+            "clean_mw": None,
             "demand": {"point": d_pt, "lower": d_lo, "upper": d_hi},
             "solar": {"point": s_pt, "lower": s_lo, "upper": s_hi},
             "wind": {"point": w_pt, "lower": w_lo, "upper": w_hi},

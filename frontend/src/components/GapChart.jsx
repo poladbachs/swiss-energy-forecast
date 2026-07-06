@@ -58,17 +58,17 @@ export default function GapChart({ forecasts, baseline, dark, onHover }) {
   return (
     <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 transition-colors hover:border-gray-300 dark:hover:border-gray-600">
       <div className="flex items-baseline justify-between">
-        <h2 className="font-semibold text-gray-900 dark:text-gray-100">Supply gap: demand minus renewables</h2>
+        <h2 className="font-semibold text-gray-900 dark:text-gray-100">Supply gap</h2>
         <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
           {hasClean && (
             <label className="inline-flex items-center gap-1.5 cursor-pointer select-none">
               <input type="checkbox" checked={showResidual}
                      onChange={e => setShowResidual(e.target.checked)}
                      className="accent-violet-600" />
-              after nuclear + hydro
+              show residual
             </label>
           )}
-          <span>below zero = surplus, 90% band</span>
+          <span>below zero means surplus</span>
         </div>
       </div>
       <ResponsiveContainer width="100%" height={260}>
