@@ -34,3 +34,6 @@ dagshub = "*"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
+
+[tool.vercel]
+entrypoint = "api/main.py"

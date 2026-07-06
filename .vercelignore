@@ -3,17 +3,6 @@
 .pytest_cache
 .serena
 __pycache__
-api
-data
-docs
-features
-models
-scripts
-storage
 tests
 *.pyc
-Procfile
-pyproject.toml
-requirements.txt
-pixi.lock
 docker-compose.yml
