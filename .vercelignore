@@ -5,6 +5,7 @@
 __pycache__
 tests
 *.pyc
+# force vercel trigger
 docker-compose.yml
 pyproject.toml
 pixi.lock
