@@ -29,6 +29,8 @@ def test_main_calls_steps_in_order():
          patch("scripts.retrain_pipeline.run_pipeline") as mock_train, \
          patch("scripts.retrain_pipeline.promote_best", return_value=["demand_mw"]) as mock_promote, \
          patch("scripts.retrain_pipeline.export_promoted") as mock_export, \
+         patch("scripts.retrain_pipeline.refresh_forecast") as mock_forecast, \
+         patch("scripts.retrain_pipeline.refresh_backtest") as mock_backtest, \
          patch("scripts.retrain_pipeline.check_drift") as mock_drift:
         main()
 
@@ -36,4 +38,6 @@ def test_main_calls_steps_in_order():
     mock_train.assert_called_once()
     mock_promote.assert_called_once()
     mock_export.assert_called_once_with(["demand_mw"])
+    mock_forecast.assert_called_once()
+    mock_backtest.assert_called_once()
     mock_drift.assert_called_once()
