@@ -20,7 +20,7 @@ from models.conformal import calibrate
 from models.mlflow_utils import configure_mlflow
 from storage.db import query as db_query
 
-EXPERIMENT = "swiss-energy-forecast"
+EXPERIMENT = "alpine-grid-pulse"
 TARGETS = ["demand_mw", "solar_mw", "wind_mw"]
 HORIZONS = list(range(1, 49))
 

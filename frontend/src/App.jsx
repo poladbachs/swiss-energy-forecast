@@ -109,12 +109,18 @@ export default function App() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100">
       <main className="max-w-6xl mx-auto p-6 space-y-4">
         <header className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <h1 className="text-2xl font-bold">Swiss Energy Forecast</h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 max-w-2xl">
-              48-hour forecast of Swiss electricity demand, solar and wind. It also shows the
-              supply gap and the forecast range around it.
-            </p>
+          <div className="max-w-2xl space-y-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-gray-200/80 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-gray-500 dark:text-gray-400 backdrop-blur">
+              Alpine Grid Pulse
+            </div>
+            <div>
+              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-balance">
+                Swiss grid balance, 48 hours ahead.
+              </h1>
+              <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2 max-w-2xl">
+                A live view of demand, solar, wind and supply balance for Switzerland, with uncertainty bands and scenario controls.
+              </p>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <InfoPopover />
@@ -142,7 +148,7 @@ export default function App() {
 
         <footer className="pt-4 pb-8 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-400 dark:text-gray-500">
           <div className="flex flex-wrap gap-1.5">
-            {['LightGBM', 'MAPIE conformal', 'MLflow', 'Optuna', 'FastAPI', 'PostgreSQL', 'React', 'Recharts'].map(t => (
+            {['Forecast engine', 'Coverage monitor', 'Scenario lab', 'Historical replay'].map(t => (
               <span key={t} className="px-2 py-0.5 rounded-full border border-gray-200 dark:border-gray-700">{t}</span>
             ))}
           </div>

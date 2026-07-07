@@ -20,7 +20,7 @@ load_dotenv()
 
 from models.mlflow_utils import configure_mlflow
 
-EXPERIMENT = "swiss-energy-forecast"
+EXPERIMENT = "alpine-grid-pulse"
 TARGETS = ["demand_mw", "solar_mw", "wind_mw"]
 
 

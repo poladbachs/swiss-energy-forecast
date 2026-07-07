@@ -18,7 +18,7 @@ def configure_mlflow() -> None:
 
         dagshub.init(
             repo_owner=os.environ.get("DAGSHUB_REPO_OWNER", "poladbachs"),
-            repo_name=os.environ.get("DAGSHUB_REPO_NAME", "swiss-energy-forecast"),
+            repo_name=os.environ.get("DAGSHUB_REPO_NAME", "alpine-grid-pulse"),
             mlflow=True,
         )
         return

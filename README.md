@@ -1,6 +1,6 @@
-# Swiss Energy Forecast
+# Alpine Grid Pulse
 
-This project forecasts Swiss electricity demand, solar, and wind for the next 48 hours. It also shows the supply gap for each hour and whether renewables are enough to cover demand.
+Alpine Grid Pulse is a Swiss grid-balance dashboard. It forecasts demand, solar, and wind for the next 48 hours, then shows the supply gap and whether renewables are enough to cover demand.
 
 Weather is part of the model. Historical weather is used for training and backtesting, and forecast weather is used for live predictions.
 
@@ -10,7 +10,7 @@ The current version is a forecast app, not just a data script. It includes:
 
 - a Python pipeline that ingests data, trains models, and exports artifacts
 - a FastAPI `/forecast` endpoint for live predictions
-- a React dashboard that reads static JSON files from `frontend/public`
+- a React dashboard that reads forecast and backtest JSON files
 - daily ingest and weekly retrain automation
 
 ## Data used
@@ -37,8 +37,8 @@ This is an empirical coverage method, not a guarantee.
 ## Workflow
 
 1. Daily ingest updates the database with the latest energy and weather data.
-2. Weekly retrain fits models, promotes the best runs, exports artifacts, and refreshes the frontend JSON files.
-3. Vercel serves the built React app and the FastAPI forecast endpoint.
+2. Weekly retrain fits models, promotes the best runs, exports artifacts, and refreshes the frontend JSON snapshots.
+3. Vercel serves the built React app and the forecast endpoint.
 
 ## Setup
 
@@ -70,7 +70,7 @@ To use ENTSO-E instead of Swissgrid, set `DATA_SOURCE=entsoe` and provide `ENTSO
 The app is deployed on Vercel.
 
 - The frontend build comes from `frontend`.
-- The FastAPI entrypoint is `api/main.py`.
+- The API and static frontend assets are served through `api/main.py`.
 - The dashboard first calls `/api/forecast` and falls back to the committed `frontend/public/forecast.json` if the API is unavailable.
 
 ## Tests
