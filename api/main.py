@@ -4,7 +4,8 @@ FastAPI app. Load models at startup, serve /forecast, /health, /metrics.
 Run locally:
     uvicorn api.main:app --reload
 """
-import os
+import json
+from pathlib import Path
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 
@@ -15,31 +16,39 @@ except ModuleNotFoundError:
 else:
     load_dotenv()
 
-import mlflow
-import mlflow.sklearn
+import lightgbm as lgb
 import pandas as pd
 from fastapi import FastAPI, Query
 from pydantic import BaseModel
 
 from data.weather import fetch_forecast
 from features.engineer import inference_features, get_feature_cols
-from models.conformal import predict_with_intervals
-from models.mlflow_utils import configure_mlflow
 from storage.db import query as db_query
 
 _TARGETS = ["demand_mw", "solar_mw", "wind_mw"]
-_models: dict = {}  # target → fitted MapieRegressor
+_ARTIFACTS = Path(__file__).resolve().parent.parent / "models" / "artifacts"
+_models: dict[str, lgb.Booster] = {}
+_radii: dict[str, float] = {}
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    configure_mlflow()
+    if not _ARTIFACTS.exists():
+        raise RuntimeError(f"Missing model artifacts directory: {_ARTIFACTS}")
+    radii_path = _ARTIFACTS / "radii.json"
+    if not radii_path.exists():
+        raise RuntimeError(f"Missing conformal radii file: {radii_path}")
+
+    _radii.update(json.loads(radii_path.read_text()))
     for target in _TARGETS:
-        name = target.replace("_mw", "") + "-lgbm"
-        _models[target] = mlflow.sklearn.load_model(f"models:/{name}@champion")
-        print(f"[startup] loaded {name}@champion")
+        model_path = _ARTIFACTS / f"{target}.txt"
+        if not model_path.exists():
+            raise RuntimeError(f"Missing model artifact: {model_path}")
+        _models[target] = lgb.Booster(model_file=str(model_path))
+        print(f"[startup] loaded {model_path.name}")
     yield
     _models.clear()
+    _radii.clear()
 
 
 app = FastAPI(title="Swiss Energy Forecast", lifespan=lifespan)
@@ -98,10 +107,13 @@ async def forecast(
     weather = fetch_forecast(horizon_hours=horizon)
 
     # Collect (point, lower, upper) per target
-    predictions: dict[str, tuple] = {}
+    predictions: dict[str, tuple[pd.Series, pd.Series, pd.Series]] = {}
     for target in _TARGETS:
         X = inference_features(history, target, weather, now, horizon)
-        point, lower, upper = predict_with_intervals(_models[target], X)
+        point = pd.Series(_models[target].predict(X[get_feature_cols(target)]))
+        radius = float(_radii[target])
+        lower = point - radius
+        upper = point + radius
         if target in ("solar_mw", "wind_mw"):  # generation can't go negative
             point, lower = point.clip(min=0), lower.clip(min=0)
         predictions[target] = (point, lower, upper)
