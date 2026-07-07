@@ -90,35 +90,6 @@ async def app(scope, receive, send):
 
     if method == "GET" and path == "/health":
         status, headers, body = _as_json(200, {"status": "ok", "forecast_artifact_loaded": True})
-    elif method == "GET" and path == "/":
-        html = """<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Swiss Energy Forecast</title>
-    <style>
-      body { font-family: system-ui, sans-serif; margin: 0; padding: 2rem; background: #0f172a; color: #e2e8f0; }
-      main { max-width: 52rem; margin: 10vh auto; line-height: 1.5; }
-      a { color: #7dd3fc; }
-      code { background: rgba(255,255,255,.08); padding: .15rem .35rem; border-radius: .35rem; }
-    </style>
-  </head>
-  <body>
-    <main>
-      <h1>Swiss Energy Forecast</h1>
-      <p>The forecast API is live. Try <a href="/forecast?horizon=24">/forecast?horizon=24</a>.</p>
-      <p>Status: <code>ok</code></p>
-    </main>
-  </body>
-</html>"""
-        body = html.encode("utf-8")
-        status = 200
-        headers = [
-            ("content-type", "text/html; charset=utf-8"),
-            ("content-length", str(len(body))),
-            ("cache-control", "no-store"),
-        ]
     elif method == "GET" and path in {"/favicon.ico", "/favicon.png", "/apple-touch-icon.png", "/apple-touch-icon-precomposed.png"}:
         status = 204
         headers = [("cache-control", "no-store")]
