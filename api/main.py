@@ -13,7 +13,7 @@ from pathlib import Path
 from urllib.parse import parse_qs
 
 
-_ARTIFACT = Path(__file__).resolve().parent.parent / "frontend" / "public" / "forecast.json"
+_ARTIFACT = Path(__file__).resolve().parent / "forecast.json"
 _STATIC_FORECAST: dict | None = None
 
 

@@ -1,0 +1,1213 @@
+{
+  "generated_at": "2026-05-31T23:00:00+00:00",
+  "horizon_hours": 48,
+  "solar_multiplier": 1.0,
+  "wind_multiplier": 1.0,
+  "forecasts": [
+    {
+      "timestamp": "2026-06-01T00:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4561.1082011760045,
+        "lower": 4049.8417580422474,
+        "upper": 5072.374644309762
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4561.1082011760045,
+        "lower": 4049.8417580422474,
+        "upper": 5072.374644309762
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T01:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4414.845851253074,
+        "lower": 3903.579408119317,
+        "upper": 4926.112294386831
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4414.845851253074,
+        "lower": 3903.579408119317,
+        "upper": 4926.112294386831
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T02:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4363.539335382028,
+        "lower": 3852.272892248271,
+        "upper": 4874.805778515785
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4363.539335382028,
+        "lower": 3852.272892248271,
+        "upper": 4874.805778515785
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T03:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4350.433156772855,
+        "lower": 3839.166713639098,
+        "upper": 4861.699599906612
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4350.433156772855,
+        "lower": 3839.166713639098,
+        "upper": 4861.699599906612
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T04:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4301.949299189896,
+        "lower": 3790.682856056139,
+        "upper": 4813.215742323653
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4301.949299189896,
+        "lower": 3790.682856056139,
+        "upper": 4813.215742323653
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T05:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4474.841395381632,
+        "lower": 3963.5749522478745,
+        "upper": 4986.107838515389
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4474.841395381632,
+        "lower": 3963.5749522478745,
+        "upper": 4986.107838515389
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T06:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5308.337205843444,
+        "lower": 4797.070762709687,
+        "upper": 5819.603648977201
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5308.337205843444,
+        "lower": 4797.070762709687,
+        "upper": 5819.603648977201
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T07:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5975.165843335431,
+        "lower": 5463.899400201674,
+        "upper": 6486.4322864691885
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5975.165843335431,
+        "lower": 5463.899400201674,
+        "upper": 6486.4322864691885
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T08:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6477.494324760118,
+        "lower": 5966.227881626361,
+        "upper": 6988.760767893875
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6477.494324760118,
+        "lower": 5966.227881626361,
+        "upper": 6988.760767893875
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T09:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6660.997750500528,
+        "lower": 6149.731307366771,
+        "upper": 7172.264193634285
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6660.997750500528,
+        "lower": 6149.731307366771,
+        "upper": 7172.264193634285
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T10:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6766.143765824913,
+        "lower": 6254.877322691156,
+        "upper": 7277.41020895867
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6766.143765824913,
+        "lower": 6254.877322691156,
+        "upper": 7277.41020895867
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T11:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6771.702405123062,
+        "lower": 6260.435961989305,
+        "upper": 7282.968848256819
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6771.702405123062,
+        "lower": 6260.435961989305,
+        "upper": 7282.968848256819
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T12:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6747.854366039358,
+        "lower": 6236.587922905601,
+        "upper": 7259.120809173115
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6747.854366039358,
+        "lower": 6236.587922905601,
+        "upper": 7259.120809173115
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T13:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6432.685350200342,
+        "lower": 5921.418907066585,
+        "upper": 6943.951793334099
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6432.685350200342,
+        "lower": 5921.418907066585,
+        "upper": 6943.951793334099
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T14:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6257.720080974355,
+        "lower": 5746.453637840598,
+        "upper": 6768.9865241081125
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6257.720080974355,
+        "lower": 5746.453637840598,
+        "upper": 6768.9865241081125
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T15:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6114.4125084169955,
+        "lower": 5603.146065283238,
+        "upper": 6625.678951550753
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6114.4125084169955,
+        "lower": 5603.146065283238,
+        "upper": 6625.678951550753
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T16:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6084.022585018971,
+        "lower": 5572.756141885214,
+        "upper": 6595.289028152728
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6084.022585018971,
+        "lower": 5572.756141885214,
+        "upper": 6595.289028152728
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T17:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6062.749105320879,
+        "lower": 5551.482662187122,
+        "upper": 6574.015548454636
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6062.749105320879,
+        "lower": 5551.482662187122,
+        "upper": 6574.015548454636
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T18:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6109.1958256164935,
+        "lower": 5597.929382482736,
+        "upper": 6620.462268750251
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6109.1958256164935,
+        "lower": 5597.929382482736,
+        "upper": 6620.462268750251
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T19:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5985.020568968151,
+        "lower": 5473.754125834394,
+        "upper": 6496.287012101908
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5985.020568968151,
+        "lower": 5473.754125834394,
+        "upper": 6496.287012101908
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T20:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5797.343446586779,
+        "lower": 5286.0770034530215,
+        "upper": 6308.609889720536
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5797.343446586779,
+        "lower": 5286.0770034530215,
+        "upper": 6308.609889720536
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T21:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5695.962017767637,
+        "lower": 5184.69557463388,
+        "upper": 6207.228460901394
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5695.962017767637,
+        "lower": 5184.69557463388,
+        "upper": 6207.228460901394
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T22:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5574.523425652051,
+        "lower": 5063.256982518294,
+        "upper": 6085.789868785808
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5574.523425652051,
+        "lower": 5063.256982518294,
+        "upper": 6085.789868785808
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-01T23:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5294.181927537842,
+        "lower": 4782.915484404085,
+        "upper": 5805.448370671599
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5294.181927537842,
+        "lower": 4782.915484404085,
+        "upper": 5805.448370671599
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T00:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4970.868194893,
+        "lower": 4459.601751759243,
+        "upper": 5482.134638026757
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4970.868194893,
+        "lower": 4459.601751759243,
+        "upper": 5482.134638026757
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T01:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4790.712999348164,
+        "lower": 4279.446556214407,
+        "upper": 5301.979442481921
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4790.712999348164,
+        "lower": 4279.446556214407,
+        "upper": 5301.979442481921
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T02:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4716.325485689258,
+        "lower": 4205.059042555501,
+        "upper": 5227.591928823015
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4716.325485689258,
+        "lower": 4205.059042555501,
+        "upper": 5227.591928823015
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T03:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4646.48656442453,
+        "lower": 4135.220121290773,
+        "upper": 5157.753007558287
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4646.48656442453,
+        "lower": 4135.220121290773,
+        "upper": 5157.753007558287
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T04:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4547.0440946534,
+        "lower": 4035.777651519643,
+        "upper": 5058.310537787157
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4547.0440946534,
+        "lower": 4035.777651519643,
+        "upper": 5058.310537787157
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T05:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 4709.693842192298,
+        "lower": 4198.427399058541,
+        "upper": 5220.960285326055
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 4709.693842192298,
+        "lower": 4198.427399058541,
+        "upper": 5220.960285326055
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T06:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5542.080764026671,
+        "lower": 5030.814320892914,
+        "upper": 6053.347207160428
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5542.080764026671,
+        "lower": 5030.814320892914,
+        "upper": 6053.347207160428
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T07:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6217.524138653718,
+        "lower": 5706.257695519961,
+        "upper": 6728.790581787475
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6217.524138653718,
+        "lower": 5706.257695519961,
+        "upper": 6728.790581787475
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T08:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6710.334575381796,
+        "lower": 6199.068132248039,
+        "upper": 7221.601018515553
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6710.334575381796,
+        "lower": 6199.068132248039,
+        "upper": 7221.601018515553
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T09:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6880.957804089313,
+        "lower": 6369.691360955556,
+        "upper": 7392.22424722307
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6880.957804089313,
+        "lower": 6369.691360955556,
+        "upper": 7392.22424722307
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T10:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6974.764534886769,
+        "lower": 6463.498091753012,
+        "upper": 7486.030978020526
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6974.764534886769,
+        "lower": 6463.498091753012,
+        "upper": 7486.030978020526
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T11:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6965.151340145727,
+        "lower": 6453.88489701197,
+        "upper": 7476.417783279484
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6965.151340145727,
+        "lower": 6453.88489701197,
+        "upper": 7476.417783279484
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T12:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6940.893119222968,
+        "lower": 6429.626676089211,
+        "upper": 7452.1595623567255
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6940.893119222968,
+        "lower": 6429.626676089211,
+        "upper": 7452.1595623567255
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T13:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6624.680798072476,
+        "lower": 6113.414354938719,
+        "upper": 7135.947241206233
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6624.680798072476,
+        "lower": 6113.414354938719,
+        "upper": 7135.947241206233
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T14:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6442.079962760101,
+        "lower": 5930.813519626344,
+        "upper": 6953.346405893858
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6442.079962760101,
+        "lower": 5930.813519626344,
+        "upper": 6953.346405893858
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T15:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6297.8250464698385,
+        "lower": 5786.558603336081,
+        "upper": 6809.091489603596
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6297.8250464698385,
+        "lower": 5786.558603336081,
+        "upper": 6809.091489603596
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T16:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6266.750422221301,
+        "lower": 5755.483979087544,
+        "upper": 6778.016865355058
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6266.750422221301,
+        "lower": 5755.483979087544,
+        "upper": 6778.016865355058
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T17:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6244.745155951218,
+        "lower": 5733.478712817461,
+        "upper": 6756.011599084975
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6244.745155951218,
+        "lower": 5733.478712817461,
+        "upper": 6756.011599084975
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T18:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6270.052171411204,
+        "lower": 5758.785728277447,
+        "upper": 6781.318614544961
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6270.052171411204,
+        "lower": 5758.785728277447,
+        "upper": 6781.318614544961
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T19:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 6145.876914762861,
+        "lower": 5634.610471629104,
+        "upper": 6657.143357896618
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 6145.876914762861,
+        "lower": 5634.610471629104,
+        "upper": 6657.143357896618
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T20:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5958.199792381489,
+        "lower": 5446.933349247732,
+        "upper": 6469.466235515246
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5958.199792381489,
+        "lower": 5446.933349247732,
+        "upper": 6469.466235515246
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T21:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5822.0495348771465,
+        "lower": 5310.783091743389,
+        "upper": 6333.315978010904
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5822.0495348771465,
+        "lower": 5310.783091743389,
+        "upper": 6333.315978010904
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T22:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5707.7404368344105,
+        "lower": 5196.473993700653,
+        "upper": 6219.006879968168
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5707.7404368344105,
+        "lower": 5196.473993700653,
+        "upper": 6219.006879968168
+      },
+      "coverage_status": "deficit"
+    },
+    {
+      "timestamp": "2026-06-02T23:00:00+00:00",
+      "clean_mw": null,
+      "demand": {
+        "point": 5438.914967522827,
+        "lower": 4927.64852438907,
+        "upper": 5950.181410656584
+      },
+      "solar": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "wind": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0
+      },
+      "supply_gap": {
+        "point": 5438.914967522827,
+        "lower": 4927.64852438907,
+        "upper": 5950.181410656584
+      },
+      "coverage_status": "deficit"
+    }
+  ],
+  "summary": {
+    "confirmed_surplus_hours": 0,
+    "possible_surplus_hours": 0,
+    "deficit_hours": 48
+  }
+}
