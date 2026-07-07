@@ -8,8 +8,12 @@ import os
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 
-from dotenv import load_dotenv
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+except ModuleNotFoundError:
+    load_dotenv = None
+else:
+    load_dotenv()
 
 import mlflow
 import mlflow.sklearn
