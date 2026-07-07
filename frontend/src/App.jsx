@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 import { useForecast } from './hooks/useForecast'
 import { useBacktest } from './hooks/useBacktest'
 import { applyMultipliers } from './lib/counterfactual'
@@ -23,12 +23,38 @@ function useDarkMode() {
 }
 
 function InfoPopover() {
+  const [open, setOpen] = useState(false)
+  const rootRef = useRef(null)
+
+  useEffect(() => {
+    const onPointerDown = event => {
+      if (rootRef.current && !rootRef.current.contains(event.target)) setOpen(false)
+    }
+    const onKeyDown = event => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('pointerdown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [])
+
   return (
-    <details className="relative text-sm">
-      <summary className="cursor-pointer list-none rounded text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+    <div ref={rootRef} className="relative text-sm">
+      <button
+        type="button"
+        onClick={() => setOpen(v => !v)}
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        className="cursor-pointer list-none rounded text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         ⓘ how to read this
-      </summary>
-      <div className="absolute right-0 z-10 mt-2 w-80 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg text-xs text-gray-600 dark:text-gray-300 space-y-2">
+      </button>
+      <div
+        role="dialog"
+        aria-label="How to read this"
+        className={`absolute right-0 z-10 mt-2 w-80 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg text-xs text-gray-600 dark:text-gray-300 space-y-2 ${open ? '' : 'hidden'}`}>
         <p>
           The shaded band is the forecast range. It is based on past errors, so it should cover
           about 9 out of 10 future hours.
@@ -41,7 +67,7 @@ function InfoPopover() {
           The sliders change the solar and wind forecasts before the gap is recalculated.
         </p>
       </div>
-    </details>
+    </div>
   )
 }
 
@@ -120,7 +146,7 @@ export default function App() {
               <span key={t} className="px-2 py-0.5 rounded-full border border-gray-200 dark:border-gray-700">{t}</span>
             ))}
           </div>
-          <a href="https://github.com/tharrmeehan/swiss-energy-forecast"
+          <a href="https://github.com/poladbachs/swiss-energy-forecast"
              className="underline hover:text-gray-600 dark:hover:text-gray-300">
             source on GitHub
           </a>
