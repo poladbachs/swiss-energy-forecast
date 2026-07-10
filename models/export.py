@@ -26,6 +26,8 @@ from storage.db import query as db_query
 
 ART = Path(__file__).resolve().parent / "artifacts"
 RADII_PATH = ART / "radii.json"
+FEATURE_IMPORTANCE_PATH = Path(__file__).resolve().parent.parent / "frontend" / "public" / "feature_importance.json"
+TOP_N_FEATURES = 8
 
 
 def export_target(target: str, df: pd.DataFrame) -> None:
@@ -47,7 +49,23 @@ def export_target(target: str, df: pd.DataFrame) -> None:
     radii = json.loads(RADII_PATH.read_text()) if RADII_PATH.exists() else {}
     radii[target] = radius
     RADII_PATH.write_text(json.dumps(radii, indent=1))
+
+    _export_feature_importance(target, booster)
     print(f"[export] {target}: wrote {target}.txt, radius={radius:.1f}")
+
+
+def _export_feature_importance(target: str, booster) -> None:
+    """Write the top-N LightGBM gain-based feature importances for `target`,
+    merged into the shared feature_importance.json (one entry per target)."""
+    gains = booster.feature_importance(importance_type="gain")
+    names = booster.feature_name()
+    total = float(gains.sum()) or 1.0
+    ranked = sorted(zip(names, gains), key=lambda kv: kv[1], reverse=True)[:TOP_N_FEATURES]
+
+    data = json.loads(FEATURE_IMPORTANCE_PATH.read_text()) if FEATURE_IMPORTANCE_PATH.exists() else {}
+    data[target] = [{"feature": name, "importance": round(float(gain) / total, 4)} for name, gain in ranked]
+    FEATURE_IMPORTANCE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    FEATURE_IMPORTANCE_PATH.write_text(json.dumps(data, indent=1))
 
 
 def export_promoted(promoted_targets: list[str]) -> None:

@@ -14,28 +14,27 @@ load_dotenv()
 
 from storage.db import create_schema, upsert
 from data.weather import fetch_historical
+from data.entsoe import fetch_energy, fetch_day_ahead_price
 
 
 def ingest(start: date, end: date) -> None:
-    source = os.environ.get("DATA_SOURCE")
-    if not source:
-        source = "entsoe" if os.environ.get("ENTSOE_API_KEY") else "swissgrid"
-    if source == "entsoe":
-        if not os.environ.get("ENTSOE_API_KEY"):
-            raise RuntimeError("DATA_SOURCE=entsoe requires ENTSOE_API_KEY")
-        from data.entsoe import fetch_energy
-    else:
-        from data.swissgrid import fetch_energy
+    if not os.environ.get("ENTSOE_API_KEY"):
+        raise RuntimeError("ENTSOE_API_KEY is required")
 
     create_schema()
 
-    print(f"[ingest] energy source={source}  {start} → {end}")
+    print(f"[ingest] energy source=entsoe  {start} → {end}")
     energy = fetch_energy(start, end)
+
+    print(f"[ingest] day-ahead price  {start} → {end}")
+    price = fetch_day_ahead_price(start, end)
 
     print(f"[ingest] weather  {start} → {end}")
     weather = fetch_historical(start, end)
 
-    df = energy.merge(weather, on="timestamp", how="inner")
+    # Left-joined onto energy/weather (inner) so a temporary price-feed gap
+    # never drops otherwise-good demand/weather rows.
+    df = energy.merge(weather, on="timestamp", how="inner").merge(price, on="timestamp", how="left")
     n = upsert(df)
     print(f"[ingest] upserted {n} rows")
 

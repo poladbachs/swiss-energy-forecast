@@ -41,9 +41,9 @@ export default function CoverageTimeline({ forecasts, summary, hoverIdx, onHover
           <span className="text-gray-700 dark:text-gray-300 tabular-nums">
             {fmtDateTime(activeHour.timestamp)}: {STATUS_META[activeHour.coverage_status].glyph}{' '}
             {STATUS_META[activeHour.coverage_status].label},{' '}
-            {activeHour.supply_gap.point >= 0
-              ? `${fmtMW(activeHour.supply_gap.point)} deficit`
-              : `${fmtMW(-activeHour.supply_gap.point)} surplus`}
+            {activeHour.import_gap.point >= 0
+              ? `${fmtMW(activeHour.import_gap.point)} deficit`
+              : `${fmtMW(-activeHour.import_gap.point)} surplus`}
           </span>
         ) : (
           <>

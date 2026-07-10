@@ -60,9 +60,11 @@ export default function BacktestReplay({ backtest, dark }) {
   const actualColor = dark ? ACTUAL.dark : ACTUAL.light
   const grid = dark ? '#27272a' : '#f3f4f6'
   const ink = dark ? '#a1a1aa' : '#6b7280'
-  const maxAbs = Math.max(...points.map(p => Math.abs(p.supply_gap.upper)), ...points.map(p => Math.abs(p.supply_gap.actual)))
+  const maxAbs = Math.max(...points.map(p => Math.abs(p.import_gap.upper)), ...points.map(p => Math.abs(p.import_gap.actual)))
   const pct = revealed > 0 ? ((coveredSoFar / revealed) * 100).toFixed(1) : '—'
   const demandMae = backtest.summary?.demand_mae
+  const demandNaiveMae = backtest.summary?.demand_naive_168h_mae
+  const demandImprovementPct = backtest.summary?.demand_mae_improvement_pct
   const demandCoverage = backtest.summary?.demand_coverage_pct
 
   return (
@@ -118,7 +120,17 @@ export default function BacktestReplay({ backtest, dark }) {
         </span>
         {demandMae != null && (
           <span className="ml-auto tabular-nums">
-            MAE {fmtMW(demandMae)} · coverage {demandCoverage != null ? `${demandCoverage.toFixed(1)}%` : '—'}
+            model MAE {fmtMW(demandMae)}
+            {demandNaiveMae != null && (
+              <> vs seasonal-naive {fmtMW(demandNaiveMae)}
+                {demandImprovementPct != null && (
+                  <span className={demandImprovementPct >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500'}>
+                    {' '}({demandImprovementPct >= 0 ? '−' : '+'}{Math.abs(demandImprovementPct).toFixed(1)}% error)
+                  </span>
+                )}
+              </>
+            )}
+            {' '}· coverage {demandCoverage != null ? `${demandCoverage.toFixed(1)}%` : '—'}
           </span>
         )}
       </div>

@@ -29,14 +29,16 @@ function Tile({ label, value, sub, accent }) {
 
 export default function StatTiles({ forecasts, summary, backtest }) {
   const peakDemand = forecasts.reduce((a, b) => (b.demand.point > a.demand.point ? b : a))
-  const peakPressure = forecasts.reduce((a, b) => (b.supply_gap.point > a.supply_gap.point ? b : a))
+  const peakPressure = forecasts.reduce((a, b) => (b.import_gap.point > a.import_gap.point ? b : a))
   const surplusWin = nextWindow(forecasts, 'confirmed_surplus') || nextWindow(forecasts, 'possible_surplus')
   const surplusKind = nextWindow(forecasts, 'confirmed_surplus') ? 'confirmed' : 'possible'
   const demandCoverage = backtest?.summary?.demand_coverage_pct
   const demandMaE = backtest?.summary?.demand_mae
+  const demandImprovementPct = backtest?.summary?.demand_mae_improvement_pct
+  const priceModel = backtest?.summary?.price_model
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+    <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
       <Tile
         label="Peak demand"
         value={fmtMW(peakDemand.demand.point)}
@@ -44,21 +46,26 @@ export default function StatTiles({ forecasts, summary, backtest }) {
         accent={STATUS.deficit}
       />
       <Tile
-        label="Peak supply pressure"
-        value={fmtMW(peakPressure.supply_gap.point)}
+        label="Peak import gap"
+        value={fmtMW(peakPressure.import_gap.point)}
         sub={`tightest balance at ${fmtDateTime(peakPressure.timestamp)}`}
         accent={STATUS.deficit}
       />
       <Tile
-        label="Demand backtest"
-        value={demandMaE != null ? fmtMW(demandMaE) : '—'}
-        sub={demandCoverage != null ? `${demandCoverage.toFixed(1)}% interval coverage` : 'stability check'}
+        label="Demand MAE vs seasonal-naive"
+        value={demandImprovementPct != null ? `${demandImprovementPct >= 0 ? '−' : '+'}${Math.abs(demandImprovementPct).toFixed(0)}% error` : (demandMaE != null ? fmtMW(demandMaE) : '—')}
+        sub={demandCoverage != null ? `${fmtMW(demandMaE)} MAE · ${demandCoverage.toFixed(1)}% interval coverage` : 'stability check'}
         accent={STATUS.confirmed_surplus}
       />
       <Tile
         label="Next relief window"
         value={surplusWin ?? 'none'}
         sub={surplusWin ? `${surplusKind} surplus` : 'none in the next 48h'}
+      />
+      <Tile
+        label="Import gap → price"
+        value={priceModel ? `+${priceModel.slope_eur_per_100mw.toFixed(2)} EUR/100MW` : '—'}
+        sub={priceModel ? `r²=${priceModel.r2.toFixed(2)} on ${priceModel.n_obs.toLocaleString()}h — weak but real link` : 'no price data'}
       />
     </div>
   )

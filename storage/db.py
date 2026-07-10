@@ -11,14 +11,20 @@ CREATE TABLE IF NOT EXISTS energy_hourly (
     demand_mw       FLOAT,
     solar_mw        FLOAT,
     wind_mw         FLOAT,
+    hydro_mw        FLOAT,
+    nuclear_mw      FLOAT,
+    price_eur_mwh   FLOAT,
     temperature     FLOAT,
     solar_radiation FLOAT,
     wind_speed      FLOAT,
     cloud_cover     FLOAT
 );
+ALTER TABLE energy_hourly ADD COLUMN IF NOT EXISTS hydro_mw FLOAT;
+ALTER TABLE energy_hourly ADD COLUMN IF NOT EXISTS nuclear_mw FLOAT;
+ALTER TABLE energy_hourly ADD COLUMN IF NOT EXISTS price_eur_mwh FLOAT;
 """
 
-_COLS = ["timestamp", "demand_mw", "solar_mw", "wind_mw",
+_COLS = ["timestamp", "demand_mw", "solar_mw", "wind_mw", "hydro_mw", "nuclear_mw", "price_eur_mwh",
          "temperature", "solar_radiation", "wind_speed", "cloud_cover"]
 
 
@@ -38,22 +44,21 @@ def create_schema() -> None:
             cur.execute(_DDL)
 
 
+_UPDATE_COLS = [c for c in _COLS if c != "timestamp"]
+
+
 def upsert(df: pd.DataFrame) -> int:
     """Insert rows, updating on timestamp conflict. Returns row count."""
     df = df.sort_values("timestamp").drop_duplicates(subset=["timestamp"], keep="last")
+    for col in _COLS:
+        if col not in df.columns:
+            df[col] = None
     rows = [tuple(row) for row in df[_COLS].itertuples(index=False, name=None)]
-    sql = """
-        INSERT INTO energy_hourly
-            (timestamp, demand_mw, solar_mw, wind_mw, temperature, solar_radiation, wind_speed, cloud_cover)
+    sql = f"""
+        INSERT INTO energy_hourly ({', '.join(_COLS)})
         VALUES %s
         ON CONFLICT (timestamp) DO UPDATE SET
-            demand_mw       = EXCLUDED.demand_mw,
-            solar_mw        = EXCLUDED.solar_mw,
-            wind_mw         = EXCLUDED.wind_mw,
-            temperature     = EXCLUDED.temperature,
-            solar_radiation = EXCLUDED.solar_radiation,
-            wind_speed      = EXCLUDED.wind_speed,
-            cloud_cover     = EXCLUDED.cloud_cover
+            {', '.join(f'{c} = EXCLUDED.{c}' for c in _UPDATE_COLS)}
     """
     with _conn() as conn:
         with conn.cursor() as cur:

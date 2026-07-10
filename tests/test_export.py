@@ -40,6 +40,7 @@ def test_export_target_writes_valid_booster(tmp_path, fitted_mapie, monkeypatch)
     mapie, df = fitted_mapie
     monkeypatch.setattr("models.export.ART", tmp_path)
     monkeypatch.setattr("models.export.RADII_PATH", tmp_path / "radii.json")
+    monkeypatch.setattr("models.export.FEATURE_IMPORTANCE_PATH", tmp_path / "feature_importance.json")
     (tmp_path / "radii.json").write_text(json.dumps({"solar_mw": 1.0, "wind_mw": 2.0}))
 
     with patch("mlflow.sklearn.load_model", return_value=mapie):
@@ -53,6 +54,7 @@ def test_export_target_updates_only_its_own_radius(tmp_path, fitted_mapie, monke
     mapie, df = fitted_mapie
     monkeypatch.setattr("models.export.ART", tmp_path)
     monkeypatch.setattr("models.export.RADII_PATH", tmp_path / "radii.json")
+    monkeypatch.setattr("models.export.FEATURE_IMPORTANCE_PATH", tmp_path / "feature_importance.json")
     (tmp_path / "radii.json").write_text(json.dumps({"solar_mw": 1.0, "wind_mw": 2.0}))
 
     with patch("mlflow.sklearn.load_model", return_value=mapie):
@@ -62,6 +64,23 @@ def test_export_target_updates_only_its_own_radius(tmp_path, fitted_mapie, monke
     assert radii["solar_mw"] == 1.0
     assert radii["wind_mw"] == 2.0
     assert "demand_mw" in radii and radii["demand_mw"] > 0
+
+
+def test_export_target_writes_feature_importance(tmp_path, fitted_mapie, monkeypatch):
+    mapie, df = fitted_mapie
+    monkeypatch.setattr("models.export.ART", tmp_path)
+    monkeypatch.setattr("models.export.RADII_PATH", tmp_path / "radii.json")
+    fi_path = tmp_path / "feature_importance.json"
+    monkeypatch.setattr("models.export.FEATURE_IMPORTANCE_PATH", fi_path)
+    (tmp_path / "radii.json").write_text(json.dumps({"solar_mw": 1.0, "wind_mw": 2.0}))
+
+    with patch("mlflow.sklearn.load_model", return_value=mapie):
+        export_target("demand_mw", df)
+
+    data = json.loads(fi_path.read_text())
+    assert "demand_mw" in data
+    assert len(data["demand_mw"]) > 0
+    assert set(data["demand_mw"][0]) == {"feature", "importance"}
 
 
 def test_export_promoted_noop_when_nothing_promoted(tmp_path, monkeypatch):

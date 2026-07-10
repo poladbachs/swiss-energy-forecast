@@ -1,13 +1,16 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
 import { useForecast } from './hooks/useForecast'
 import { useBacktest } from './hooks/useBacktest'
-import { applyMultipliers } from './lib/counterfactual'
+import { useFeatureImportance } from './hooks/useFeatureImportance'
+import { applyMultipliers, scenarioForecast } from './lib/counterfactual'
 import StatTiles from './components/StatTiles'
 import GapChart from './components/GapChart'
 import ForecastChart from './components/ForecastChart'
 import CoverageTimeline from './components/CoverageTimeline'
 import CounterfactualPanel from './components/CounterfactualPanel'
 import BacktestReplay from './components/BacktestReplay'
+import PricePanel from './components/PricePanel'
+import FeatureImportance from './components/FeatureImportance'
 import { fmtDateTime } from './theme'
 
 function useDarkMode() {
@@ -56,16 +59,23 @@ function InfoPopover() {
         aria-label="How to read this"
         className={`absolute right-0 z-10 mt-2 w-80 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg text-xs text-gray-600 dark:text-gray-300 space-y-2 ${open ? '' : 'hidden'}`}>
         <p>
-          The main chart is demand. The balance chart shows how much supply pressure remains after
-          solar and wind are subtracted.
+          The main chart is demand. The import-gap chart shows what's left after subtracting
+          Switzerland's own solar, wind, hydro and nuclear generation — positive means the hour
+          likely needs imports or storage; negative means CH generation covers demand.
         </p>
         <p>
-          The shaded band is the forecast range. It is based on past errors, so it should cover
-          about 9 out of 10 future hours.
+          The shaded band is the forecast range, calibrated so it should cover about 9 out of 10
+          future hours (checked in the backtest below).
         </p>
         <p>
-          The scenario controls let you stress demand, wind, and solar together and see how
-          quickly the system gets tight.
+          "Cold snap," "holiday," "low wind" and "low solar" rerun the actual trained model with a
+          perturbed input (temperature, calendar flag, wind speed, solar radiation) — they're real
+          model outputs, not rescaled numbers. "Event shock" and the manual sliders are a plain
+          multiplier overlay, used because there's no strike/outage feature in the model yet.
+        </p>
+        <p>
+          The price panel checks whether the import gap actually correlates with what the market
+          paid — it's a validation of the signal, not a price forecast.
         </p>
       </div>
     </div>
@@ -85,12 +95,19 @@ export default function App() {
   const [multipliers, setMultipliers] = useState({
     solarMultiplier: 1.0, windMultiplier: 1.0, demandMultiplier: 1.0, bandMultiplier: 1.0,
   })
+  const [selectedScenario, setSelectedScenario] = useState(null)
   const [dark, setDark] = useDarkMode()
   const [hoverIdx, setHoverIdx] = useState(null)
 
   const { data: baseline, error } = useForecast({ horizon: 48 })
   const { data: backtest } = useBacktest()
-  const data = useMemo(() => applyMultipliers(baseline, multipliers), [baseline, multipliers])
+  const { data: featureImportance } = useFeatureImportance()
+  const data = useMemo(() => {
+    if (selectedScenario && baseline?.scenarios?.[selectedScenario]) {
+      return scenarioForecast(baseline, baseline.scenarios[selectedScenario])
+    }
+    return applyMultipliers(baseline, multipliers)
+  }, [baseline, multipliers, selectedScenario])
 
   if (error) return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
@@ -116,11 +133,13 @@ export default function App() {
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-balance">
-                Swiss power demand, balance pressure, and scenario risk.
+                Swiss power demand, import dependency, and scenario risk.
               </h1>
               <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2 max-w-2xl">
-                A live forecast stack for the Swiss power market: demand first, then the balance
-                pressure that renewables leave behind, with scenario controls and backtest coverage.
+                A forecast stack for the Swiss power market: demand first, then how much of it
+                Switzerland's own generation (solar, wind, hydro, nuclear) can actually cover — with
+                model-grounded scenario reruns, a seasonal-naive backtest, and an honest check on
+                whether any of this actually correlates with price.
               </p>
             </div>
           </div>
@@ -145,12 +164,17 @@ export default function App() {
           onChange={setMultipliers}
           summary={data.summary}
           baseSummary={baseline?.summary}
+          scenarios={baseline?.scenarios}
+          selectedScenario={selectedScenario}
+          onSelectScenario={setSelectedScenario}
         />
         {backtest && <BacktestReplay backtest={backtest} dark={dark} />}
+        {backtest && <PricePanel backtest={backtest} dark={dark} />}
+        {featureImportance && <FeatureImportance data={featureImportance} dark={dark} />}
 
         <footer className="pt-4 pb-8 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-400 dark:text-gray-500">
           <div className="flex flex-wrap gap-1.5">
-            {['Demand forecast', 'Balance monitor', 'Scenario lab', 'Backtest replay'].map(t => (
+            {['Demand forecast', 'Import dependency', 'Scenario reruns', 'Backtest vs seasonal-naive', 'Price validation'].map(t => (
               <span key={t} className="px-2 py-0.5 rounded-full border border-gray-200 dark:border-gray-700">{t}</span>
             ))}
           </div>

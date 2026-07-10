@@ -1,0 +1,104 @@
+{
+ "demand_mw": [
+  {
+   "feature": "demand_mw_rolling_24h_mean",
+   "importance": 0.5329
+  },
+  {
+   "feature": "solar_radiation",
+   "importance": 0.122
+  },
+  {
+   "feature": "hour_of_day",
+   "importance": 0.1135
+  },
+  {
+   "feature": "day_of_week",
+   "importance": 0.087
+  },
+  {
+   "feature": "temperature",
+   "importance": 0.0435
+  },
+  {
+   "feature": "month",
+   "importance": 0.0377
+  },
+  {
+   "feature": "demand_mw_rolling_24h_std",
+   "importance": 0.0168
+  },
+  {
+   "feature": "demand_mw_lag_1h",
+   "importance": 0.0135
+  }
+ ],
+ "solar_mw": [
+  {
+   "feature": "solar_radiation",
+   "importance": 0.8061
+  },
+  {
+   "feature": "solar_mw_rolling_24h_std",
+   "importance": 0.0481
+  },
+  {
+   "feature": "hour_of_day",
+   "importance": 0.0446
+  },
+  {
+   "feature": "solar_mw_rolling_24h_mean",
+   "importance": 0.0262
+  },
+  {
+   "feature": "temperature",
+   "importance": 0.0198
+  },
+  {
+   "feature": "wind_speed",
+   "importance": 0.0133
+  },
+  {
+   "feature": "month",
+   "importance": 0.0132
+  },
+  {
+   "feature": "cloud_cover",
+   "importance": 0.013
+  }
+ ],
+ "wind_mw": [
+  {
+   "feature": "wind_mw_lag_1h",
+   "importance": 0.2825
+  },
+  {
+   "feature": "wind_speed",
+   "importance": 0.1955
+  },
+  {
+   "feature": "temperature",
+   "importance": 0.1075
+  },
+  {
+   "feature": "month",
+   "importance": 0.0798
+  },
+  {
+   "feature": "wind_mw_rolling_24h_mean",
+   "importance": 0.0567
+  },
+  {
+   "feature": "cloud_cover",
+   "importance": 0.0481
+  },
+  {
+   "feature": "day_of_week",
+   "importance": 0.0481
+  },
+  {
+   "feature": "hours_ahead",
+   "importance": 0.0386
+  }
+ ]
+}

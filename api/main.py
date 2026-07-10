@@ -60,13 +60,18 @@ def _apply_multipliers(base: dict, solar_multiplier: float, wind_multiplier: flo
         demand = hour["demand"]
         solar = _scale_interval(hour["solar"], solar_multiplier)
         wind = _scale_interval(hour["wind"], wind_multiplier)
-        gap_point = demand["point"] - (solar["point"] + wind["point"])
-        gap_lower = demand["lower"] - (solar["upper"] + wind["upper"])
-        gap_upper = demand["upper"] - (solar["lower"] + wind["lower"])
+        # hydro/nuclear are trailing-average point estimates, not sliders the
+        # user can stress — they hold steady while solar/wind get scaled.
+        domestic_pt = solar["point"] + wind["point"] + hour["hydro_mw"] + hour["nuclear_mw"]
+        domestic_lo = solar["lower"] + wind["lower"] + hour["hydro_mw"] + hour["nuclear_mw"]
+        domestic_hi = solar["upper"] + wind["upper"] + hour["hydro_mw"] + hour["nuclear_mw"]
+        gap_point = demand["point"] - domestic_pt
+        gap_lower = demand["lower"] - domestic_hi
+        gap_upper = demand["upper"] - domestic_lo
 
         hour["solar"] = solar
         hour["wind"] = wind
-        hour["supply_gap"] = {"point": gap_point, "lower": gap_lower, "upper": gap_upper}
+        hour["import_gap"] = {"point": gap_point, "lower": gap_lower, "upper": gap_upper}
         hour["coverage_status"] = "confirmed_surplus" if gap_upper < 0 else "possible_surplus" if gap_point < 0 else "deficit"
 
     hours = payload["forecasts"]

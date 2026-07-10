@@ -5,6 +5,8 @@ __pycache__/
 *.pyc
 .venv/
 mlflow_data/
+.mlflow_local.db
+mlruns/
 .DS_Store
 .serena/
 # pixi environments
