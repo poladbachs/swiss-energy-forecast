@@ -84,6 +84,7 @@ def main() -> None:
     ).join(series["wind_mw"].add_suffix("_wind"), how="inner").dropna()
 
     points, covered = [], 0
+    demand_covered, demand_abs_errors = 0, []
     for ts, r in merged.iterrows():
         d = dict(point=r.point_demand, lower=r.lower_demand, upper=r.upper_demand, actual=r.actual_demand)
         s = dict(point=r.point_solar, lower=r.lower_solar, upper=r.upper_solar, actual=r.actual_solar)
@@ -95,7 +96,10 @@ def main() -> None:
             actual=d["actual"] - (s["actual"] + w["actual"]),
         )
         is_covered = bool(gap["lower"] <= gap["actual"] <= gap["upper"])
+        demand_is_covered = bool(d["lower"] <= d["actual"] <= d["upper"])
         covered += int(is_covered)
+        demand_covered += int(demand_is_covered)
+        demand_abs_errors.append(abs(d["actual"] - d["point"]))
         points.append({
             "timestamp": iso_utc(ts),
             "demand": {k: float(v) for k, v in d.items()},
@@ -104,6 +108,7 @@ def main() -> None:
             "supply_gap": {k: float(v) for k, v in gap.items()},
             "coverage_status": classify(gap["point"], gap["upper"]),
             "covered": is_covered,
+            "demand_covered": demand_is_covered,
         })
 
     out = {
@@ -114,6 +119,8 @@ def main() -> None:
             "hours": len(points),
             "covered_hours": covered,
             "coverage_pct": round(100 * covered / len(points), 1) if points else 0,
+            "demand_mae": round(float(sum(demand_abs_errors) / len(demand_abs_errors)), 1) if demand_abs_errors else 0,
+            "demand_coverage_pct": round(100 * demand_covered / len(points), 1) if points else 0,
         },
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)

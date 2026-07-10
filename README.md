@@ -1,12 +1,12 @@
 # Alpine Grid Pulse
 
-Alpine Grid Pulse is a Swiss grid-balance dashboard. It forecasts demand, solar, and wind for the next 48 hours, then shows the supply gap and whether renewables are enough to cover demand.
+Alpine Grid Pulse is a Swiss power-demand forecasting dashboard. It predicts the next 48 hours of load, shows how much supply pressure remains after solar and wind, and lets you stress the forecast with market-style scenarios.
 
 Weather is part of the model. Historical weather is used for training and backtesting, and forecast weather is used for live predictions.
 
 ## What it does
 
-The current version is a forecast app, not just a data script. It includes:
+The current version is a demand-first forecasting app, not just a data script. It includes:
 
 - a Python pipeline that ingests data, trains models, and exports artifacts
 - a FastAPI `/forecast` endpoint for live predictions
@@ -15,9 +15,9 @@ The current version is a forecast app, not just a data script. It includes:
 
 ## Data used
 
-- Demand data comes from Swissgrid by default.
-- If `DATA_SOURCE=entsoe` and `ENTSOE_API_KEY` is set, ingest can use ENTSO-E instead.
-- Solar and wind are modeled separately.
+- Demand data comes from ENTSO-E when `ENTSOE_API_KEY` is available.
+- Swissgrid is kept as a fallback for demand-only historical ingestion.
+- Solar and wind are modeled separately as support signals.
 - Weather comes from Open-Meteo.
 
 ## How the model works
@@ -63,7 +63,7 @@ cd frontend && npm run dev
 
 Run the first two commands from the repo root, then start the frontend from `frontend/`.
 
-To use ENTSO-E instead of Swissgrid, set `DATA_SOURCE=entsoe` and provide `ENTSOE_API_KEY` before running ingest or retraining.
+To use ENTSO-E instead of Swissgrid, set `ENTSOE_API_KEY` and leave `DATA_SOURCE` unset or set it to `entsoe`.
 
 ## Deployment
 

@@ -16,10 +16,10 @@ function ReplayTooltip({ active, payload, label }) {
     <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-xs shadow-md">
       <p className="font-medium text-gray-900 dark:text-gray-100">{fmtDateTime(label)}</p>
       <p className="tabular-nums text-gray-700 dark:text-gray-300">
-        predicted {fmtMW(row.predPoint)} <span className="text-gray-400">({fmtMW(row.predLower)} … {fmtMW(row.predUpper)})</span>
+        predicted demand {fmtMW(row.predPoint)} <span className="text-gray-400">({fmtMW(row.predLower)} … {fmtMW(row.predUpper)})</span>
       </p>
       <p className="tabular-nums" style={{ color: row.covered ? '#16a34a' : '#ef4444' }}>
-        actual {fmtMW(row.actual)} {row.covered ? '✓ covered' : '✕ missed'}
+        actual demand {fmtMW(row.actual)} {row.covered ? '✓ covered' : '✕ missed'}
       </p>
     </div>
   )
@@ -41,17 +41,17 @@ export default function BacktestReplay({ backtest, dark }) {
     const shown = i < revealed
     return {
       t: p.timestamp,
-      predLower: shown ? p.supply_gap.lower : null,
-      predUpper: shown ? p.supply_gap.upper : null,
-      predBand: shown ? p.supply_gap.upper - p.supply_gap.lower : null,
-      predPoint: shown ? p.supply_gap.point : null,
-      actual: shown ? p.supply_gap.actual : null,
-      covered: p.covered,
+      predLower: shown ? p.demand.lower : null,
+      predUpper: shown ? p.demand.upper : null,
+      predBand: shown ? p.demand.upper - p.demand.lower : null,
+      predPoint: shown ? p.demand.point : null,
+      actual: shown ? p.demand.actual : null,
+      covered: p.demand_covered ?? p.covered,
     }
   }), [points, revealed])
 
   const coveredSoFar = useMemo(
-    () => points.slice(0, revealed).filter(p => p.covered).length,
+    () => points.slice(0, revealed).filter(p => p.demand_covered ?? p.covered).length,
     [points, revealed]
   )
 
@@ -62,13 +62,15 @@ export default function BacktestReplay({ backtest, dark }) {
   const ink = dark ? '#a1a1aa' : '#6b7280'
   const maxAbs = Math.max(...points.map(p => Math.abs(p.supply_gap.upper)), ...points.map(p => Math.abs(p.supply_gap.actual)))
   const pct = revealed > 0 ? ((coveredSoFar / revealed) * 100).toFixed(1) : '—'
+  const demandMae = backtest.summary?.demand_mae
+  const demandCoverage = backtest.summary?.demand_coverage_pct
 
   return (
     <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 space-y-3 transition-colors hover:border-gray-300 dark:hover:border-gray-600">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <div>
           <h2 className="font-semibold text-gray-900 dark:text-gray-100">
-            Backtest: {backtest.horizon_h}h ahead
+            Demand backtest: {backtest.horizon_h}h ahead
           </h2>
           <p className="text-xs text-gray-500 dark:text-gray-400">
             Each point is one observed hour in UTC.
@@ -90,7 +92,7 @@ export default function BacktestReplay({ backtest, dark }) {
           <Tooltip content={<ReplayTooltip />} />
           <Area dataKey="predLower" stackId="band" stroke="none" fill="transparent" activeDot={false} isAnimationActive={false} />
           <Area dataKey="predBand" stackId="band" stroke="none" fill={colors.gap} fillOpacity={dark ? 0.2 : 0.14} activeDot={false} isAnimationActive={false} />
-          <Line dataKey="predPoint" stroke={colors.gap} strokeWidth={2} dot={false} isAnimationActive={false} connectNulls={false} name="predicted" />
+          <Line dataKey="predPoint" stroke={colors.demand} strokeWidth={2} dot={false} isAnimationActive={false} connectNulls={false} name="predicted" />
           <Line dataKey="actual" stroke={actualColor} strokeWidth={1.5} strokeDasharray="4 3" dot={false} isAnimationActive={false} connectNulls={false} name="actual" />
         </ComposedChart>
       </ResponsiveContainer>
@@ -109,11 +111,16 @@ export default function BacktestReplay({ backtest, dark }) {
       </div>
       <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
         <span className="inline-flex items-center gap-1.5">
-          <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: colors.gap }} /> forecast range
+          <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: colors.demand }} /> forecast range
         </span>
         <span className="inline-flex items-center gap-1.5">
           <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: actualColor, borderTop: `1.5px dashed ${actualColor}` }} /> actual
         </span>
+        {demandMae != null && (
+          <span className="ml-auto tabular-nums">
+            MAE {fmtMW(demandMae)} · coverage {demandCoverage != null ? `${demandCoverage.toFixed(1)}%` : '—'}
+          </span>
+        )}
       </div>
     </div>
   )

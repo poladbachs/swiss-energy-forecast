@@ -51,20 +51,21 @@ function InfoPopover() {
         className="cursor-pointer list-none rounded text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         ⓘ how to read this
       </button>
-      <div
+        <div
         role="dialog"
         aria-label="How to read this"
         className={`absolute right-0 z-10 mt-2 w-80 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg text-xs text-gray-600 dark:text-gray-300 space-y-2 ${open ? '' : 'hidden'}`}>
+        <p>
+          The main chart is demand. The balance chart shows how much supply pressure remains after
+          solar and wind are subtracted.
+        </p>
         <p>
           The shaded band is the forecast range. It is based on past errors, so it should cover
           about 9 out of 10 future hours.
         </p>
         <p>
-          The supply gap is demand minus solar and wind. An hour is only marked
-          <strong>✓ confirmed surplus</strong> when renewables still cover demand in the worst case.
-        </p>
-        <p>
-          The sliders change the solar and wind forecasts before the gap is recalculated.
+          The scenario controls let you stress demand, wind, and solar together and see how
+          quickly the system gets tight.
         </p>
       </div>
     </div>
@@ -111,14 +112,15 @@ export default function App() {
         <header className="flex flex-wrap items-start justify-between gap-3">
           <div className="max-w-2xl space-y-3">
             <div className="inline-flex items-center gap-2 rounded-full border border-gray-200/80 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-gray-500 dark:text-gray-400 backdrop-blur">
-              Alpine Grid Pulse
+              Alpine Grid Pulse · demand first
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-balance">
-                Swiss grid balance, 48 hours ahead.
+                Swiss power demand, balance pressure, and scenario risk.
               </h1>
               <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2 max-w-2xl">
-                A live view of demand, solar, wind and supply balance for Switzerland, with uncertainty bands and scenario controls.
+                A live forecast stack for the Swiss power market: demand first, then the balance
+                pressure that renewables leave behind, with scenario controls and backtest coverage.
               </p>
             </div>
           </div>
@@ -133,7 +135,7 @@ export default function App() {
           </div>
         </header>
 
-        <StatTiles forecasts={data.forecasts} summary={data.summary} />
+        <StatTiles forecasts={data.forecasts} summary={data.summary} backtest={backtest} />
         <DataFreshness forecast={baseline} backtest={backtest} />
         <GapChart forecasts={data.forecasts} baseline={baseline?.forecasts} dark={dark} onHover={setHoverIdx} />
         <CoverageTimeline forecasts={data.forecasts} summary={data.summary} hoverIdx={hoverIdx} onHover={setHoverIdx} />
@@ -148,7 +150,7 @@ export default function App() {
 
         <footer className="pt-4 pb-8 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-400 dark:text-gray-500">
           <div className="flex flex-wrap gap-1.5">
-            {['Forecast engine', 'Coverage monitor', 'Scenario lab', 'Historical replay'].map(t => (
+            {['Demand forecast', 'Balance monitor', 'Scenario lab', 'Backtest replay'].map(t => (
               <span key={t} className="px-2 py-0.5 rounded-full border border-gray-200 dark:border-gray-700">{t}</span>
             ))}
           </div>

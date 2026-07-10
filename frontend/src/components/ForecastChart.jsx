@@ -5,9 +5,9 @@ import {
 import { SERIES, fmtMW, fmtAxis, fmtDateTime, fmtHourOrDay } from '../theme'
 
 const DEFS = [
-  { key: 'demand', label: 'Demand' },
-  { key: 'solar',  label: 'Solar' },
-  { key: 'wind',   label: 'Wind' },
+  { key: 'demand', label: 'Demand', title: 'Demand forecast', height: 224 },
+  { key: 'solar',  label: 'Solar', title: 'Solar supply', height: 104 },
+  { key: 'wind',   label: 'Wind', title: 'Wind supply', height: 104 },
 ]
 
 function SmallTooltip({ active, payload, label, name }) {
@@ -24,7 +24,7 @@ function SmallTooltip({ active, payload, label, name }) {
   )
 }
 
-function Chart({ forecasts, seriesKey, label, color, dark }) {
+function Chart({ forecasts, seriesKey, label, title, color, dark, height = 160, compact = false }) {
   const data = forecasts.map(f => ({
     t: f.timestamp,
     point: f[seriesKey].point,
@@ -39,7 +39,13 @@ function Chart({ forecasts, seriesKey, label, color, dark }) {
 
   return (
     <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 transition-colors hover:border-gray-300 dark:hover:border-gray-600">
-      <ResponsiveContainer width="100%" height={160}>
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <div>
+          <h2 className="font-semibold text-gray-900 dark:text-gray-100">{title ?? label}</h2>
+          {compact && <p className="text-xs text-gray-500 dark:text-gray-400">support signal</p>}
+        </div>
+      </div>
+      <ResponsiveContainer width="100%" height={height}>
         <ComposedChart data={data} syncId="fc" margin={{ top: 12, right: 56, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke={grid} vertical={false} />
           <XAxis dataKey="t" ticks={midnightTicks} tickFormatter={fmtHourOrDay}
@@ -61,11 +67,31 @@ function Chart({ forecasts, seriesKey, label, color, dark }) {
 export default function ForecastChart({ forecasts, dark }) {
   const colors = dark ? SERIES.dark : SERIES.light
   return (
-    <div className="grid gap-3 lg:grid-cols-3">
-      {DEFS.map(s => (
-        <Chart key={s.key} forecasts={forecasts} seriesKey={s.key} label={s.label}
-               color={colors[s.key]} dark={dark} />
-      ))}
+    <div className="grid gap-3 lg:grid-cols-[1.6fr_1fr]">
+      <Chart
+        forecasts={forecasts}
+        seriesKey="demand"
+        label="Demand"
+        title="Demand forecast"
+        color={colors.demand}
+        dark={dark}
+        height={224}
+      />
+      <div className="grid gap-3">
+        {DEFS.filter(s => s.key !== 'demand').map(s => (
+          <Chart
+            key={s.key}
+            forecasts={forecasts}
+            seriesKey={s.key}
+            label={s.label}
+            title={s.title}
+            color={colors[s.key]}
+            dark={dark}
+            height={104}
+            compact
+          />
+        ))}
+      </div>
     </div>
   )
 }

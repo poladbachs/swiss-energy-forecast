@@ -23,4 +23,6 @@ jobs:
       - name: refresh database
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          ENTSOE_API_KEY: ${{ secrets.ENTSOE_API_KEY }}
+          DATA_SOURCE: entsoe
         run: python -m data.ingest

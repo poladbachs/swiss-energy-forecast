@@ -1,4 +1,4 @@
-import { fmtMW, STATUS, STATUS_META, fmtDateTime, fmtTime } from '../theme'
+import { fmtMW, STATUS, fmtDateTime, fmtTime } from '../theme'
 
 const fmtWindow = (start, end) => {
   const s = new Date(start), e = new Date(end)
@@ -27,34 +27,36 @@ function Tile({ label, value, sub, accent }) {
   )
 }
 
-export default function StatTiles({ forecasts, summary }) {
-  const peak = forecasts.reduce((a, b) => (b.supply_gap.point > a.supply_gap.point ? b : a))
-  const peakIsSurplus = peak.supply_gap.point < 0
+export default function StatTiles({ forecasts, summary, backtest }) {
+  const peakDemand = forecasts.reduce((a, b) => (b.demand.point > a.demand.point ? b : a))
+  const peakPressure = forecasts.reduce((a, b) => (b.supply_gap.point > a.supply_gap.point ? b : a))
   const surplusWin = nextWindow(forecasts, 'confirmed_surplus') || nextWindow(forecasts, 'possible_surplus')
   const surplusKind = nextWindow(forecasts, 'confirmed_surplus') ? 'confirmed' : 'possible'
+  const demandCoverage = backtest?.summary?.demand_coverage_pct
+  const demandMaE = backtest?.summary?.demand_mae
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
       <Tile
-        label="Confirmed surplus"
-        value={`${summary.confirmed_surplus_hours} / ${forecasts.length} h`}
-        sub={`${STATUS_META.confirmed_surplus.glyph} renewables cover demand even in the worst case`}
+        label="Peak demand"
+        value={fmtMW(peakDemand.demand.point)}
+        sub={`at ${fmtDateTime(peakDemand.timestamp)}`}
+        accent={STATUS.deficit}
+      />
+      <Tile
+        label="Peak supply pressure"
+        value={fmtMW(peakPressure.supply_gap.point)}
+        sub={`tightest balance at ${fmtDateTime(peakPressure.timestamp)}`}
+        accent={STATUS.deficit}
+      />
+      <Tile
+        label="Demand backtest"
+        value={demandMaE != null ? fmtMW(demandMaE) : '—'}
+        sub={demandCoverage != null ? `${demandCoverage.toFixed(1)}% interval coverage` : 'stability check'}
         accent={STATUS.confirmed_surplus}
       />
       <Tile
-        label="Possible surplus"
-        value={`${summary.possible_surplus_hours} / ${forecasts.length} h`}
-        sub="forecast range crosses zero"
-        accent={STATUS.possible_surplus}
-      />
-      <Tile
-        label={peakIsSurplus ? 'Smallest surplus' : 'Peak deficit'}
-        value={fmtMW(Math.abs(peak.supply_gap.point))}
-        sub={`at ${fmtDateTime(peak.timestamp)}`}
-        accent={peakIsSurplus ? STATUS.confirmed_surplus : STATUS.deficit}
-      />
-      <Tile
-        label="Next surplus window"
+        label="Next relief window"
         value={surplusWin ?? 'none'}
         sub={surplusWin ? `${surplusKind} surplus` : 'none in the next 48h'}
       />

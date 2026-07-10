@@ -14,7 +14,7 @@ function GapTooltip({ active, payload, label }) {
     <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-xs shadow-md">
       <p className="font-medium text-gray-900 dark:text-gray-100">{fmtDateTime(label)}</p>
       <p className="mt-1 tabular-nums text-gray-700 dark:text-gray-300">
-        gap {fmtMW(row.point)} <span className="text-gray-400">({fmtMW(row.lower)} … {fmtMW(row.upper)})</span>
+        pressure {fmtMW(row.point)} <span className="text-gray-400">({fmtMW(row.lower)} … {fmtMW(row.upper)})</span>
       </p>
       {row.baseGap != null && (
         <p className="tabular-nums text-gray-500 dark:text-gray-400">baseline {fmtMW(row.baseGap)}</p>
@@ -31,7 +31,7 @@ function GapTooltip({ active, payload, label }) {
   )
 }
 
-// Supply gap (demand minus renewables) with the conformal band and a zero
+// Supply pressure (demand minus renewables) with the conformal band and a zero
 // line. When the sliders are off 1.0x, a dashed baseline ghost appears.
 export default function GapChart({ forecasts, baseline, dark, onHover }) {
   const colors = dark ? SERIES.dark : SERIES.light
@@ -58,7 +58,7 @@ export default function GapChart({ forecasts, baseline, dark, onHover }) {
   return (
     <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 transition-colors hover:border-gray-300 dark:hover:border-gray-600">
       <div className="flex items-baseline justify-between">
-        <h2 className="font-semibold text-gray-900 dark:text-gray-100">Supply gap</h2>
+        <h2 className="font-semibold text-gray-900 dark:text-gray-100">Supply pressure</h2>
         <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
           {hasClean && (
             <label className="inline-flex items-center gap-1.5 cursor-pointer select-none">

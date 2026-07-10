@@ -70,7 +70,7 @@ def _apply_multipliers(base: dict, solar_multiplier: float, wind_multiplier: flo
         hour["coverage_status"] = "confirmed_surplus" if gap_upper < 0 else "possible_surplus" if gap_point < 0 else "deficit"
 
     hours = payload["forecasts"]
-    payload["generated_at"] = datetime.now(timezone.utc).isoformat()
+    payload["served_at"] = datetime.now(timezone.utc).isoformat()
     payload["horizon_hours"] = horizon
     payload["summary"] = {
         "confirmed_surplus_hours": sum(1 for hour in hours if hour["coverage_status"] == "confirmed_surplus"),

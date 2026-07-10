@@ -17,8 +17,12 @@ from data.weather import fetch_historical
 
 
 def ingest(start: date, end: date) -> None:
-    source = os.environ.get("DATA_SOURCE", "swissgrid")
+    source = os.environ.get("DATA_SOURCE")
+    if not source:
+        source = "entsoe" if os.environ.get("ENTSOE_API_KEY") else "swissgrid"
     if source == "entsoe":
+        if not os.environ.get("ENTSOE_API_KEY"):
+            raise RuntimeError("DATA_SOURCE=entsoe requires ENTSOE_API_KEY")
         from data.entsoe import fetch_energy
     else:
         from data.swissgrid import fetch_energy

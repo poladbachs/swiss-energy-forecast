@@ -27,8 +27,9 @@ COVERAGE_FLOOR = 80.0
 def check_drift() -> None:
     """Fail loudly if the currently-serving model's rolling coverage has degraded."""
     backtest = json.loads(BACKTEST_PATH.read_text())
-    coverage = backtest["summary"]["coverage_pct"]
-    msg = f"14-day conformal coverage: {coverage}% (floor {COVERAGE_FLOOR}%)"
+    summary = backtest["summary"]
+    coverage = summary.get("demand_coverage_pct", summary["coverage_pct"])
+    msg = f"14-day demand coverage: {coverage}% (floor {COVERAGE_FLOOR}%)"
 
     summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary_path:
