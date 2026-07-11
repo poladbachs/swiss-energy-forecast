@@ -17,9 +17,11 @@ from data.ingest import ingest
 from models.export import export_promoted
 from models.registry import promote_best
 from models.train import run_pipeline
-from scripts.fit_price_model import main as fit_price_model
+from scripts.backfill_market import backfill as backfill_market
 from scripts.static_backtest import main as refresh_backtest
 from scripts.static_forecast import main as refresh_forecast
+from scripts.static_price_forecast import main as refresh_price_forecast
+from scripts.walkforward_price import main as run_walkforward
 
 BACKTEST_PATH = Path(__file__).resolve().parent.parent / "frontend" / "public" / "backtest.json"
 COVERAGE_FLOOR = 80.0
@@ -44,10 +46,12 @@ def check_drift() -> None:
 
 def main() -> None:
     ingest(date.today() - timedelta(days=7), date.today())
+    backfill_market(date.today() - timedelta(days=7), date.today() + timedelta(days=2))
     run_pipeline()
     promoted = promote_best()
     export_promoted(promoted)
-    fit_price_model()
+    run_walkforward()
+    refresh_price_forecast()
     refresh_forecast()
     refresh_backtest()
     check_drift()

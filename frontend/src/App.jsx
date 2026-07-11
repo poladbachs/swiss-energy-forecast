@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import { useForecast } from './hooks/useForecast'
 import { useBacktest } from './hooks/useBacktest'
+import { usePriceDA } from './hooks/usePriceDA'
+import { useWalkforward } from './hooks/useWalkforward'
 import { useFeatureImportance } from './hooks/useFeatureImportance'
 import StatTiles from './components/StatTiles'
+import PriceAuction from './components/PriceAuction'
+import WalkforwardChart from './components/WalkforwardChart'
 import ForecastChart from './components/ForecastChart'
 import BacktestReplay from './components/BacktestReplay'
-import PriceOutlook from './components/PriceOutlook'
 import { fmtDateTime } from './theme'
 
 function useDarkMode() {
@@ -52,20 +55,25 @@ function InfoPopover() {
       <div
         role="dialog"
         aria-label="How to read this"
-        className={`absolute right-0 z-20 mt-3 w-72 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-lg shadow-zinc-950/5 dark:shadow-black/40 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 space-y-2.5 origin-top-right transition-[opacity,transform] duration-150 ease-out ${open ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-        <p>The chart is the demand guess for each of the next 48 hours. The shaded band is how wrong past guesses on similar hours have been. Real outcomes land inside it about 9 times out of 10.</p>
-        <p>The backtest replays the last 14 days: our guess vs. what actually happened vs. the dumbest reasonable guess, which is the same hour one week earlier.</p>
-        <p>The price outlook is a typical-price estimate fit on the last 12 months of real prices. It is not a guaranteed number, but a real, checked relationship.</p>
+        className={`absolute right-0 z-20 mt-3 w-80 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-lg shadow-zinc-950/5 dark:shadow-black/40 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 space-y-2.5 origin-top-right transition-[opacity,transform] duration-150 ease-out ${open ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+        <p>All European day-ahead auctions clear at the same moment, so tomorrow's German price can't
+        be used to predict tomorrow's Swiss price. This model only uses what really exists before the
+        auction: cleared prices through today, the TSOs' own next-day load forecasts, the German
+        wind+solar forecast, and lagged reservoir levels.</p>
+        <p>Every headline number is out-of-sample: 24 months replayed one at a time, each trained only
+        on data from before that month.</p>
+        <p>The band around the forecast is built from the model's real historical errors, not an
+        assumed distribution.</p>
       </div>
     </div>
   )
 }
 
-function DataFreshness({ forecast, backtest }) {
+function DataFreshness({ priceDA, backtest }) {
   return (
     <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-zinc-400 dark:text-zinc-600 font-mono tabular-nums">
-      {forecast?.generated_at && <span>forecast · {fmtDateTime(forecast.generated_at)}</span>}
-      {backtest?.generated_at && <span>backtest · {fmtDateTime(backtest.generated_at)}</span>}
+      {priceDA?.generated_at && <span>price model · {fmtDateTime(priceDA.generated_at)}</span>}
+      {backtest?.generated_at && <span>demand backtest · {fmtDateTime(backtest.generated_at)}</span>}
     </div>
   )
 }
@@ -74,30 +82,29 @@ function humanizeFeature(feature) {
   return feature.replace('demand_mw', '').replace(/_/g, ' ').trim().replace(/^./, c => c.toUpperCase())
 }
 
-// What actually drives the demand number. Full feature-importance detail
-// still lives in the repo; this is the one line that matters on the page.
-function WhyItMatters({ featureImportance }) {
+function Footnotes({ featureImportance }) {
   const topFeature = featureImportance?.demand_mw?.[0]
-  if (!topFeature) return null
-
   return (
-    <p className="text-sm text-zinc-500 dark:text-zinc-500 leading-relaxed">
-      What drives this forecast most: <span className="text-zinc-800 dark:text-zinc-200 font-medium">{humanizeFeature(topFeature.feature)}</span>
-      {' '}(<span className="font-mono tabular-nums">{(topFeature.importance * 100).toFixed(0)}%</span> of the model's weight), then hour of day, weekday, and weather.
-    </p>
-  )
-}
-
-// The other model besides weather/calendar that got tested: see
-// scripts/experiment_bridge_day.py. Worth stating on the page itself, not
-// just in the repo, since it's a real negative result, not a footnote.
-function SignalExploration() {
-  return (
-    <p className="text-sm text-zinc-500 dark:text-zinc-500 leading-relaxed">
-      One signal beyond weather and public holidays got tested: bridge days (the working day between
-      a holiday and the weekend). Real demand on those days runs about 12% lower, but only 11 exist in
-      6 years of data, too few for the model to learn from reliably, so it was tested and not shipped.
-    </p>
+    <div className="space-y-3 text-sm text-zinc-500 dark:text-zinc-500 leading-relaxed">
+      <p>
+        The price model's inputs: Swiss, German, French and North-Italian day-ahead prices (lagged a
+        full day), the four zones' pre-auction load forecasts, the German wind+solar forecast, weekly
+        Swiss reservoir levels, and the calendar. All from ENTSO-E, the EU's official market-data
+        platform.
+      </p>
+      {topFeature && (
+        <p>
+          The supporting demand model is driven most by <span className="text-zinc-800 dark:text-zinc-200 font-medium">{humanizeFeature(topFeature.feature)}</span>
+          {' '}(<span className="font-mono tabular-nums">{(topFeature.importance * 100).toFixed(0)}%</span> of its weight), then hour of day, weekday, and weather.
+        </p>
+      )}
+      <p>
+        One extra demand signal got tested and rejected: bridge days (the working day between a
+        holiday and the weekend) show ~12% lower demand in the raw data, but with only 11 of them in 6
+        years the model couldn't learn a reliable split, so the feature was not shipped. The experiment
+        is committed in the repo.
+      </p>
+    </div>
   )
 }
 
@@ -118,23 +125,27 @@ function Section({ title, meta, children, delay = 0 }) {
 export default function App() {
   const [dark, setDark] = useDarkMode()
 
-  const { data, error } = useForecast({ horizon: 48 })
+  const { data: priceDA, error } = usePriceDA()
+  const { data: walkforward } = useWalkforward()
+  const { data: demand } = useForecast({ horizon: 48 })
   const { data: backtest } = useBacktest()
   const { data: featureImportance } = useFeatureImportance()
 
   if (error) return (
     <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-zinc-950">
       <div className="text-center space-y-2">
-        <p className="text-red-500 font-medium">Could not load forecast: {error}</p>
-        <p className="text-sm text-zinc-500">Is the API running?</p>
+        <p className="text-red-500 font-medium">Could not load the price artifact: {error}</p>
+        <p className="text-sm text-zinc-500">Run scripts/static_price_forecast.py first.</p>
       </div>
     </div>
   )
-  if (!data) return (
+  if (!priceDA) return (
     <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 text-zinc-500">
-      Loading forecast...
+      Loading...
     </div>
   )
+
+  const liveWindow = Boolean(priceDA.next_auction)
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
@@ -158,39 +169,49 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-3xl md:text-[2.75rem] font-semibold tracking-tightest leading-[1.1] text-balance">
-              Swiss electricity demand, next 48 hours, and what that means for price.
+              Swiss day-ahead power prices, forecast before the auction clears.
             </h1>
             <p className="mt-3 text-base text-zinc-600 dark:text-zinc-400 max-w-[60ch] leading-relaxed">
-              A demand forecast checked against a real baseline, plus a typical-price outlook fit on
-              real historical prices. An actual per-hour estimate, not a caveat.
+              Built on four bidding zones of real ENTSO-E market data and only on information that
+              exists before each auction. Every number below is out-of-sample.
             </p>
           </div>
-          <StatTiles forecasts={data.forecasts} backtest={backtest} />
-          <DataFreshness forecast={data} backtest={backtest} />
+          <StatTiles walkforward={priceDA.walkforward} />
+          <DataFreshness priceDA={priceDA} backtest={backtest} />
         </header>
 
-        <Section title="Demand forecast" delay={80}>
-          <ForecastChart forecasts={data.forecasts} dark={dark} />
+        <Section
+          title={liveWindow ? `Next auction: ${priceDA.next_auction.delivery_day}` : 'Latest auction, replayed blind'}
+          meta={liveWindow ? 'pre-auction window open' : priceDA.latest_auction?.delivery_day}
+          delay={80}>
+          <PriceAuction priceDA={priceDA} dark={dark} />
         </Section>
+
+        {walkforward && (
+          <Section title="The evidence: 24-month walk-forward" delay={140}>
+            <WalkforwardChart walkforward={walkforward} dark={dark} />
+          </Section>
+        )}
+
+        {demand && (
+          <Section title="Supporting model: Swiss demand, next 48h" delay={200}>
+            <ForecastChart forecasts={demand.forecasts} dark={dark} />
+          </Section>
+        )}
 
         {backtest && (
           <Section
-            title="Backtest, 24h ahead"
+            title="Demand backtest, 24h ahead"
             meta="replays the last 14 days"
-            delay={140}>
+            delay={260}>
             <BacktestReplay backtest={backtest} dark={dark} />
           </Section>
         )}
 
-        <Section title="Price outlook, next 48h" delay={200}>
-          <PriceOutlook forecasts={data.forecasts} priceModel={backtest?.summary?.price_model} dark={dark} />
-        </Section>
-
-        <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800 space-y-3">
-          <WhyItMatters featureImportance={featureImportance} />
-          <SignalExploration />
-          <footer className="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 dark:text-zinc-600 pt-3">
-            <span>Demand forecast · Backtest vs. baseline · Price outlook</span>
+        <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800 space-y-6">
+          <Footnotes featureImportance={featureImportance} />
+          <footer className="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 dark:text-zinc-600 pt-2">
+            <span>Price forecast · Walk-forward evidence · Demand model · Signal experiments</span>
             <a href="https://github.com/poladbachs/swiss-energy-forecast"
                className="underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-4 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors duration-150">
               source on GitHub

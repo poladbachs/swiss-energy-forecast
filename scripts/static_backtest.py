@@ -21,7 +21,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from features.engineer import build_training_frame, get_feature_cols
-from models.price_model import predict as predict_price
 from storage.db import query as db_query
 
 TARGETS = ["demand_mw", "solar_mw", "wind_mw"]
@@ -60,13 +59,11 @@ def main() -> None:
         raise ValueError("No history rows available for backtest generation")
 
     # Full-resolution actuals lookup, keyed by timestamp, for the seasonal-naive
-    # baseline and for hydro/nuclear/price actuals (none of which are model
-    # targets — they're read straight from what really happened).
+    # baseline and for hydro/nuclear actuals (not model targets; read straight
+    # from what really happened).
     hist_idx = history.set_index("timestamp")
 
     radii = json.loads((ART / "radii.json").read_text())
-    price_coeffs_path = ART / "price_sensitivity.json"
-    price_coeffs = json.loads(price_coeffs_path.read_text()) if price_coeffs_path.exists() else None
 
     series = {}
     for target in TARGETS:
@@ -98,7 +95,6 @@ def main() -> None:
     points, covered = [], 0
     demand_covered = 0
     demand_abs_errors, demand_naive24_abs_errors, demand_naive168_abs_errors = [], [], []
-    price_abs_errors = []
     for ts, r in merged.iterrows():
         d = dict(point=r.point_demand, lower=r.lower_demand, upper=r.upper_demand, actual=r.actual_demand)
         s = dict(point=r.point_solar, lower=r.lower_solar, upper=r.upper_solar, actual=r.actual_solar)
@@ -130,12 +126,6 @@ def main() -> None:
         if not np.isnan(naive_168h):
             demand_naive168_abs_errors.append(abs(d["actual"] - naive_168h))
 
-        price_actual = hist_idx["price_eur_mwh"].get(ts, np.nan)
-        price_point = None
-        if price_coeffs is not None and not pd.isna(price_actual):
-            price_point = float(predict_price(price_coeffs, [gap["point"]], pd.DatetimeIndex([ts]))[0])
-            price_abs_errors.append(abs(float(price_actual) - price_point))
-
         points.append({
             "timestamp": iso_utc(ts),
             "demand": {**{k: float(v) for k, v in d.items()}, "naive_24h": float(r.naive_24h_demand),
@@ -145,8 +135,6 @@ def main() -> None:
             "hydro_mw": hydro_a,
             "nuclear_mw": nuclear_a,
             "import_gap": {k: float(v) for k, v in gap.items()},
-            "price_eur_mwh": float(price_actual) if not pd.isna(price_actual) else None,
-            "price_implied_eur_mwh": price_point,
             "coverage_status": classify(gap["point"], gap["upper"]),
             "covered": is_covered,
             "demand_covered": demand_is_covered,
@@ -158,7 +146,6 @@ def main() -> None:
     demand_mae = mae(demand_abs_errors)
     demand_naive24_mae = mae(demand_naive24_abs_errors)
     demand_naive168_mae = mae(demand_naive168_abs_errors)
-    price_mae = mae(price_abs_errors) if price_abs_errors else None
 
     out = {
         "horizon_h": HORIZON_H,
@@ -176,8 +163,6 @@ def main() -> None:
             # kept alongside for transparency but is a weaker bar to clear.
             "demand_mae_improvement_pct": round(100 * (1 - demand_mae / demand_naive168_mae), 1) if demand_naive168_mae else 0,
             "demand_coverage_pct": round(100 * demand_covered / len(points), 1) if points else 0,
-            "price_mae_eur_mwh": round(price_mae, 1) if price_mae is not None else None,
-            "price_model": price_coeffs,
         },
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)

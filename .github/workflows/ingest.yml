@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   ingest:
@@ -20,8 +20,23 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      - name: refresh database
+      - name: refresh database (energy + weather + market)
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           ENTSOE_API_KEY: ${{ secrets.ENTSOE_API_KEY }}
-        run: python -m data.ingest
+        run: |
+          python -m data.ingest
+          python -m scripts.backfill_market --days 7
+
+      - name: refresh the daily price artifact (latest auction replay)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python -m scripts.static_price_forecast
+
+      - name: commit refreshed artifact
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add frontend/public/price_forecast_da.json
+          git diff --cached --quiet || git commit -m "chore: refresh day-ahead price artifact $(date -u +%F) [skip ci]"
+          git push

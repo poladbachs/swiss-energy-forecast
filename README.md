@@ -1,90 +1,92 @@
 # Alpine Grid Pulse
 
-A 48-hour Swiss electricity demand forecast, checked against a real baseline, with a typical-price
-outlook fit on real historical prices. Demand is the headline output; everything else exists to
-answer two questions: is the forecast actually better than guessing, and does it have anything to do
-with what the market pays.
+A day-ahead electricity price forecast for the Swiss bidding zone, built only on information that
+exists before each auction clears, and evaluated the way a trading desk would evaluate it: a
+24-month walk-forward replay against the strongest simple baseline.
 
-## Data
+**Result: 11.4 vs. 16.8 EUR/MWh MAE against yesterday's-price naive (-32% error) across 17,137
+out-of-sample hours, beating the baseline in 23 of 24 months, with a 72.9% directional hit rate.**
 
-- Demand, solar, wind, hydro, nuclear, and day-ahead price all come from the [ENTSO-E Transparency Platform](https://transparency.entsoe.eu/) (`data/entsoe.py`), keyed by `ENTSOE_API_KEY`. Hydro combines run-of-river and reservoir generation (psrType `B12`/`B11`); pumped storage (`B10`) is excluded because ENTSO-E only reports its generation leg, not the pumping leg, which would double-count energy.
-- Weather (temperature, solar radiation, wind speed, cloud cover) comes from Open-Meteo, historical for training/backtesting, forecast for live predictions.
+## Why the information set is the whole game
 
-## How the model works
+All European day-ahead auctions clear simultaneously (~12:45 CET for next-day delivery), so
+tomorrow's German price cannot be used to predict tomorrow's Swiss price: it doesn't exist yet.
+A model fed same-hour neighbor prices backtests spectacularly and is completely fake. This model
+uses only what is really available pre-auction:
 
-One LightGBM model per target (`demand_mw`, `solar_mw`, `wind_mw`) per forecast horizon (1-48h ahead), using lagged actuals, rolling stats, calendar features (hour, weekday, month, Swiss public holidays), and weather at the target hour. Split-conformal calibration (MAPIE) wraps each model so the forecast band has an empirical coverage guarantee rather than being an arbitrary quantile. `models/export.py` also writes out each target's top LightGBM gain-based feature importances, shown on the dashboard, a checkable answer to "why did the model predict that."
+- **Cleared prices through today** for CH, DE-LU, FR and IT-North (entering only with a lag of
+  24 hours or more)
+- **The TSOs' own day-ahead load forecasts** for all four zones (published before the auction)
+- **The German wind+solar day-ahead forecast**, the dominant price fundamental in the region
+- **Weekly Swiss hydro reservoir levels**, lagged a full week to cover the publication delay
+- The calendar (hour, weekday, month, Swiss holidays)
 
-## Is it actually better than guessing?
+All data from the [ENTSO-E Transparency Platform](https://transparency.entsoe.eu/), the EU's
+official market-data source. `tests/test_price_forecast.py` contains leakage tripwires: sentinel
+prices planted at hour t must never appear in hour t's own features, and must surface exactly 24
+hours later. If a refactor ever breaks the discipline, the suite fails.
 
-The backtest compares the model's 24h-ahead demand forecast against a **seasonal-naive** baseline (same hour, one week earlier) over a rolling 14-day replay, the fair bar for data with strong weekly seasonality, not the much weaker 24h-persistence baseline (also reported for transparency, but not the headline). Both live in `frontend/public/backtest.json` and on the dashboard.
+## How it's evaluated
 
-## Signal exploration: does a new signal actually help?
+`scripts/walkforward_price.py` replays the last 24 months one month at a time; each fold trains
+only on data strictly before that month, then predicts the whole month out-of-sample. The
+2021-2022 gas-crisis regime stays in the training data on purpose: the model has to learn through
+the break, not have it curated away. The baseline is yesterday's price at the same hour, which is
+genuinely hard to beat in this market. Per-fold results, including the four months the model lost,
+are in `models/artifacts/price_walkforward.json` and on the dashboard.
 
-Weather and a legal-holiday flag are the obvious signals; the real test is whether a less obvious one
-holds up. `scripts/experiment_bridge_day.py` is a committed, runnable experiment testing one:
-**bridge days**, working days squeezed between a public holiday and the weekend (the Friday after a
-Thursday holiday, the Monday before a Tuesday one), which the existing holiday flag doesn't catch.
+The dashboard also replays the latest cleared auction blind after every auction: a model trained
+only on data before that delivery day, next to what actually cleared. The forecast band is the
+middle 80% of real out-of-sample errors from the walk-forward, not a distributional assumption.
 
-- **The raw pattern is real and large.** Across 6 years of real ENTSO-E demand, daytime demand on
-  bridge days runs about 12% below an ordinary Monday or Friday.
-- **It didn't survive rigorous testing.** Only 11 bridge days exist in the whole dataset, too few
-  for a tree model to learn a reliable split from. Retraining with the feature added made held-out
-  accuracy *on bridge-day hours specifically* worse, not better, and the trained model ranks the
-  feature near the bottom of its own importance list.
-- **Not shipped.** `features/engineer.py` keeps `is_bridge_day()` for the experiment script to import,
-  but excludes it from the production feature set. A real pattern that a model can't yet learn from
-  reliably is not the same as a useful feature, and shipping it anyway would have been the wrong call.
+## Supporting models and experiments
 
-Run it yourself: `pixi run python -m scripts.experiment_bridge_day`
-
-## Does any of this correlate with price?
-
-`models/price_model.py` fits a plain linear regression of the realized Swiss day-ahead price on the demand-minus-domestic-generation gap, plus hour-of-day and weekend controls, refit on the **trailing 12 months only** (`scripts/fit_price_model.py`). Fitting across the full 6-year history dilutes the result with 2021-2022, when the European gas-price shock decoupled Swiss prices from domestic demand almost entirely (full-history r² ≈ 0.05 vs trailing-12-month r² ≈ 0.30). This is deliberately not a price forecaster: day-ahead prices are already a market-clearing outcome published a day ahead, so "forecasting" the same window doesn't make sense as a target. What it produces instead is a typical-price estimate per forecast hour, shown on the dashboard, plus the honest r² of how much of real price movement that estimate actually explains.
+- **Swiss demand forecast, 48h ahead** (LightGBM + weather + calendar, split-conformal calibrated
+  bands), backtested against a seasonal-naive baseline. Demand is one of the price model's core
+  fundamentals, so it earns its place on the page.
+- **A signal experiment with a documented negative result** (`scripts/experiment_bridge_day.py`):
+  bridge days (the working day between a holiday and the weekend) show ~12% lower demand in 6
+  years of raw data, but with only 11 occurrences the model couldn't learn a reliable split;
+  adding the feature made held-out accuracy on those hours worse, so it was tested and not
+  shipped. Rejecting your own hypothesis with numbers is part of the job.
 
 ## What it includes
 
-- a Python pipeline: ingest → feature engineering → train → conformal calibration → MLflow registry (gated promotion, only promotes if it beats the current champion) → export to plain LightGBM boosters + feature importances for serving
-- a signal-exploration experiment with a documented negative result (`scripts/experiment_bridge_day.py`)
-- a linear price-sensitivity fit on a trailing 12-month window, refit alongside every retrain (`scripts/fit_price_model.py`)
-- a Vercel Python function (`api/main.py`) serving `/api/forecast` and `/api/health` from the exported artifacts, no live model inference per request
-- a React dashboard: demand forecast, backtest vs. seasonal-naive baseline, price outlook, feature importances
-- daily ingest + weekly retrain GitHub Actions, with a coverage-drift check that fails the retrain job if the live model's rolling interval coverage drops below 80%
-
-The pipeline also computes a broader domestic-generation balance (demand minus solar, wind, hydro,
-and nuclear) and precomputed scenario reruns (cold snap, holiday, low wind, low solar, each a real
-rerun of the trained model with one input perturbed, not a rescaled output). Both are real, tested,
-and available in the backtest/forecast JSON, but not part of the shipped dashboard; they were cut in
-favor of a narrower, more defensible product surface.
+- ENTSO-E ingestion for 4 bidding zones (prices, pre-auction load forecasts, renewables
+  forecasts, reservoir levels) + Swiss demand/generation + Open-Meteo weather, into PostgreSQL
+- the leakage-safe price feature builder and LightGBM model (`models/price_forecast.py`)
+- the 24-month walk-forward evaluation (`scripts/walkforward_price.py`)
+- a daily-refreshing artifact: latest auction replayed blind + next-auction forecast when the
+  pre-auction window is open (`scripts/static_price_forecast.py`)
+- the demand pipeline: train → split-conformal calibration → MLflow registry with gated
+  promotion → export to plain boosters
+- a React dashboard (price model first, demand as the supporting act)
+- GitHub Actions: daily ingest + artifact refresh, weekly retrain + walk-forward, with a
+  coverage-drift check that fails the job if the demand model degrades
 
 ## Setup
 
 ```bash
-# 1. Install Python dependencies
-pixi install
+pixi install                       # Python deps
+cd frontend && npm install         # frontend deps
 
-# 2. Install frontend dependencies
-cd frontend && npm install
-
-# 3. Backfill history (respects ENTSO-E's 400 requests/day limit)
+# Backfill (respects ENTSO-E's 400 requests/day limit)
 pixi run python -m data.ingest --start 2020-01-01 --end $(date +%F)
+pixi run python -m scripts.backfill_market
 
-# 4. Train, promote, export, fit the price model, and refresh the served JSON in one shot
+# Evaluate + generate artifacts
+pixi run python -m scripts.walkforward_price
+pixi run python -m scripts.static_price_forecast
+
+# Full weekly pipeline in one shot (demand retrain + price walk-forward + artifacts)
 pixi run python -m scripts.retrain_pipeline
 
-# 5. Run the frontend
+# Run the dashboard
 cd frontend && npm run dev
 ```
 
-Run the first four commands from the repo root. For offline/local training without DagsHub credentials, point MLflow at a local store instead of the DagsHub URL in `.env`, e.g. `MLFLOW_TRACKING_URI=sqlite:///.mlflow_local.db pixi run python -m scripts.retrain_pipeline`.
-
-## Deployment
-
-The app is deployed on Vercel.
-
-- The frontend build comes from `frontend`, copied into `api/site` at build time (see `vercel.json`).
-- `api/main.py` serves `/api/forecast` and `/api/health` from `api/forecast.json`, and serves the built frontend for everything else.
-- The dashboard calls `/api/forecast` first and falls back to the committed `frontend/public/forecast.json` if the API is unavailable.
-- `scripts/static_forecast.py` writes both `frontend/public/forecast.json` and `api/forecast.json` on every refresh so the two never drift apart.
+For offline/local training without DagsHub credentials, point MLflow at a local store, e.g.
+`MLFLOW_TRACKING_URI=sqlite:///.mlflow_local.db pixi run python -m scripts.retrain_pipeline`.
 
 ## Tests
 
@@ -92,8 +94,13 @@ The app is deployed on Vercel.
 pixi run pytest
 ```
 
+43 tests, including the price-model leakage tripwires, demand feature-builder correctness
+(calendar/weather at target time, lags at base time, gap handling), conformal calibration, the
+export bridge, and the pipeline wiring.
+
 ## Notes
 
-- Timestamps are shown in UTC.
-- The forecast range is calibrated against holdout coverage, not a dispatch guarantee.
-- Docker is not required for the normal local setup; `docker-compose.yml` is only for running a local MLflow server if you want one.
+- Timestamps are UTC throughout.
+- Deployed on Vercel: `api/main.py` serves the built frontend and the demand API from committed
+  artifacts; CI refreshes the price artifact daily after each auction.
+- Docker is only needed if you want a local MLflow server (`docker-compose.yml`).

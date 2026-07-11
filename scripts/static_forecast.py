@@ -24,7 +24,6 @@ load_dotenv()
 
 from data.weather import fetch_forecast
 from features.engineer import inference_features, get_feature_cols
-from models.price_model import predict as predict_price
 from storage.db import query as db_query
 
 TARGETS = ["demand_mw", "solar_mw", "wind_mw"]
@@ -102,7 +101,7 @@ def _predict_targets(history, weather, now, boosters, radii, horizon, force_holi
     return preds
 
 
-def _build_hours(preds, hydro_est, nuclear_est, now, horizon, price_coeffs):
+def _build_hours(preds, hydro_est, nuclear_est, now, horizon):
     hours = []
     for h in range(horizon):
         d_pt, d_lo, d_hi = (preds["demand_mw"][k][h] for k in range(3))
@@ -115,10 +114,6 @@ def _build_hours(preds, hydro_est, nuclear_est, now, horizon, price_coeffs):
         gap_hi = d_hi - (s_lo + w_lo + hyd + nuc)
         ts = now + pd.Timedelta(hours=h + 1)
 
-        price_est = None
-        if price_coeffs is not None:
-            price_est = float(predict_price(price_coeffs, [gap_pt], pd.DatetimeIndex([ts]))[0])
-
         hours.append({
             "timestamp": ts.isoformat(),
             "demand": {"point": d_pt, "lower": d_lo, "upper": d_hi},
@@ -127,7 +122,6 @@ def _build_hours(preds, hydro_est, nuclear_est, now, horizon, price_coeffs):
             "hydro_mw": hyd,
             "nuclear_mw": nuc,
             "import_gap": {"point": gap_pt, "lower": gap_lo, "upper": gap_hi},
-            "price_implied_eur_mwh": price_est,
             "coverage_status": classify(gap_pt, gap_hi),
         })
     return hours
@@ -152,13 +146,10 @@ def main() -> None:
 
     radii = json.loads((ART / "radii.json").read_text())
     boosters = {t: lgb.Booster(model_file=str(ART / f"{t}.txt")) for t in TARGETS}
-    price_path = ART / "price_sensitivity.json"
-    price_coeffs = json.loads(price_path.read_text()) if price_path.exists() else None
-
     hydro_est, nuclear_est = _estimate_domestic_baseload(history, now, HORIZON)
 
     baseline_preds = _predict_targets(history, weather, now, boosters, radii, HORIZON)
-    hours = _build_hours(baseline_preds, hydro_est, nuclear_est, now, HORIZON, price_coeffs)
+    hours = _build_hours(baseline_preds, hydro_est, nuclear_est, now, HORIZON)
 
     scenarios = {}
     for name, overrides in SCENARIO_WEATHER_OVERRIDES.items():
@@ -166,9 +157,9 @@ def main() -> None:
         for col, fn in overrides.items():
             w[col] = fn(w[col])
         preds = _predict_targets(history, w, now, boosters, radii, HORIZON)
-        scenarios[name] = _build_hours(preds, hydro_est, nuclear_est, now, HORIZON, price_coeffs)
+        scenarios[name] = _build_hours(preds, hydro_est, nuclear_est, now, HORIZON)
     holiday_preds = _predict_targets(history, weather, now, boosters, radii, HORIZON, force_holiday=True)
-    scenarios[SCENARIO_HOLIDAY_OVERRIDE] = _build_hours(holiday_preds, hydro_est, nuclear_est, now, HORIZON, price_coeffs)
+    scenarios[SCENARIO_HOLIDAY_OVERRIDE] = _build_hours(holiday_preds, hydro_est, nuclear_est, now, HORIZON)
 
     out = {
         "generated_at": now.isoformat(),
@@ -177,7 +168,6 @@ def main() -> None:
         "wind_multiplier": 1.0,
         "forecasts": hours,
         "scenarios": scenarios,
-        "price_model": price_coeffs,
         "summary": _summary(hours),
     }
     payload = json.dumps(out, indent=2) + "\n"
