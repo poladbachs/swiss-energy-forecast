@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 import pandas as pd
 import numpy as np
 import holidays as hl
@@ -11,6 +13,30 @@ _STATIC_COLS = [
     "temperature", "solar_radiation", "wind_speed", "cloud_cover",
     "hours_ahead",
 ]
+
+
+def is_bridge_day(d) -> int:
+    """A working day squeezed between a public holiday and the weekend (a
+    Friday after a Thursday holiday, or a Monday before a Tuesday holiday),
+    a "Bruckentag" in Swiss usage. Not a legal holiday itself, so the
+    existing is_swiss_holiday flag misses it.
+
+    Tested as a candidate model feature in scripts/experiment_bridge_day.py
+    and NOT included in _STATIC_COLS: real demand on bridge days is ~12%
+    lower than an ordinary Mon/Fri (checked against 6 years of real ENTSO-E
+    demand), but only 11 such days exist in the whole dataset, too few for
+    the model to learn a reliable split from. Retraining with it included
+    made held-out accuracy on bridge-day hours worse, not better, and the
+    trained model ranks it near-zero importance. Kept here, unused in
+    production, because the experiment script imports it."""
+    weekday = d.weekday()  # Monday=0 ... Sunday=6
+    if d in CH_HOLIDAYS:
+        return 0
+    if weekday == 4:   # Friday
+        return int((d - timedelta(days=1)) in CH_HOLIDAYS)
+    if weekday == 0:   # Monday
+        return int((d + timedelta(days=1)) in CH_HOLIDAYS)
+    return 0
 
 
 def build_features(df: pd.DataFrame, target: str, hours_ahead: int) -> pd.DataFrame:

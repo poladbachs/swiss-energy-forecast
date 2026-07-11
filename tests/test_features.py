@@ -1,7 +1,9 @@
+from datetime import date
+
 import pandas as pd
 import numpy as np
 import pytest
-from features.engineer import build_features, inference_features, get_feature_cols
+from features.engineer import build_features, inference_features, get_feature_cols, is_bridge_day
 
 _RNG = np.random.default_rng(42)
 
@@ -132,3 +134,21 @@ def test_inference_lag_constant_across_horizons():
     assert (out["demand_mw_lag_1h"] == 9999.0).all(), (
         "lag_1h should be constant (base time now-1h) across all forecast horizons"
     )
+
+
+# --- is_bridge_day: an experimental signal, not in production features
+# (see scripts/experiment_bridge_day.py for why), but its date logic must
+# still be correct for the experiment to mean anything.
+
+def test_is_bridge_day_friday_after_thursday_holiday():
+    # Ascension 2025 (Auffahrt) fell on Thursday 2025-05-29.
+    assert is_bridge_day(date(2025, 5, 29)) == 0  # the holiday itself is not a "bridge"
+    assert is_bridge_day(date(2025, 5, 30)) == 1  # the Friday after it is
+
+def test_is_bridge_day_monday_before_tuesday_holiday():
+    # Swiss National Day 2023 (Nationalfeiertag) fell on Tuesday 2023-08-01.
+    assert is_bridge_day(date(2023, 8, 1)) == 0   # the holiday itself
+    assert is_bridge_day(date(2023, 7, 31)) == 1  # the Monday before it
+
+def test_is_bridge_day_ordinary_day_is_zero():
+    assert is_bridge_day(date(2025, 6, 4)) == 0  # an ordinary Wednesday

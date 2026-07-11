@@ -88,6 +88,19 @@ function WhyItMatters({ featureImportance }) {
   )
 }
 
+// The other model besides weather/calendar that got tested: see
+// scripts/experiment_bridge_day.py. Worth stating on the page itself, not
+// just in the repo, since it's a real negative result, not a footnote.
+function SignalExploration() {
+  return (
+    <p className="text-sm text-zinc-500 dark:text-zinc-500 leading-relaxed">
+      One signal beyond weather and public holidays got tested: bridge days (the working day between
+      a holiday and the weekend). Real demand on those days runs about 12% lower, but only 11 exist in
+      6 years of data, too few for the model to learn from reliably, so it was tested and not shipped.
+    </p>
+  )
+}
+
 function Section({ title, meta, children, delay = 0 }) {
   return (
     <section
@@ -173,9 +186,10 @@ export default function App() {
           <PriceOutlook forecasts={data.forecasts} priceModel={backtest?.summary?.price_model} dark={dark} />
         </Section>
 
-        <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800 space-y-6">
+        <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800 space-y-3">
           <WhyItMatters featureImportance={featureImportance} />
-          <footer className="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 dark:text-zinc-600">
+          <SignalExploration />
+          <footer className="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 dark:text-zinc-600 pt-3">
             <span>Demand forecast · Backtest vs. baseline · Price outlook</span>
             <a href="https://github.com/poladbachs/swiss-energy-forecast"
                className="underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-4 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors duration-150">
