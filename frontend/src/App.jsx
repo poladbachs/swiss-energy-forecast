@@ -1,16 +1,11 @@
-import { useState, useEffect, useMemo, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useForecast } from './hooks/useForecast'
 import { useBacktest } from './hooks/useBacktest'
 import { useFeatureImportance } from './hooks/useFeatureImportance'
-import { applyMultipliers, scenarioForecast } from './lib/counterfactual'
 import StatTiles from './components/StatTiles'
-import GapChart from './components/GapChart'
 import ForecastChart from './components/ForecastChart'
-import CoverageTimeline from './components/CoverageTimeline'
-import CounterfactualPanel from './components/CounterfactualPanel'
 import BacktestReplay from './components/BacktestReplay'
-import PricePanel from './components/PricePanel'
-import FeatureImportance from './components/FeatureImportance'
+import PriceOutlook from './components/PriceOutlook'
 import { fmtDateTime } from './theme'
 
 function useDarkMode() {
@@ -45,38 +40,22 @@ function InfoPopover() {
   }, [])
 
   return (
-    <div ref={rootRef} className="relative text-sm">
+    <div ref={rootRef} className="relative">
       <button
         type="button"
         onClick={() => setOpen(v => !v)}
         aria-expanded={open}
         aria-haspopup="dialog"
-        className="cursor-pointer list-none rounded text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
-        ⓘ how to read this
+        className="text-sm text-zinc-500 dark:text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded">
+        How to read this
       </button>
-        <div
+      <div
         role="dialog"
         aria-label="How to read this"
-        className={`absolute right-0 z-10 mt-2 w-80 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg text-xs text-gray-600 dark:text-gray-300 space-y-2 ${open ? '' : 'hidden'}`}>
-        <p>
-          The main chart is demand. The import-gap chart shows what's left after subtracting
-          Switzerland's own solar, wind, hydro and nuclear generation — positive means the hour
-          likely needs imports or storage; negative means CH generation covers demand.
-        </p>
-        <p>
-          The shaded band is the forecast range, calibrated so it should cover about 9 out of 10
-          future hours (checked in the backtest below).
-        </p>
-        <p>
-          "Cold snap," "holiday," "low wind" and "low solar" rerun the actual trained model with a
-          perturbed input (temperature, calendar flag, wind speed, solar radiation) — they're real
-          model outputs, not rescaled numbers. "Event shock" and the manual sliders are a plain
-          multiplier overlay, used because there's no strike/outage feature in the model yet.
-        </p>
-        <p>
-          The price panel checks whether the import gap actually correlates with what the market
-          paid — it's a validation of the signal, not a price forecast.
-        </p>
+        className={`absolute right-0 z-20 mt-3 w-72 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-lg shadow-zinc-950/5 dark:shadow-black/40 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 space-y-2.5 origin-top-right transition-[opacity,transform] duration-150 ease-out ${open ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+        <p>The chart is the demand guess for each of the next 48 hours. The shaded band is how wrong past guesses on similar hours have been. Real outcomes land inside it about 9 times out of 10.</p>
+        <p>The backtest replays the last 14 days: our guess vs. what actually happened vs. the dumbest reasonable guess, which is the same hour one week earlier.</p>
+        <p>The price outlook is a typical-price estimate fit on the last 12 months of real prices. It is not a guaranteed number, but a real, checked relationship.</p>
       </div>
     </div>
   )
@@ -84,105 +63,126 @@ function InfoPopover() {
 
 function DataFreshness({ forecast, backtest }) {
   return (
-    <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
-      {forecast?.generated_at && <span>Forecast updated {fmtDateTime(forecast.generated_at)}</span>}
-      {backtest?.generated_at && <span>Backtest updated {fmtDateTime(backtest.generated_at)}</span>}
+    <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-zinc-400 dark:text-zinc-600 font-mono tabular-nums">
+      {forecast?.generated_at && <span>forecast · {fmtDateTime(forecast.generated_at)}</span>}
+      {backtest?.generated_at && <span>backtest · {fmtDateTime(backtest.generated_at)}</span>}
     </div>
   )
 }
 
-export default function App() {
-  const [multipliers, setMultipliers] = useState({
-    solarMultiplier: 1.0, windMultiplier: 1.0, demandMultiplier: 1.0, bandMultiplier: 1.0,
-  })
-  const [selectedScenario, setSelectedScenario] = useState(null)
-  const [dark, setDark] = useDarkMode()
-  const [hoverIdx, setHoverIdx] = useState(null)
+function humanizeFeature(feature) {
+  return feature.replace('demand_mw', '').replace(/_/g, ' ').trim().replace(/^./, c => c.toUpperCase())
+}
 
-  const { data: baseline, error } = useForecast({ horizon: 48 })
+// What actually drives the demand number. Full feature-importance detail
+// still lives in the repo; this is the one line that matters on the page.
+function WhyItMatters({ featureImportance }) {
+  const topFeature = featureImportance?.demand_mw?.[0]
+  if (!topFeature) return null
+
+  return (
+    <p className="text-sm text-zinc-500 dark:text-zinc-500 leading-relaxed">
+      What drives this forecast most: <span className="text-zinc-800 dark:text-zinc-200 font-medium">{humanizeFeature(topFeature.feature)}</span>
+      {' '}(<span className="font-mono tabular-nums">{(topFeature.importance * 100).toFixed(0)}%</span> of the model's weight), then hour of day, weekday, and weather.
+    </p>
+  )
+}
+
+function Section({ title, meta, children, delay = 0 }) {
+  return (
+    <section
+      className="pt-8 border-t border-zinc-200 dark:border-zinc-800 animate-[fadeup_0.5s_ease-out_backwards]"
+      style={{ animationDelay: `${delay}ms` }}>
+      <div className="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+        <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">{title}</h2>
+        {meta && <div className="text-xs text-zinc-500 dark:text-zinc-500 font-mono tabular-nums">{meta}</div>}
+      </div>
+      {children}
+    </section>
+  )
+}
+
+export default function App() {
+  const [dark, setDark] = useDarkMode()
+
+  const { data, error } = useForecast({ horizon: 48 })
   const { data: backtest } = useBacktest()
   const { data: featureImportance } = useFeatureImportance()
-  const data = useMemo(() => {
-    if (selectedScenario && baseline?.scenarios?.[selectedScenario]) {
-      return scenarioForecast(baseline, baseline.scenarios[selectedScenario])
-    }
-    return applyMultipliers(baseline, multipliers)
-  }, [baseline, multipliers, selectedScenario])
 
   if (error) return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-zinc-950">
       <div className="text-center space-y-2">
         <p className="text-red-500 font-medium">Could not load forecast: {error}</p>
-        <p className="text-sm text-gray-500">Is the API running on port 8000?</p>
+        <p className="text-sm text-zinc-500">Is the API running?</p>
       </div>
     </div>
   )
   if (!data) return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 text-gray-500">
-      Loading forecast…
+    <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 text-zinc-500">
+      Loading forecast...
     </div>
   )
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100">
-      <main className="max-w-6xl mx-auto p-6 space-y-4">
-        <header className="flex flex-wrap items-start justify-between gap-3">
-          <div className="max-w-2xl space-y-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-gray-200/80 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-gray-500 dark:text-gray-400 backdrop-blur">
-              Alpine Grid Pulse · demand first
-            </div>
-            <div>
-              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-balance">
-                Swiss power demand, import dependency, and scenario risk.
-              </h1>
-              <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2 max-w-2xl">
-                A forecast stack for the Swiss power market: demand first, then how much of it
-                Switzerland's own generation (solar, wind, hydro, nuclear) can actually cover — with
-                model-grounded scenario reruns, a seasonal-naive backtest, and an honest check on
-                whether any of this actually correlates with price.
-              </p>
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
+      <main className="max-w-3xl mx-auto px-6 py-12 space-y-8">
+        <header className="space-y-6">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Alpine Grid Pulse</span>
+            <div className="flex items-center gap-5">
+              <InfoPopover />
+              <button
+                onClick={() => setDark(!dark)}
+                aria-label="Toggle dark mode"
+                className="text-zinc-400 hover:text-zinc-800 dark:text-zinc-500 dark:hover:text-zinc-200 transition-colors duration-150 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded">
+                {dark ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" strokeLinecap="round" /></svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                )}
+              </button>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <InfoPopover />
-            <button
-              onClick={() => setDark(!dark)}
-              aria-label="Toggle dark mode"
-              className="text-sm px-2.5 py-1 rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
-              {dark ? '☀ light' : '☾ dark'}
-            </button>
+          <div>
+            <h1 className="text-3xl md:text-[2.75rem] font-semibold tracking-tightest leading-[1.1] text-balance">
+              Swiss electricity demand, next 48 hours, and what that means for price.
+            </h1>
+            <p className="mt-3 text-base text-zinc-600 dark:text-zinc-400 max-w-[60ch] leading-relaxed">
+              A demand forecast checked against a real baseline, plus a typical-price outlook fit on
+              real historical prices. An actual per-hour estimate, not a caveat.
+            </p>
           </div>
+          <StatTiles forecasts={data.forecasts} backtest={backtest} />
+          <DataFreshness forecast={data} backtest={backtest} />
         </header>
 
-        <StatTiles forecasts={data.forecasts} summary={data.summary} backtest={backtest} />
-        <DataFreshness forecast={baseline} backtest={backtest} />
-        <GapChart forecasts={data.forecasts} baseline={baseline?.forecasts} dark={dark} onHover={setHoverIdx} />
-        <CoverageTimeline forecasts={data.forecasts} summary={data.summary} hoverIdx={hoverIdx} onHover={setHoverIdx} />
-        <ForecastChart forecasts={data.forecasts} dark={dark} />
-        <CounterfactualPanel
-          multipliers={multipliers}
-          onChange={setMultipliers}
-          summary={data.summary}
-          baseSummary={baseline?.summary}
-          scenarios={baseline?.scenarios}
-          selectedScenario={selectedScenario}
-          onSelectScenario={setSelectedScenario}
-        />
-        {backtest && <BacktestReplay backtest={backtest} dark={dark} />}
-        {backtest && <PricePanel backtest={backtest} dark={dark} />}
-        {featureImportance && <FeatureImportance data={featureImportance} dark={dark} />}
+        <Section title="Demand forecast" delay={80}>
+          <ForecastChart forecasts={data.forecasts} dark={dark} />
+        </Section>
 
-        <footer className="pt-4 pb-8 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-400 dark:text-gray-500">
-          <div className="flex flex-wrap gap-1.5">
-            {['Demand forecast', 'Import dependency', 'Scenario reruns', 'Backtest vs seasonal-naive', 'Price validation'].map(t => (
-              <span key={t} className="px-2 py-0.5 rounded-full border border-gray-200 dark:border-gray-700">{t}</span>
-            ))}
-          </div>
-          <a href="https://github.com/poladbachs/swiss-energy-forecast"
-             className="underline hover:text-gray-600 dark:hover:text-gray-300">
-            source on GitHub
-          </a>
-        </footer>
+        {backtest && (
+          <Section
+            title="Backtest, 24h ahead"
+            meta="replays the last 14 days"
+            delay={140}>
+            <BacktestReplay backtest={backtest} dark={dark} />
+          </Section>
+        )}
+
+        <Section title="Price outlook, next 48h" delay={200}>
+          <PriceOutlook forecasts={data.forecasts} priceModel={backtest?.summary?.price_model} dark={dark} />
+        </Section>
+
+        <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800 space-y-6">
+          <WhyItMatters featureImportance={featureImportance} />
+          <footer className="flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-400 dark:text-zinc-600">
+            <span>Demand forecast · Backtest vs. baseline · Price outlook</span>
+            <a href="https://github.com/poladbachs/swiss-energy-forecast"
+               className="underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-4 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors duration-150">
+              source on GitHub
+            </a>
+          </footer>
+        </div>
       </main>
     </div>
   )

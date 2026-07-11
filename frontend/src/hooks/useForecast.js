@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 
-// Fetch the base (1.0x) forecast once. In dev this hits the local FastAPI;
+// Fetch the forecast once. In dev this hits the local API if one is running;
 // in production it falls back to the static forecast.json that CI refreshes.
-// Counterfactual multipliers are applied client side (lib/counterfactual.js).
 export function useForecast({ horizon = 48 } = {}) {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)

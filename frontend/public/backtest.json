@@ -33,7 +33,7 @@
         "actual": 1005.0838869999998
       },
       "price_eur_mwh": 135.0,
-      "price_implied_eur_mwh": 103.91679639151643,
+      "price_implied_eur_mwh": 112.17475812139011,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -69,7 +69,7 @@
         "actual": 772.5754109999998
       },
       "price_eur_mwh": 131.98,
-      "price_implied_eur_mwh": 102.28744609297054,
+      "price_implied_eur_mwh": 110.06111788182945,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -105,7 +105,7 @@
         "actual": 801.4646480000001
       },
       "price_eur_mwh": 126.69,
-      "price_implied_eur_mwh": 99.37491050413247,
+      "price_implied_eur_mwh": 106.10583795742568,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -141,7 +141,7 @@
         "actual": 525.2925780000005
       },
       "price_eur_mwh": 127.29,
-      "price_implied_eur_mwh": 99.03361620801097,
+      "price_implied_eur_mwh": 103.50854295147305,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -177,7 +177,7 @@
         "actual": 1230.5361490000005
       },
       "price_eur_mwh": 132.49,
-      "price_implied_eur_mwh": 97.66607981326013,
+      "price_implied_eur_mwh": 99.54436673466834,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -213,7 +213,7 @@
         "actual": 1219.9310919999998
       },
       "price_eur_mwh": 144.87,
-      "price_implied_eur_mwh": 92.10906303723876,
+      "price_implied_eur_mwh": 91.87357123860875,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -249,7 +249,7 @@
         "actual": 1055.4450730000008
       },
       "price_eur_mwh": 138.94,
-      "price_implied_eur_mwh": 92.83042263108092,
+      "price_implied_eur_mwh": 89.10492825532222,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -285,7 +285,7 @@
         "actual": 1417.2793890000003
       },
       "price_eur_mwh": 127.4,
-      "price_implied_eur_mwh": 104.04736150203082,
+      "price_implied_eur_mwh": 94.8464203820519,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -321,7 +321,7 @@
         "actual": 465.9633309999999
       },
       "price_eur_mwh": 107.0,
-      "price_implied_eur_mwh": 100.31727193548805,
+      "price_implied_eur_mwh": 88.92827540658757,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -357,7 +357,7 @@
         "actual": -819.8248539999995
       },
       "price_eur_mwh": 100.56,
-      "price_implied_eur_mwh": 88.5391416256894,
+      "price_implied_eur_mwh": 77.0793143327964,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -393,7 +393,7 @@
         "actual": -1330.9721680000002
       },
       "price_eur_mwh": 94.0,
-      "price_implied_eur_mwh": 90.70567522229145,
+      "price_implied_eur_mwh": 77.08992468993718,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -429,7 +429,7 @@
         "actual": -1509.0603599999995
       },
       "price_eur_mwh": 81.0,
-      "price_implied_eur_mwh": 101.4058004583176,
+      "price_implied_eur_mwh": 84.74097558336888,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -465,7 +465,7 @@
         "actual": -1593.1730660000012
       },
       "price_eur_mwh": 75.04,
-      "price_implied_eur_mwh": 104.82886560197755,
+      "price_implied_eur_mwh": 87.42392863612025,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -501,7 +501,7 @@
         "actual": -1199.7543939999996
       },
       "price_eur_mwh": 75.1,
-      "price_implied_eur_mwh": 112.14825885257603,
+      "price_implied_eur_mwh": 94.09789118414925,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -537,7 +537,7 @@
         "actual": -704.5658580000008
       },
       "price_eur_mwh": 84.2,
-      "price_implied_eur_mwh": 123.29536583511293,
+      "price_implied_eur_mwh": 104.65282245456152,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -573,7 +573,7 @@
         "actual": -371.9004500000001
       },
       "price_eur_mwh": 100.83,
-      "price_implied_eur_mwh": 117.65165952774912,
+      "price_implied_eur_mwh": 102.45339940438332,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -609,7 +609,7 @@
         "actual": 227.6849519999996
       },
       "price_eur_mwh": 118.49,
-      "price_implied_eur_mwh": 118.91165120835063,
+      "price_implied_eur_mwh": 106.33138320344605,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -645,7 +645,7 @@
         "actual": 333.4941259999996
       },
       "price_eur_mwh": 145.42,
-      "price_implied_eur_mwh": 118.79129431507276,
+      "price_implied_eur_mwh": 109.4520102709393,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -681,7 +681,7 @@
         "actual": 853.685101
       },
       "price_eur_mwh": 197.32,
-      "price_implied_eur_mwh": 120.23078877639185,
+      "price_implied_eur_mwh": 113.9524839339119,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -717,7 +717,7 @@
         "actual": 1157.3592259999996
       },
       "price_eur_mwh": 214.26,
-      "price_implied_eur_mwh": 117.04176773858617,
+      "price_implied_eur_mwh": 114.64501929933535,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -753,7 +753,7 @@
         "actual": 2179.5585279999996
       },
       "price_eur_mwh": 210.09,
-      "price_implied_eur_mwh": 121.32890342144215,
+      "price_implied_eur_mwh": 121.00961254460618,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -789,7 +789,7 @@
         "actual": 1813.4797659999995
       },
       "price_eur_mwh": 184.82,
-      "price_implied_eur_mwh": 123.30971675458224,
+      "price_implied_eur_mwh": 125.00644955742268,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -825,7 +825,7 @@
         "actual": 1906.9375010000003
       },
       "price_eur_mwh": 150.58,
-      "price_implied_eur_mwh": 122.19544546117793,
+      "price_implied_eur_mwh": 125.83918173672126,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -861,7 +861,7 @@
         "actual": 1951.4464549999993
       },
       "price_eur_mwh": 131.77,
-      "price_implied_eur_mwh": 118.88529135822412,
+      "price_implied_eur_mwh": 124.1108717612522,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -897,7 +897,7 @@
         "actual": 3048.0973689999996
       },
       "price_eur_mwh": 127.0,
-      "price_implied_eur_mwh": 119.11869379292418,
+      "price_implied_eur_mwh": 124.35841867278866,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": false
@@ -933,7 +933,7 @@
         "actual": 1977.4535649999993
       },
       "price_eur_mwh": 122.85,
-      "price_implied_eur_mwh": 93.84677222424948,
+      "price_implied_eur_mwh": 98.02364001618902,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -969,7 +969,7 @@
         "actual": 2312.661911
       },
       "price_eur_mwh": 118.76,
-      "price_implied_eur_mwh": 92.40725458068137,
+      "price_implied_eur_mwh": 95.2489200019992,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1005,7 +1005,7 @@
         "actual": 2411.2200000000003
       },
       "price_eur_mwh": 118.07,
-      "price_implied_eur_mwh": 89.95166683189173,
+      "price_implied_eur_mwh": 90.95711061713966,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1041,7 +1041,7 @@
         "actual": 1749.5530269999995
       },
       "price_eur_mwh": 115.79,
-      "price_implied_eur_mwh": 87.42085163155235,
+      "price_implied_eur_mwh": 86.06061695865728,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1077,7 +1077,7 @@
         "actual": 3050.5198869999995
       },
       "price_eur_mwh": 115.2,
-      "price_implied_eur_mwh": 83.63691555192112,
+      "price_implied_eur_mwh": 79.81086863616001,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -1113,7 +1113,7 @@
         "actual": 1549.4708439999995
       },
       "price_eur_mwh": 109.79,
-      "price_implied_eur_mwh": 79.14207113941829,
+      "price_implied_eur_mwh": 72.86166468064462,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1149,7 +1149,7 @@
         "actual": 1361.6629170000006
       },
       "price_eur_mwh": 100.95,
-      "price_implied_eur_mwh": 76.62615730124536,
+      "price_implied_eur_mwh": 67.5968717764799,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1185,7 +1185,7 @@
         "actual": 630.1922130000003
       },
       "price_eur_mwh": 87.05,
-      "price_implied_eur_mwh": 71.50821994002983,
+      "price_implied_eur_mwh": 60.566427067580065,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1221,7 +1221,7 @@
         "actual": 59.224521999999524
       },
       "price_eur_mwh": 34.0,
-      "price_implied_eur_mwh": 65.95886595193203,
+      "price_implied_eur_mwh": 53.70955970093131,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1257,7 +1257,7 @@
         "actual": -104.8113170000006
       },
       "price_eur_mwh": 14.94,
-      "price_implied_eur_mwh": 70.7119974972555,
+      "price_implied_eur_mwh": 55.793215978461404,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1293,7 +1293,7 @@
         "actual": 313.9769239999996
       },
       "price_eur_mwh": 3.5,
-      "price_implied_eur_mwh": 71.63076294730905,
+      "price_implied_eur_mwh": 55.60493180623513,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1329,7 +1329,7 @@
         "actual": 170.1884289999989
       },
       "price_eur_mwh": 4.0,
-      "price_implied_eur_mwh": 71.08444122016014,
+      "price_implied_eur_mwh": 55.10659367183281,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1365,7 +1365,7 @@
         "actual": 270.8670229999998
       },
       "price_eur_mwh": 9.0,
-      "price_implied_eur_mwh": 85.63584289118697,
+      "price_implied_eur_mwh": 67.57669688393412,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1401,7 +1401,7 @@
         "actual": 428.9455420000004
       },
       "price_eur_mwh": 18.5,
-      "price_implied_eur_mwh": 88.64943224192257,
+      "price_implied_eur_mwh": 71.61296700975102,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1437,7 +1437,7 @@
         "actual": 822.7847169999995
       },
       "price_eur_mwh": 65.31,
-      "price_implied_eur_mwh": 87.29876240692349,
+      "price_implied_eur_mwh": 72.85422624632618,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1473,7 +1473,7 @@
         "actual": 1391.7839699999995
       },
       "price_eur_mwh": 100.6,
-      "price_implied_eur_mwh": 97.00103023749648,
+      "price_implied_eur_mwh": 83.49832773296752,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1509,7 +1509,7 @@
         "actual": 1414.6995079999997
       },
       "price_eur_mwh": 130.0,
-      "price_implied_eur_mwh": 94.86779939829124,
+      "price_implied_eur_mwh": 85.00572375157459,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1545,7 +1545,7 @@
         "actual": 867.3997940000008
       },
       "price_eur_mwh": 152.1,
-      "price_implied_eur_mwh": 85.53006792992127,
+      "price_implied_eur_mwh": 80.86871888499847,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1581,7 +1581,7 @@
         "actual": 1243.023377999999
       },
       "price_eur_mwh": 164.35,
-      "price_implied_eur_mwh": 83.8157805958049,
+      "price_implied_eur_mwh": 82.74318926649386,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1617,7 +1617,7 @@
         "actual": 1111.7503299999998
       },
       "price_eur_mwh": 167.01,
-      "price_implied_eur_mwh": 80.96199263726736,
+      "price_implied_eur_mwh": 83.38464234229227,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1653,7 +1653,7 @@
         "actual": 1311.547031
       },
       "price_eur_mwh": 165.31,
-      "price_implied_eur_mwh": 81.1264936160425,
+      "price_implied_eur_mwh": 85.9257838852232,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1689,7 +1689,7 @@
         "actual": 1744.3438339999993
       },
       "price_eur_mwh": 148.21,
-      "price_implied_eur_mwh": 84.65575974936843,
+      "price_implied_eur_mwh": 90.480109644002,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1725,7 +1725,7 @@
         "actual": 1450.3777150000005
       },
       "price_eur_mwh": 131.46,
-      "price_implied_eur_mwh": 77.32577975693269,
+      "price_implied_eur_mwh": 85.53008379847083,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1761,7 +1761,7 @@
         "actual": 1468.1531049999994
       },
       "price_eur_mwh": 125.0,
-      "price_implied_eur_mwh": 76.73089679170926,
+      "price_implied_eur_mwh": 85.11379593426325,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1797,7 +1797,7 @@
         "actual": 1587.5065139999997
       },
       "price_eur_mwh": 117.9,
-      "price_implied_eur_mwh": 77.16305211209055,
+      "price_implied_eur_mwh": 84.6523629174328,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1833,7 +1833,7 @@
         "actual": 1.3519340000002558
       },
       "price_eur_mwh": 114.82,
-      "price_implied_eur_mwh": 72.06401881818985,
+      "price_implied_eur_mwh": 78.94470004164639,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1869,7 +1869,7 @@
         "actual": -897.7661909999997
       },
       "price_eur_mwh": 114.0,
-      "price_implied_eur_mwh": 69.54892991205337,
+      "price_implied_eur_mwh": 74.60520306329853,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -1905,7 +1905,7 @@
         "actual": 381.17519100000027
       },
       "price_eur_mwh": 111.27,
-      "price_implied_eur_mwh": 66.79997084833823,
+      "price_implied_eur_mwh": 69.53387657227152,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1941,7 +1941,7 @@
         "actual": -33.43251400000008
       },
       "price_eur_mwh": 106.04,
-      "price_implied_eur_mwh": 65.56788936140607,
+      "price_implied_eur_mwh": 65.32932887920974,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -1977,7 +1977,7 @@
         "actual": 647.5186819999999
       },
       "price_eur_mwh": 101.0,
-      "price_implied_eur_mwh": 63.00559705260254,
+      "price_implied_eur_mwh": 59.928981504398735,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2013,7 +2013,7 @@
         "actual": -66.59493999999995
       },
       "price_eur_mwh": 86.2,
-      "price_implied_eur_mwh": 61.64909125593013,
+      "price_implied_eur_mwh": 55.59340379260179,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2049,7 +2049,7 @@
         "actual": -1400.4425280000014
       },
       "price_eur_mwh": 44.08,
-      "price_implied_eur_mwh": 57.23230567630537,
+      "price_implied_eur_mwh": 49.124901785743816,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -2085,7 +2085,7 @@
         "actual": -2361.6181530000003
       },
       "price_eur_mwh": 10.0,
-      "price_implied_eur_mwh": 53.563184892611076,
+      "price_implied_eur_mwh": 43.7749596742148,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": false
@@ -2121,7 +2121,7 @@
         "actual": -2821.259685000001
       },
       "price_eur_mwh": 1.43,
-      "price_implied_eur_mwh": 55.06400552110006,
+      "price_implied_eur_mwh": 43.25202999921443,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": false
@@ -2157,7 +2157,7 @@
         "actual": -1581.6216989999994
       },
       "price_eur_mwh": -2.0,
-      "price_implied_eur_mwh": 53.77137806704057,
+      "price_implied_eur_mwh": 41.29141045476088,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -2193,7 +2193,7 @@
         "actual": -1707.8640020000003
       },
       "price_eur_mwh": -0.39,
-      "price_implied_eur_mwh": 59.65279259770627,
+      "price_implied_eur_mwh": 45.94462377549979,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -2229,7 +2229,7 @@
         "actual": -1333.9617180000005
       },
       "price_eur_mwh": -0.01,
-      "price_implied_eur_mwh": 58.15181409351544,
+      "price_implied_eur_mwh": 45.54944142931677,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -2265,7 +2265,7 @@
         "actual": -575.7351950000002
       },
       "price_eur_mwh": 9.13,
-      "price_implied_eur_mwh": 64.55358140108227,
+      "price_implied_eur_mwh": 52.30118903953901,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -2301,7 +2301,7 @@
         "actual": -424.2612589999999
       },
       "price_eur_mwh": 40.0,
-      "price_implied_eur_mwh": 72.81144610226559,
+      "price_implied_eur_mwh": 61.24327140983662,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -2337,7 +2337,7 @@
         "actual": -126.03129799999988
       },
       "price_eur_mwh": 95.41,
-      "price_implied_eur_mwh": 80.73061109256412,
+      "price_implied_eur_mwh": 70.45829340985237,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2373,7 +2373,7 @@
         "actual": -527.5115719999994
       },
       "price_eur_mwh": 115.47,
-      "price_implied_eur_mwh": 85.15711283158674,
+      "price_implied_eur_mwh": 77.22303020183408,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2409,7 +2409,7 @@
         "actual": -153.28531600000042
       },
       "price_eur_mwh": 146.2,
-      "price_implied_eur_mwh": 82.76503391235369,
+      "price_implied_eur_mwh": 78.65266420487718,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2445,7 +2445,7 @@
         "actual": 36.60057600000073
       },
       "price_eur_mwh": 154.0,
-      "price_implied_eur_mwh": 80.91988811049998,
+      "price_implied_eur_mwh": 80.42225720764219,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2481,7 +2481,7 @@
         "actual": 465.8634830000001
       },
       "price_eur_mwh": 155.79,
-      "price_implied_eur_mwh": 77.21376033668815,
+      "price_implied_eur_mwh": 80.3805969384721,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2517,7 +2517,7 @@
         "actual": 485.7111530000002
       },
       "price_eur_mwh": 153.98,
-      "price_implied_eur_mwh": 78.97664313063754,
+      "price_implied_eur_mwh": 84.20277208881366,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2553,7 +2553,7 @@
         "actual": 280.839473
       },
       "price_eur_mwh": 143.68,
-      "price_implied_eur_mwh": 79.81688791178398,
+      "price_implied_eur_mwh": 86.60196401756252,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2589,7 +2589,7 @@
         "actual": 1117.8133589999998
       },
       "price_eur_mwh": 127.4,
-      "price_implied_eur_mwh": 74.53345209209783,
+      "price_implied_eur_mwh": 83.2921544454233,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2625,7 +2625,7 @@
         "actual": -71.66760700000032
       },
       "price_eur_mwh": 120.69,
-      "price_implied_eur_mwh": 72.87876025598946,
+      "price_implied_eur_mwh": 82.02647579852123,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2661,7 +2661,7 @@
         "actual": -270.76279199999954
       },
       "price_eur_mwh": 117.42,
-      "price_implied_eur_mwh": 105.44181324708711,
+      "price_implied_eur_mwh": 112.58920616222257,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -2697,7 +2697,7 @@
         "actual": -105.5182130000012
       },
       "price_eur_mwh": 119.56,
-      "price_implied_eur_mwh": 104.91613166634772,
+      "price_implied_eur_mwh": 110.5468860646445,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -2733,7 +2733,7 @@
         "actual": -21.140642999999727
       },
       "price_eur_mwh": 122.25,
-      "price_implied_eur_mwh": 98.75889849560821,
+      "price_implied_eur_mwh": 103.28836863592596,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2769,7 +2769,7 @@
         "actual": 362.6167059999998
       },
       "price_eur_mwh": 129.71,
-      "price_implied_eur_mwh": 88.50571191156597,
+      "price_implied_eur_mwh": 92.20272969468718,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2805,7 +2805,7 @@
         "actual": 457.28032900000017
       },
       "price_eur_mwh": 144.17,
-      "price_implied_eur_mwh": 90.17334867131844,
+      "price_implied_eur_mwh": 90.32218024207071,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2841,7 +2841,7 @@
         "actual": 478.5111109999998
       },
       "price_eur_mwh": 146.26,
-      "price_implied_eur_mwh": 85.89988172914218,
+      "price_implied_eur_mwh": 83.55040071463603,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -2877,7 +2877,7 @@
         "actual": -388.1974650000002
       },
       "price_eur_mwh": 130.0,
-      "price_implied_eur_mwh": 92.8601489681657,
+      "price_implied_eur_mwh": 85.88035539490484,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -2913,7 +2913,7 @@
         "actual": -1197.176045000001
       },
       "price_eur_mwh": 113.31,
-      "price_implied_eur_mwh": 94.4958960139965,
+      "price_implied_eur_mwh": 84.26269542688254,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -2949,7 +2949,7 @@
         "actual": -897.9824499999995
       },
       "price_eur_mwh": 104.0,
-      "price_implied_eur_mwh": 103.81019094424018,
+      "price_implied_eur_mwh": 89.31839714252905,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -2985,7 +2985,7 @@
         "actual": -726.630830000001
       },
       "price_eur_mwh": 95.0,
-      "price_implied_eur_mwh": 102.35282338616821,
+      "price_implied_eur_mwh": 86.42460810961205,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3021,7 +3021,7 @@
         "actual": -1574.7994039999985
       },
       "price_eur_mwh": 82.78,
-      "price_implied_eur_mwh": 92.35738624327631,
+      "price_implied_eur_mwh": 77.48906456111033,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3057,7 +3057,7 @@
         "actual": -1455.5354480000005
       },
       "price_eur_mwh": 82.21,
-      "price_implied_eur_mwh": 91.51087194925435,
+      "price_implied_eur_mwh": 76.7501351216716,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3093,7 +3093,7 @@
         "actual": -1452.013739
       },
       "price_eur_mwh": 83.31,
-      "price_implied_eur_mwh": 92.59000432330055,
+      "price_implied_eur_mwh": 78.42279959061705,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3129,7 +3129,7 @@
         "actual": -1227.7350480000005
       },
       "price_eur_mwh": 93.74,
-      "price_implied_eur_mwh": 97.40539742070152,
+      "price_implied_eur_mwh": 83.90313716735466,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3165,7 +3165,7 @@
         "actual": -764.6466490000003
       },
       "price_eur_mwh": 109.0,
-      "price_implied_eur_mwh": 100.73832188976583,
+      "price_implied_eur_mwh": 88.89809383092913,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3201,7 +3201,7 @@
         "actual": 332.68308100000013
       },
       "price_eur_mwh": 128.54,
-      "price_implied_eur_mwh": 108.31861296242742,
+      "price_implied_eur_mwh": 97.84152310319573,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3237,7 +3237,7 @@
         "actual": -152.5616540000001
       },
       "price_eur_mwh": 139.27,
-      "price_implied_eur_mwh": 108.8334757532864,
+      "price_implied_eur_mwh": 101.47125116004136,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3273,7 +3273,7 @@
         "actual": 723.2814999999991
       },
       "price_eur_mwh": 171.01,
-      "price_implied_eur_mwh": 106.21360476961011,
+      "price_implied_eur_mwh": 102.71831971640403,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3309,7 +3309,7 @@
         "actual": 607.6603930000001
       },
       "price_eur_mwh": 170.73,
-      "price_implied_eur_mwh": 107.32869372526851,
+      "price_implied_eur_mwh": 106.86041231482076,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3345,7 +3345,7 @@
         "actual": 54.64650700000038
       },
       "price_eur_mwh": 167.0,
-      "price_implied_eur_mwh": 106.30473528744535,
+      "price_implied_eur_mwh": 108.96839428228553,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3381,7 +3381,7 @@
         "actual": 258.13646400000016
       },
       "price_eur_mwh": 168.45,
-      "price_implied_eur_mwh": 103.8490506410307,
+      "price_implied_eur_mwh": 109.40957084084485,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3417,7 +3417,7 @@
         "actual": 575.3144040000006
       },
       "price_eur_mwh": 148.05,
-      "price_implied_eur_mwh": 103.44888075338224,
+      "price_implied_eur_mwh": 110.81462428355361,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3453,7 +3453,7 @@
         "actual": -152.95479500000056
       },
       "price_eur_mwh": 146.2,
-      "price_implied_eur_mwh": 95.32230818055422,
+      "price_implied_eur_mwh": 105.22616408071889,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3489,7 +3489,7 @@
         "actual": 258.1891319999995
       },
       "price_eur_mwh": 137.01,
-      "price_implied_eur_mwh": 94.89365364642306,
+      "price_implied_eur_mwh": 104.94310108475916,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3525,7 +3525,7 @@
         "actual": 416.8278029999992
       },
       "price_eur_mwh": 133.09,
-      "price_implied_eur_mwh": 92.38694158199507,
+      "price_implied_eur_mwh": 102.12629349351693,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3561,7 +3561,7 @@
         "actual": -679.5799320000006
       },
       "price_eur_mwh": 131.0,
-      "price_implied_eur_mwh": 89.31529969761634,
+      "price_implied_eur_mwh": 98.04349678319676,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3597,7 +3597,7 @@
         "actual": 0.4325890000000072
       },
       "price_eur_mwh": 131.1,
-      "price_implied_eur_mwh": 88.17779279461551,
+      "price_implied_eur_mwh": 94.80807195220905,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3633,7 +3633,7 @@
         "actual": 286.85647099999915
       },
       "price_eur_mwh": 138.71,
-      "price_implied_eur_mwh": 88.0535495130149,
+      "price_implied_eur_mwh": 91.84034116958489,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3669,7 +3669,7 @@
         "actual": 60.91140799999903
       },
       "price_eur_mwh": 151.34,
-      "price_implied_eur_mwh": 84.52870138506043,
+      "price_implied_eur_mwh": 85.79824058821066,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3705,7 +3705,7 @@
         "actual": 188.1253369999995
       },
       "price_eur_mwh": 152.1,
-      "price_implied_eur_mwh": 85.20508250940118,
+      "price_implied_eur_mwh": 82.99354931502607,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3741,7 +3741,7 @@
         "actual": -232.20147299999917
       },
       "price_eur_mwh": 142.82,
-      "price_implied_eur_mwh": 92.24206439922435,
+      "price_implied_eur_mwh": 85.3849874562065,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3777,7 +3777,7 @@
         "actual": -1108.7100279999995
       },
       "price_eur_mwh": 121.76,
-      "price_implied_eur_mwh": 93.32542820195006,
+      "price_implied_eur_mwh": 83.32461630874619,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3813,7 +3813,7 @@
         "actual": -1078.3950000000004
       },
       "price_eur_mwh": 107.53,
-      "price_implied_eur_mwh": 89.02108980712785,
+      "price_implied_eur_mwh": 77.46557486929143,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3849,7 +3849,7 @@
         "actual": -965.4843940000001
       },
       "price_eur_mwh": 100.0,
-      "price_implied_eur_mwh": 91.5302853934853,
+      "price_implied_eur_mwh": 77.75081392946898,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -3885,7 +3885,7 @@
         "actual": -1885.0443260000002
       },
       "price_eur_mwh": 93.74,
-      "price_implied_eur_mwh": 91.42090857012349,
+      "price_implied_eur_mwh": 76.73851837714508,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": true
@@ -3921,7 +3921,7 @@
         "actual": -1980.5941789999988
       },
       "price_eur_mwh": 92.0,
-      "price_implied_eur_mwh": 82.5831976010537,
+      "price_implied_eur_mwh": 69.59499185897386,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -3957,7 +3957,7 @@
         "actual": -2262.495594000002
       },
       "price_eur_mwh": 98.33,
-      "price_implied_eur_mwh": 94.44788446177222,
+      "price_implied_eur_mwh": 79.9118098341823,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": true
@@ -3993,7 +3993,7 @@
         "actual": -2100.2427720000005
       },
       "price_eur_mwh": 112.2,
-      "price_implied_eur_mwh": 97.79282548267369,
+      "price_implied_eur_mwh": 84.21364393309022,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": false
@@ -4029,7 +4029,7 @@
         "actual": -1870.3517189999993
       },
       "price_eur_mwh": 122.11,
-      "price_implied_eur_mwh": 92.98032058480923,
+      "price_implied_eur_mwh": 82.68039271368932,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4065,7 +4065,7 @@
         "actual": -1200.501123000001
       },
       "price_eur_mwh": 132.0,
-      "price_implied_eur_mwh": 90.62046691815263,
+      "price_implied_eur_mwh": 83.65722767619508,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4101,7 +4101,7 @@
         "actual": -419.23212200000034
       },
       "price_eur_mwh": 157.16,
-      "price_implied_eur_mwh": 101.49601582713012,
+      "price_implied_eur_mwh": 95.59059569386915,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4137,7 +4137,7 @@
         "actual": 68.97873600000003
       },
       "price_eur_mwh": 199.88,
-      "price_implied_eur_mwh": 105.14583517747114,
+      "price_implied_eur_mwh": 101.8625487613572,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4173,7 +4173,7 @@
         "actual": -357.17982200000006
       },
       "price_eur_mwh": 192.85,
-      "price_implied_eur_mwh": 102.23619978542007,
+      "price_implied_eur_mwh": 102.77899958818165,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4209,7 +4209,7 @@
         "actual": -324.08250699999917
       },
       "price_eur_mwh": 186.23,
-      "price_implied_eur_mwh": 100.77387998298636,
+      "price_implied_eur_mwh": 104.5356539598709,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4245,7 +4245,7 @@
         "actual": 627.6544739999999
       },
       "price_eur_mwh": 174.5,
-      "price_implied_eur_mwh": 97.02101699828224,
+      "price_implied_eur_mwh": 103.93719841652677,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": false
@@ -4281,7 +4281,7 @@
         "actual": -507.21698300000025
       },
       "price_eur_mwh": 157.15,
-      "price_implied_eur_mwh": 97.85266139224913,
+      "price_implied_eur_mwh": 106.3294975084646,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4317,7 +4317,7 @@
         "actual": -503.9214259999999
       },
       "price_eur_mwh": 150.1,
-      "price_implied_eur_mwh": 91.49043204404907,
+      "price_implied_eur_mwh": 102.15508177504171,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4353,7 +4353,7 @@
         "actual": -373.04373099999975
       },
       "price_eur_mwh": 146.56,
-      "price_implied_eur_mwh": 87.72759652484477,
+      "price_implied_eur_mwh": 99.19981752246142,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4389,7 +4389,7 @@
         "actual": -606.7241019999992
       },
       "price_eur_mwh": 142.63,
-      "price_implied_eur_mwh": 87.41655052521278,
+      "price_implied_eur_mwh": 98.1427409247478,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4425,7 +4425,7 @@
         "actual": -447.6493360000004
       },
       "price_eur_mwh": 140.0,
-      "price_implied_eur_mwh": 85.95939329187271,
+      "price_implied_eur_mwh": 95.35388354544014,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4461,7 +4461,7 @@
         "actual": -888.0226469999998
       },
       "price_eur_mwh": 140.4,
-      "price_implied_eur_mwh": 82.0878442986949,
+      "price_implied_eur_mwh": 89.92724271816054,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4497,7 +4497,7 @@
         "actual": -506.3178740000003
       },
       "price_eur_mwh": 141.54,
-      "price_implied_eur_mwh": 80.70826421618979,
+      "price_implied_eur_mwh": 85.9534140086761,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4533,7 +4533,7 @@
         "actual": -151.46013200000016
       },
       "price_eur_mwh": 149.7,
-      "price_implied_eur_mwh": 78.87022318907051,
+      "price_implied_eur_mwh": 81.26321606087456,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4569,7 +4569,7 @@
         "actual": 50.870686999999634
       },
       "price_eur_mwh": 150.66,
-      "price_implied_eur_mwh": 77.90499324660696,
+      "price_implied_eur_mwh": 77.14284481253695,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": false
@@ -4605,7 +4605,7 @@
         "actual": 453.51058300000113
       },
       "price_eur_mwh": 153.44,
-      "price_implied_eur_mwh": 83.70284486693188,
+      "price_implied_eur_mwh": 78.5411738579323,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": false
@@ -4641,7 +4641,7 @@
         "actual": -773.2082069999997
       },
       "price_eur_mwh": 135.0,
-      "price_implied_eur_mwh": 83.9748140065655,
+      "price_implied_eur_mwh": 75.83050512673647,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4677,7 +4677,7 @@
         "actual": -222.00125800000023
       },
       "price_eur_mwh": 119.0,
-      "price_implied_eur_mwh": 93.5442982690904,
+      "price_implied_eur_mwh": 81.0907300093769,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -4713,7 +4713,7 @@
         "actual": -910.238225
       },
       "price_eur_mwh": 113.9,
-      "price_implied_eur_mwh": 90.30663531134032,
+      "price_implied_eur_mwh": 76.77011153154561,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4749,7 +4749,7 @@
         "actual": -1543.318396999999
       },
       "price_eur_mwh": 108.37,
-      "price_implied_eur_mwh": 94.6008218975932,
+      "price_implied_eur_mwh": 79.28708080601477,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -4785,7 +4785,7 @@
         "actual": -2034.5219720000005
       },
       "price_eur_mwh": 104.0,
-      "price_implied_eur_mwh": 102.75312075263923,
+      "price_implied_eur_mwh": 85.76030928862288,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -4821,7 +4821,7 @@
         "actual": -2273.7818160000015
       },
       "price_eur_mwh": 99.38,
-      "price_implied_eur_mwh": 92.6105026734084,
+      "price_implied_eur_mwh": 78.43922812798861,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": true
@@ -4857,7 +4857,7 @@
         "actual": -1864.7591980000007
       },
       "price_eur_mwh": 95.08,
-      "price_implied_eur_mwh": 84.43734216207645,
+      "price_implied_eur_mwh": 73.50980407801043,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4893,7 +4893,7 @@
         "actual": -1513.4233970000005
       },
       "price_eur_mwh": 97.0,
-      "price_implied_eur_mwh": 91.44276586174104,
+      "price_implied_eur_mwh": 81.44810937889139,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4929,7 +4929,7 @@
         "actual": -831.7690619999994
       },
       "price_eur_mwh": 100.31,
-      "price_implied_eur_mwh": 99.14070908647578,
+      "price_implied_eur_mwh": 90.48583174143158,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -4965,7 +4965,7 @@
         "actual": -237.3336129999998
       },
       "price_eur_mwh": 140.0,
-      "price_implied_eur_mwh": 103.41476404553815,
+      "price_implied_eur_mwh": 97.12838906001298,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -5001,7 +5001,7 @@
         "actual": 127.34147799999937
       },
       "price_eur_mwh": 152.81,
-      "price_implied_eur_mwh": 103.90670350212798,
+      "price_implied_eur_mwh": 100.86943853884847,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -5037,7 +5037,7 @@
         "actual": -770.6500529999994
       },
       "price_eur_mwh": 156.75,
-      "price_implied_eur_mwh": 98.22525286210102,
+      "price_implied_eur_mwh": 99.56439982388709,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -5073,7 +5073,7 @@
         "actual": -155.9118239999998
       },
       "price_eur_mwh": 158.3,
-      "price_implied_eur_mwh": 98.79093583461241,
+      "price_implied_eur_mwh": 102.94641034387773,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -5109,7 +5109,7 @@
         "actual": 127.20750099999987
       },
       "price_eur_mwh": 156.22,
-      "price_implied_eur_mwh": 100.95535243632841,
+      "price_implied_eur_mwh": 107.09039740259897,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -5145,7 +5145,7 @@
         "actual": 107.25822299999982
       },
       "price_eur_mwh": 150.1,
-      "price_implied_eur_mwh": 104.06781516089121,
+      "price_implied_eur_mwh": 111.31067333095555,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -5181,7 +5181,7 @@
         "actual": -462.23491099999956
       },
       "price_eur_mwh": 135.12,
-      "price_implied_eur_mwh": 89.72936299527117,
+      "price_implied_eur_mwh": 100.74366141537679,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -5217,7 +5217,7 @@
         "actual": -661.9333979999992
       },
       "price_eur_mwh": 130.8,
-      "price_implied_eur_mwh": 87.75376401871053,
+      "price_implied_eur_mwh": 99.220789632345,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -5253,7 +5253,7 @@
         "actual": 96.54143699999895
       },
       "price_eur_mwh": 128.5,
-      "price_implied_eur_mwh": 90.85153711287279,
+      "price_implied_eur_mwh": 100.89573349387149,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -5289,7 +5289,7 @@
         "actual": -797.5367479999995
       },
       "price_eur_mwh": 125.45,
-      "price_implied_eur_mwh": 91.53905773103692,
+      "price_implied_eur_mwh": 99.82574226954856,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -5325,7 +5325,7 @@
         "actual": 647.7087510000001
       },
       "price_eur_mwh": 121.32,
-      "price_implied_eur_mwh": 90.59207010432492,
+      "price_implied_eur_mwh": 96.74301036428642,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -5361,7 +5361,7 @@
         "actual": 21.0831160000007
       },
       "price_eur_mwh": 124.94,
-      "price_implied_eur_mwh": 90.04345212900223,
+      "price_implied_eur_mwh": 93.4351616951651,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -5397,7 +5397,7 @@
         "actual": -497.7596130000002
       },
       "price_eur_mwh": 126.4,
-      "price_implied_eur_mwh": 88.2646065214175,
+      "price_implied_eur_mwh": 88.79240630527346,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -5433,7 +5433,7 @@
         "actual": 194.0478380000004
       },
       "price_eur_mwh": 123.13,
-      "price_implied_eur_mwh": 88.0010778185875,
+      "price_implied_eur_mwh": 85.23441812573613,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -5469,7 +5469,7 @@
         "actual": -67.0860789999997
       },
       "price_eur_mwh": 99.81,
-      "price_implied_eur_mwh": 92.82698623282894,
+      "price_implied_eur_mwh": 85.8537769027844,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -5505,7 +5505,7 @@
         "actual": -709.3717269999997
       },
       "price_eur_mwh": 58.62,
-      "price_implied_eur_mwh": 87.20215544533713,
+      "price_implied_eur_mwh": 78.41707912701978,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -5541,7 +5541,7 @@
         "actual": -336.4800670000004
       },
       "price_eur_mwh": 15.8,
-      "price_implied_eur_mwh": 83.9079018581666,
+      "price_implied_eur_mwh": 73.36757679308573,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": false
@@ -5577,7 +5577,7 @@
         "actual": -1932.4076159999995
       },
       "price_eur_mwh": -0.94,
-      "price_implied_eur_mwh": 88.80337179766744,
+      "price_implied_eur_mwh": 75.56531111181663,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": true
@@ -5613,7 +5613,7 @@
         "actual": -1682.9155850000016
       },
       "price_eur_mwh": -5.38,
-      "price_implied_eur_mwh": 95.68463977280776,
+      "price_implied_eur_mwh": 80.15571376297244,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -5649,7 +5649,7 @@
         "actual": -3288.3092270000006
       },
       "price_eur_mwh": -9.64,
-      "price_implied_eur_mwh": 93.4191694174721,
+      "price_implied_eur_mwh": 78.27955266541225,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": false
@@ -5685,7 +5685,7 @@
         "actual": -2054.7111220000006
       },
       "price_eur_mwh": -8.56,
-      "price_implied_eur_mwh": 92.12598353328278,
+      "price_implied_eur_mwh": 78.05090707976213,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -5721,7 +5721,7 @@
         "actual": -2314.9143840000015
       },
       "price_eur_mwh": -5.64,
-      "price_implied_eur_mwh": 93.76299013455515,
+      "price_implied_eur_mwh": 80.98390591663994,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": true
@@ -5757,7 +5757,7 @@
         "actual": -1562.5367770000012
       },
       "price_eur_mwh": 13.12,
-      "price_implied_eur_mwh": 97.84477716858198,
+      "price_implied_eur_mwh": 86.57904340305751,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -5793,7 +5793,7 @@
         "actual": -740.7811029999993
       },
       "price_eur_mwh": 49.65,
-      "price_implied_eur_mwh": 103.9115779061591,
+      "price_implied_eur_mwh": 94.30947590238284,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -5829,7 +5829,7 @@
         "actual": 676.4427780000005
       },
       "price_eur_mwh": 85.94,
-      "price_implied_eur_mwh": 115.34568718044846,
+      "price_implied_eur_mwh": 106.6905057946723,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -5865,7 +5865,7 @@
         "actual": 1019.381676
       },
       "price_eur_mwh": 97.66,
-      "price_implied_eur_mwh": 115.23062245169716,
+      "price_implied_eur_mwh": 109.94506778104585,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -5901,7 +5901,7 @@
         "actual": 1658.1729379999997
       },
       "price_eur_mwh": 120.0,
-      "price_implied_eur_mwh": 114.07189639325155,
+      "price_implied_eur_mwh": 112.26479639705923,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -5973,7 +5973,7 @@
         "actual": 512.9078809999992
       },
       "price_eur_mwh": 119.29,
-      "price_implied_eur_mwh": 105.76738004915958,
+      "price_implied_eur_mwh": 110.94702854873881,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6009,7 +6009,7 @@
         "actual": -61.699382999999216
       },
       "price_eur_mwh": 113.87,
-      "price_implied_eur_mwh": 106.95586226390431,
+      "price_implied_eur_mwh": 113.62531765662395,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6045,7 +6045,7 @@
         "actual": 847.8414169999996
       },
       "price_eur_mwh": 99.69,
-      "price_implied_eur_mwh": 105.40086645937555,
+      "price_implied_eur_mwh": 113.30369083111492,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6081,7 +6081,7 @@
         "actual": -57.280283000000054
       },
       "price_eur_mwh": 95.1,
-      "price_implied_eur_mwh": 102.03182265260791,
+      "price_implied_eur_mwh": 110.66403353374521,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6117,7 +6117,7 @@
         "actual": 608.9131159999997
       },
       "price_eur_mwh": 92.0,
-      "price_implied_eur_mwh": 100.03474576011968,
+      "price_implied_eur_mwh": 108.25567639944346,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6153,7 +6153,7 @@
         "actual": 441.78508799999963
       },
       "price_eur_mwh": 90.0,
-      "price_implied_eur_mwh": 101.08202086428747,
+      "price_implied_eur_mwh": 107.47401277157604,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6189,7 +6189,7 @@
         "actual": 944.881523
       },
       "price_eur_mwh": 88.97,
-      "price_implied_eur_mwh": 97.97206520797074,
+      "price_implied_eur_mwh": 102.65775592792097,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6225,7 +6225,7 @@
         "actual": -404.90904600000067
       },
       "price_eur_mwh": 89.99,
-      "price_implied_eur_mwh": 95.72321824566703,
+      "price_implied_eur_mwh": 97.98724756639133,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -6261,7 +6261,7 @@
         "actual": 141.23458799999935
       },
       "price_eur_mwh": 99.5,
-      "price_implied_eur_mwh": 94.7551630008121,
+      "price_implied_eur_mwh": 93.99430543973946,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6297,7 +6297,7 @@
         "actual": 1439.3949709999997
       },
       "price_eur_mwh": 105.1,
-      "price_implied_eur_mwh": 93.21915456698996,
+      "price_implied_eur_mwh": 89.41648001939116,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -6333,7 +6333,7 @@
         "actual": 1169.1245909999998
       },
       "price_eur_mwh": 91.75,
-      "price_implied_eur_mwh": 94.27048594617415,
+      "price_implied_eur_mwh": 87.01067923208248,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6369,7 +6369,7 @@
         "actual": 2588.9366069999996
       },
       "price_eur_mwh": 55.0,
-      "price_implied_eur_mwh": 114.12128572099279,
+      "price_implied_eur_mwh": 99.99159294968857,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6405,7 +6405,7 @@
         "actual": 692.8490739999997
       },
       "price_eur_mwh": 19.01,
-      "price_implied_eur_mwh": 87.92491092894753,
+      "price_implied_eur_mwh": 76.58703510529295,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": false
@@ -6441,7 +6441,7 @@
         "actual": -1293.003192000001
       },
       "price_eur_mwh": 18.91,
-      "price_implied_eur_mwh": 91.31477618122695,
+      "price_implied_eur_mwh": 77.5780926553725,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6477,7 +6477,7 @@
         "actual": -755.5374410000004
       },
       "price_eur_mwh": 2.11,
-      "price_implied_eur_mwh": 91.11589427111085,
+      "price_implied_eur_mwh": 76.49406266320581,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -6513,7 +6513,7 @@
         "actual": -1472.773193
       },
       "price_eur_mwh": 0.1,
-      "price_implied_eur_mwh": 91.67442482700721,
+      "price_implied_eur_mwh": 76.88121565011674,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -6549,7 +6549,7 @@
         "actual": -2292.136151999998
       },
       "price_eur_mwh": -3.04,
-      "price_implied_eur_mwh": 88.79250422715617,
+      "price_implied_eur_mwh": 75.37926818834342,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -6585,7 +6585,7 @@
         "actual": -1883.0966990000006
       },
       "price_eur_mwh": 0.73,
-      "price_implied_eur_mwh": 94.43546338959679,
+      "price_implied_eur_mwh": 81.52286402515622,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -6621,7 +6621,7 @@
         "actual": -1058.7059950000012
       },
       "price_eur_mwh": 5.33,
-      "price_implied_eur_mwh": 102.17063278121539,
+      "price_implied_eur_mwh": 90.0460288054065,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -6657,7 +6657,7 @@
         "actual": -897.4154480000007
       },
       "price_eur_mwh": 49.81,
-      "price_implied_eur_mwh": 109.21774326563899,
+      "price_implied_eur_mwh": 98.562136992143,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6693,7 +6693,7 @@
         "actual": 464.3911930000004
       },
       "price_eur_mwh": 90.1,
-      "price_implied_eur_mwh": 116.54416639980673,
+      "price_implied_eur_mwh": 107.6510348392384,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6729,7 +6729,7 @@
         "actual": 852.7466329999997
       },
       "price_eur_mwh": 116.1,
-      "price_implied_eur_mwh": 112.4866995039493,
+      "price_implied_eur_mwh": 107.74593270653489,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6765,7 +6765,7 @@
         "actual": 343.36780499999986
       },
       "price_eur_mwh": 123.38,
-      "price_implied_eur_mwh": 107.01570727348795,
+      "price_implied_eur_mwh": 106.60956726666724,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6801,7 +6801,7 @@
         "actual": 153.24466400000074
       },
       "price_eur_mwh": 130.0,
-      "price_implied_eur_mwh": 105.73917953095858,
+      "price_implied_eur_mwh": 108.51512590545211,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6837,7 +6837,7 @@
         "actual": -30.11259699999937
       },
       "price_eur_mwh": 131.0,
-      "price_implied_eur_mwh": 102.61296330107497,
+      "price_implied_eur_mwh": 108.41890052093419,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -6873,7 +6873,7 @@
         "actual": -456.538896
       },
       "price_eur_mwh": 121.1,
-      "price_implied_eur_mwh": 101.52830625116384,
+      "price_implied_eur_mwh": 109.27536723025096,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6909,7 +6909,7 @@
         "actual": 525.8260060000002
       },
       "price_eur_mwh": 114.5,
-      "price_implied_eur_mwh": 99.44448704061838,
+      "price_implied_eur_mwh": 108.52991141153052,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6945,7 +6945,7 @@
         "actual": 965.9362599999995
       },
       "price_eur_mwh": 109.0,
-      "price_implied_eur_mwh": 97.717401605421,
+      "price_implied_eur_mwh": 107.20621243900035,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -6981,7 +6981,7 @@
         "actual": 181.8266309999999
       },
       "price_eur_mwh": 105.75,
-      "price_implied_eur_mwh": 69.23639365265514,
+      "price_implied_eur_mwh": 78.29949041562986,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7017,7 +7017,7 @@
         "actual": 724.204224000001
       },
       "price_eur_mwh": 100.78,
-      "price_implied_eur_mwh": 71.93185531238719,
+      "price_implied_eur_mwh": 78.83877673158422,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7053,7 +7053,7 @@
         "actual": 388.8741059999993
       },
       "price_eur_mwh": 97.39,
-      "price_implied_eur_mwh": 69.29091411128519,
+      "price_implied_eur_mwh": 74.39841460456537,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7089,7 +7089,7 @@
         "actual": 466.83314399999927
       },
       "price_eur_mwh": 95.36,
-      "price_implied_eur_mwh": 68.40324108350164,
+      "price_implied_eur_mwh": 70.81882803600018,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7125,7 +7125,7 @@
         "actual": 550.3551289999996
       },
       "price_eur_mwh": 93.32,
-      "price_implied_eur_mwh": 64.37391724030239,
+      "price_implied_eur_mwh": 64.37241207815215,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7161,7 +7161,7 @@
         "actual": 1567.5155260000001
       },
       "price_eur_mwh": 65.82,
-      "price_implied_eur_mwh": 60.20546035073943,
+      "price_implied_eur_mwh": 57.68479354731822,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -7197,7 +7197,7 @@
         "actual": 537.0213389999999
       },
       "price_eur_mwh": 19.93,
-      "price_implied_eur_mwh": 52.8367650044282,
+      "price_implied_eur_mwh": 48.53070701985976,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": false
@@ -7233,7 +7233,7 @@
         "actual": -421.2096219999994
       },
       "price_eur_mwh": 0.5,
-      "price_implied_eur_mwh": 52.09882085299529,
+      "price_implied_eur_mwh": 45.01063664623733,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": false
@@ -7269,7 +7269,7 @@
         "actual": -768.3657220000005
       },
       "price_eur_mwh": -2.0,
-      "price_implied_eur_mwh": 50.01285176235312,
+      "price_implied_eur_mwh": 40.929521860679685,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": false
@@ -7305,7 +7305,7 @@
         "actual": -1835.5751170000012
       },
       "price_eur_mwh": -3.55,
-      "price_implied_eur_mwh": 51.3835674142187,
+      "price_implied_eur_mwh": 40.30231869735273,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -7341,7 +7341,7 @@
         "actual": -2153.5500920000004
       },
       "price_eur_mwh": -8.24,
-      "price_implied_eur_mwh": 47.132828601538094,
+      "price_implied_eur_mwh": 35.97090136923974,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -7377,7 +7377,7 @@
         "actual": -1609.8643739999989
       },
       "price_eur_mwh": -12.0,
-      "price_implied_eur_mwh": 61.22437054710775,
+      "price_implied_eur_mwh": 47.20417524858088,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -7413,7 +7413,7 @@
         "actual": -2269.8361859999995
       },
       "price_eur_mwh": -11.0,
-      "price_implied_eur_mwh": 64.5720757109675,
+      "price_implied_eur_mwh": 50.6950022848298,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": true
@@ -7449,7 +7449,7 @@
         "actual": -1046.3964650000007
       },
       "price_eur_mwh": -8.52,
-      "price_implied_eur_mwh": 71.92463335043246,
+      "price_implied_eur_mwh": 58.20876705340528,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -7485,7 +7485,7 @@
         "actual": -1314.6976560000003
       },
       "price_eur_mwh": -0.8,
-      "price_implied_eur_mwh": 78.00952105328292,
+      "price_implied_eur_mwh": 65.40930273156216,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7521,7 +7521,7 @@
         "actual": -1472.9947739999998
       },
       "price_eur_mwh": 8.49,
-      "price_implied_eur_mwh": 78.25803777171191,
+      "price_implied_eur_mwh": 68.47663327662993,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7557,7 +7557,7 @@
         "actual": 718.2628370000002
       },
       "price_eur_mwh": 62.6,
-      "price_implied_eur_mwh": 84.83424003766746,
+      "price_implied_eur_mwh": 76.96426167981853,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7593,7 +7593,7 @@
         "actual": 865.6687629999997
       },
       "price_eur_mwh": 99.15,
-      "price_implied_eur_mwh": 85.80331632433438,
+      "price_implied_eur_mwh": 81.08771560598908,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7629,7 +7629,7 @@
         "actual": 775.4236280000005
       },
       "price_eur_mwh": 123.1,
-      "price_implied_eur_mwh": 81.51148456087148,
+      "price_implied_eur_mwh": 80.89639606968129,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7665,7 +7665,7 @@
         "actual": 1884.5896050000001
       },
       "price_eur_mwh": 126.49,
-      "price_implied_eur_mwh": 77.17508375702616,
+      "price_implied_eur_mwh": 80.34959933959031,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": false
@@ -7701,7 +7701,7 @@
         "actual": 296.258417
       },
       "price_eur_mwh": 124.49,
-      "price_implied_eur_mwh": 75.32873342512323,
+      "price_implied_eur_mwh": 81.27913088794467,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7737,7 +7737,7 @@
         "actual": 380.7396970000009
       },
       "price_eur_mwh": 113.96,
-      "price_implied_eur_mwh": 78.37403550619123,
+      "price_implied_eur_mwh": 85.44558047731557,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7773,7 +7773,7 @@
         "actual": 778.9972119999993
       },
       "price_eur_mwh": 106.46,
-      "price_implied_eur_mwh": 75.91743042037558,
+      "price_implied_eur_mwh": 84.40135296959349,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7809,7 +7809,7 @@
         "actual": 1341.1392580000002
       },
       "price_eur_mwh": 96.0,
-      "price_implied_eur_mwh": 76.23174167837708,
+      "price_implied_eur_mwh": 84.71374478914954,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7845,7 +7845,7 @@
         "actual": 872.5501459999996
       },
       "price_eur_mwh": 87.5,
-      "price_implied_eur_mwh": 80.82456218695627,
+      "price_implied_eur_mwh": 87.58690422367519,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7881,7 +7881,7 @@
         "actual": 1675.5687509999998
       },
       "price_eur_mwh": 82.29,
-      "price_implied_eur_mwh": 77.55379912524457,
+      "price_implied_eur_mwh": 83.34452053752166,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7917,7 +7917,7 @@
         "actual": 605.407451
       },
       "price_eur_mwh": 76.99,
-      "price_implied_eur_mwh": 76.30894146099739,
+      "price_implied_eur_mwh": 80.02305873362037,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7953,7 +7953,7 @@
         "actual": 1767.3030260000005
       },
       "price_eur_mwh": 72.0,
-      "price_implied_eur_mwh": 72.2271759761864,
+      "price_implied_eur_mwh": 73.8835457796422,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -7989,7 +7989,7 @@
         "actual": 158.75017699999898
       },
       "price_eur_mwh": 55.0,
-      "price_implied_eur_mwh": 71.29810821950333,
+      "price_implied_eur_mwh": 69.92185043154008,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8025,7 +8025,7 @@
         "actual": 334.88427299999967
       },
       "price_eur_mwh": 22.71,
-      "price_implied_eur_mwh": 65.0043770014057,
+      "price_implied_eur_mwh": 61.53091682668979,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8061,7 +8061,7 @@
         "actual": -817.0935779999991
       },
       "price_eur_mwh": 9.5,
-      "price_implied_eur_mwh": 58.250733338082696,
+      "price_implied_eur_mwh": 52.86976751155595,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8097,7 +8097,7 @@
         "actual": -863.7812500000009
       },
       "price_eur_mwh": -2.0,
-      "price_implied_eur_mwh": 50.464271662968926,
+      "price_implied_eur_mwh": 43.70061645862572,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -8133,7 +8133,7 @@
         "actual": -884.3311550000008
       },
       "price_eur_mwh": -4.22,
-      "price_implied_eur_mwh": 52.86868837235387,
+      "price_implied_eur_mwh": 43.21835087509491,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -8169,7 +8169,7 @@
         "actual": -1479.2968949999995
       },
       "price_eur_mwh": -6.11,
-      "price_implied_eur_mwh": 55.988971497003774,
+      "price_implied_eur_mwh": 43.99335005778556,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -8205,7 +8205,7 @@
         "actual": -1837.3098869999985
       },
       "price_eur_mwh": -8.0,
-      "price_implied_eur_mwh": 58.21764272451554,
+      "price_implied_eur_mwh": 44.85489847720595,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -8241,7 +8241,7 @@
         "actual": -1281.1172100000003
       },
       "price_eur_mwh": -13.74,
-      "price_implied_eur_mwh": 62.49736912849296,
+      "price_implied_eur_mwh": 48.224428325448315,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -8277,7 +8277,7 @@
         "actual": -1431.8899660000016
       },
       "price_eur_mwh": -12.49,
-      "price_implied_eur_mwh": 66.64247850946367,
+      "price_implied_eur_mwh": 52.354340210581555,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -8313,7 +8313,7 @@
         "actual": -1233.8487800000003
       },
       "price_eur_mwh": -9.0,
-      "price_implied_eur_mwh": 65.63701888397044,
+      "price_implied_eur_mwh": 53.16951712856748,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -8349,7 +8349,7 @@
         "actual": -382.39855199999874
       },
       "price_eur_mwh": -2.0,
-      "price_implied_eur_mwh": 75.36908701180747,
+      "price_implied_eur_mwh": 63.293109520922854,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8385,7 +8385,7 @@
         "actual": -612.9542670000001
       },
       "price_eur_mwh": 3.39,
-      "price_implied_eur_mwh": 80.01157254484151,
+      "price_implied_eur_mwh": 69.88201524157508,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8421,7 +8421,7 @@
         "actual": -644.8560040000002
       },
       "price_eur_mwh": 50.71,
-      "price_implied_eur_mwh": 85.61582937887175,
+      "price_implied_eur_mwh": 77.59067159250104,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8457,7 +8457,7 @@
         "actual": 511.920032
       },
       "price_eur_mwh": 97.52,
-      "price_implied_eur_mwh": 83.51455756801545,
+      "price_implied_eur_mwh": 79.25337486320466,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8493,7 +8493,7 @@
         "actual": 368.8802880000003
       },
       "price_eur_mwh": 124.56,
-      "price_implied_eur_mwh": 80.21838845454845,
+      "price_implied_eur_mwh": 79.8600356994083,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8529,7 +8529,7 @@
         "actual": 624.0977229999999
       },
       "price_eur_mwh": 133.84,
-      "price_implied_eur_mwh": 77.9566978615113,
+      "price_implied_eur_mwh": 80.97602909896696,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8565,7 +8565,7 @@
         "actual": 401.3089260000006
       },
       "price_eur_mwh": 134.39,
-      "price_implied_eur_mwh": 77.9033718989331,
+      "price_implied_eur_mwh": 83.34259180859037,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8601,7 +8601,7 @@
         "actual": 443.58930600000076
       },
       "price_eur_mwh": 125.49,
-      "price_implied_eur_mwh": 74.11648599548344,
+      "price_implied_eur_mwh": 82.03333944913753,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8637,7 +8637,7 @@
         "actual": 1443.2813959999994
       },
       "price_eur_mwh": 124.98,
-      "price_implied_eur_mwh": 77.03876577645335,
+      "price_implied_eur_mwh": 85.3000545580852,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8673,7 +8673,7 @@
         "actual": 687.0002240000003
       },
       "price_eur_mwh": 117.81,
-      "price_implied_eur_mwh": 74.90943909819315,
+      "price_implied_eur_mwh": 83.65397669850927,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8709,7 +8709,7 @@
         "actual": 192.96491699999933
       },
       "price_eur_mwh": 113.16,
-      "price_implied_eur_mwh": 108.71529534485597,
+      "price_implied_eur_mwh": 115.21275989681115,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -8745,7 +8745,7 @@
         "actual": 1223.0601559999996
       },
       "price_eur_mwh": 110.6,
-      "price_implied_eur_mwh": 106.63615850921494,
+      "price_implied_eur_mwh": 111.92541287872805,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8781,7 +8781,7 @@
         "actual": 758.8261709999997
       },
       "price_eur_mwh": 111.06,
-      "price_implied_eur_mwh": 104.01272617958162,
+      "price_implied_eur_mwh": 107.49908335178404,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8817,7 +8817,7 @@
         "actual": 847.9443359999996
       },
       "price_eur_mwh": 118.0,
-      "price_implied_eur_mwh": 99.14528127057396,
+      "price_implied_eur_mwh": 100.72988246123658,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8853,7 +8853,7 @@
         "actual": 950.834527
       },
       "price_eur_mwh": 132.03,
-      "price_implied_eur_mwh": 96.03881336725749,
+      "price_implied_eur_mwh": 95.02309545972741,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8889,7 +8889,7 @@
         "actual": 474.06306199999926
       },
       "price_eur_mwh": 134.2,
-      "price_implied_eur_mwh": 92.96807726131962,
+      "price_implied_eur_mwh": 89.21525246314125,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8925,7 +8925,7 @@
         "actual": 1359.6598249999988
       },
       "price_eur_mwh": 126.71,
-      "price_implied_eur_mwh": 94.78314479603203,
+      "price_implied_eur_mwh": 87.42155303555656,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -8961,7 +8961,7 @@
         "actual": -263.646874
       },
       "price_eur_mwh": 98.1,
-      "price_implied_eur_mwh": 95.42060102234717,
+      "price_implied_eur_mwh": 85.00380633129369,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -8997,7 +8997,7 @@
         "actual": 364.474787000001
       },
       "price_eur_mwh": 79.57,
-      "price_implied_eur_mwh": 95.27606709005711,
+      "price_implied_eur_mwh": 82.47866750895508,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -9033,7 +9033,7 @@
         "actual": -1626.6839299999992
       },
       "price_eur_mwh": 57.14,
-      "price_implied_eur_mwh": 95.68707387443298,
+      "price_implied_eur_mwh": 81.08229936832875,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -9069,7 +9069,7 @@
         "actual": -1926.7409319999988
       },
       "price_eur_mwh": 31.69,
-      "price_implied_eur_mwh": 104.02703085054664,
+      "price_implied_eur_mwh": 86.8417779031484,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -9105,7 +9105,7 @@
         "actual": -1906.3523819999991
       },
       "price_eur_mwh": 20.1,
-      "price_implied_eur_mwh": 92.12228154351975,
+      "price_implied_eur_mwh": 77.24015335806017,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -9177,7 +9177,7 @@
         "actual": -1894.2728879999995
       },
       "price_eur_mwh": 46.72,
-      "price_implied_eur_mwh": 102.212231757557,
+      "price_implied_eur_mwh": 87.75560612834309,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -9213,7 +9213,7 @@
         "actual": -1493.5155110000005
       },
       "price_eur_mwh": 72.0,
-      "price_implied_eur_mwh": 107.4835504846022,
+      "price_implied_eur_mwh": 94.30410160555489,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -9249,7 +9249,7 @@
         "actual": -678.5712049999993
       },
       "price_eur_mwh": 95.81,
-      "price_implied_eur_mwh": 113.65299961565213,
+      "price_implied_eur_mwh": 102.11680233424636,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9285,7 +9285,7 @@
         "actual": 784.4199280000012
       },
       "price_eur_mwh": 105.61,
-      "price_implied_eur_mwh": 116.47487593789319,
+      "price_implied_eur_mwh": 107.59550154328772,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9321,7 +9321,7 @@
         "actual": 2898.653903
       },
       "price_eur_mwh": 128.38,
-      "price_implied_eur_mwh": 147.50653343615468,
+      "price_implied_eur_mwh": 135.81280869774028,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9357,7 +9357,7 @@
         "actual": 993.630846
       },
       "price_eur_mwh": 138.25,
-      "price_implied_eur_mwh": 114.8055849589277,
+      "price_implied_eur_mwh": 112.8528159184785,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9393,7 +9393,7 @@
         "actual": 798.8726630000001
       },
       "price_eur_mwh": 145.31,
-      "price_implied_eur_mwh": 110.75182760907806,
+      "price_implied_eur_mwh": 112.53254564160771,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9429,7 +9429,7 @@
         "actual": 620.5577350000003
       },
       "price_eur_mwh": 142.79,
-      "price_implied_eur_mwh": 109.34341990753678,
+      "price_implied_eur_mwh": 113.81306918842267,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9465,7 +9465,7 @@
         "actual": 323.60146499999973
       },
       "price_eur_mwh": 130.0,
-      "price_implied_eur_mwh": 107.14720632155239,
+      "price_implied_eur_mwh": 113.77867160878885,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9501,7 +9501,7 @@
         "actual": 1287.0860940000002
       },
       "price_eur_mwh": 119.18,
-      "price_implied_eur_mwh": 111.31777119302046,
+      "price_implied_eur_mwh": 118.04583300496073,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9537,7 +9537,7 @@
         "actual": 1834.0954840000004
       },
       "price_eur_mwh": 117.0,
-      "price_implied_eur_mwh": 106.58951740879458,
+      "price_implied_eur_mwh": 114.31682794091738,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": false
@@ -9573,7 +9573,7 @@
         "actual": 876.834448999999
       },
       "price_eur_mwh": 111.41,
-      "price_implied_eur_mwh": 104.30918418285037,
+      "price_implied_eur_mwh": 111.68145315712528,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9609,7 +9609,7 @@
         "actual": 1944.372758999999
       },
       "price_eur_mwh": 106.2,
-      "price_implied_eur_mwh": 102.75548633664252,
+      "price_implied_eur_mwh": 108.81522266934655,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": false
@@ -9645,7 +9645,7 @@
         "actual": 1362.1791510000003
       },
       "price_eur_mwh": 108.0,
-      "price_implied_eur_mwh": 104.05262499303876,
+      "price_implied_eur_mwh": 107.53106051797123,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9681,7 +9681,7 @@
         "actual": 1316.3198820000007
       },
       "price_eur_mwh": 112.65,
-      "price_implied_eur_mwh": 98.99405416496411,
+      "price_implied_eur_mwh": 100.60868050385788,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9717,7 +9717,7 @@
         "actual": 1461.0587260000002
       },
       "price_eur_mwh": 119.08,
-      "price_implied_eur_mwh": 97.42449786214179,
+      "price_implied_eur_mwh": 96.13366140233424,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9753,7 +9753,7 @@
         "actual": 646.0346479999998
       },
       "price_eur_mwh": 121.23,
-      "price_implied_eur_mwh": 96.03113874181487,
+      "price_implied_eur_mwh": 91.67016321151682,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9789,7 +9789,7 @@
         "actual": 1144.4664559999992
       },
       "price_eur_mwh": 110.11,
-      "price_implied_eur_mwh": 96.81998036890958,
+      "price_implied_eur_mwh": 89.05398828779391,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -9825,7 +9825,7 @@
         "actual": -105.2384520000005
       },
       "price_eur_mwh": 87.81,
-      "price_implied_eur_mwh": 98.68803794070685,
+      "price_implied_eur_mwh": 87.62251511712692,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9861,7 +9861,7 @@
         "actual": -634.8486009999997
       },
       "price_eur_mwh": 45.11,
-      "price_implied_eur_mwh": 93.95007626842578,
+      "price_implied_eur_mwh": 81.4159434529744,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -9897,7 +9897,7 @@
         "actual": -1517.9688649999998
       },
       "price_eur_mwh": 24.12,
-      "price_implied_eur_mwh": 93.4527498548052,
+      "price_implied_eur_mwh": 79.29158570291088,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": true
@@ -9933,7 +9933,7 @@
         "actual": -1817.3376659999994
       },
       "price_eur_mwh": 19.39,
-      "price_implied_eur_mwh": 87.00223830915996,
+      "price_implied_eur_mwh": 73.19714606508398,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -9969,7 +9969,7 @@
         "actual": -2526.2753409999996
       },
       "price_eur_mwh": 10.64,
-      "price_implied_eur_mwh": 92.21547909566652,
+      "price_implied_eur_mwh": 77.3148471485519,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": true
@@ -10005,7 +10005,7 @@
         "actual": -1182.6189189999996
       },
       "price_eur_mwh": 16.84,
-      "price_implied_eur_mwh": 93.86814638970097,
+      "price_implied_eur_mwh": 79.44717494734348,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -10041,7 +10041,7 @@
         "actual": -132.5493060000008
       },
       "price_eur_mwh": 49.08,
-      "price_implied_eur_mwh": 98.2951066930547,
+      "price_implied_eur_mwh": 84.6162005092227,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": false
@@ -10077,7 +10077,7 @@
         "actual": -483.22843600000033
       },
       "price_eur_mwh": 87.85,
-      "price_implied_eur_mwh": 105.30973862073229,
+      "price_implied_eur_mwh": 92.56188580494427,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10113,7 +10113,7 @@
         "actual": -102.06150799999887
       },
       "price_eur_mwh": 105.21,
-      "price_implied_eur_mwh": 110.74233095433702,
+      "price_implied_eur_mwh": 99.78402781204935,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10149,7 +10149,7 @@
         "actual": 1091.6175830000002
       },
       "price_eur_mwh": 112.56,
-      "price_implied_eur_mwh": 115.76169297771557,
+      "price_implied_eur_mwh": 107.02391637412055,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10185,7 +10185,7 @@
         "actual": 1326.4359419999992
       },
       "price_eur_mwh": 117.0,
-      "price_implied_eur_mwh": 120.28593881391191,
+      "price_implied_eur_mwh": 113.99668429382746,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10221,7 +10221,7 @@
         "actual": 584.4886810000007
       },
       "price_eur_mwh": 128.09,
-      "price_implied_eur_mwh": 115.05627433956873,
+      "price_implied_eur_mwh": 113.05373256966494,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10257,7 +10257,7 @@
         "actual": 1234.3918370000001
       },
       "price_eur_mwh": 128.7,
-      "price_implied_eur_mwh": 112.67830948688689,
+      "price_implied_eur_mwh": 114.07653719988978,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10293,7 +10293,7 @@
         "actual": 924.7088049999993
       },
       "price_eur_mwh": 130.03,
-      "price_implied_eur_mwh": 109.26926827620059,
+      "price_implied_eur_mwh": 113.7536398762995,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10329,7 +10329,7 @@
         "actual": 587.8431549999996
       },
       "price_eur_mwh": 122.4,
-      "price_implied_eur_mwh": 107.17368403562456,
+      "price_implied_eur_mwh": 113.79989234669507,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10365,7 +10365,7 @@
         "actual": 768.5030909999996
       },
       "price_eur_mwh": 120.0,
-      "price_implied_eur_mwh": 111.83109683036909,
+      "price_implied_eur_mwh": 118.45724120965016,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10401,7 +10401,7 @@
         "actual": 955.1093709999996
       },
       "price_eur_mwh": 117.96,
-      "price_implied_eur_mwh": 108.95127801059974,
+      "price_implied_eur_mwh": 116.20967649240123,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10437,7 +10437,7 @@
         "actual": 460.58357500000056
       },
       "price_eur_mwh": 113.71,
-      "price_implied_eur_mwh": 109.3085223326501,
+      "price_implied_eur_mwh": 115.68820556378051,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10473,7 +10473,7 @@
         "actual": 1322.8242439999995
       },
       "price_eur_mwh": 113.01,
-      "price_implied_eur_mwh": 106.90057020484934,
+      "price_implied_eur_mwh": 112.13732736942387,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10509,7 +10509,7 @@
         "actual": 378.3342300000004
       },
       "price_eur_mwh": 114.2,
-      "price_implied_eur_mwh": 106.61411485685183,
+      "price_implied_eur_mwh": 109.5839833987464,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -10545,7 +10545,7 @@
         "actual": 710.7405140000001
       },
       "price_eur_mwh": 121.7,
-      "price_implied_eur_mwh": 99.95750284741489,
+      "price_implied_eur_mwh": 101.38084278042905,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10581,7 +10581,7 @@
         "actual": 1019.8399669999999
       },
       "price_eur_mwh": 132.82,
-      "price_implied_eur_mwh": 94.06215726069016,
+      "price_implied_eur_mwh": 93.43889143615368,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10617,7 +10617,7 @@
         "actual": 619.1725569999999
       },
       "price_eur_mwh": 135.0,
-      "price_implied_eur_mwh": 91.18459924275965,
+      "price_implied_eur_mwh": 87.78587228741377,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10653,7 +10653,7 @@
         "actual": -484.06249500000104
       },
       "price_eur_mwh": 129.36,
-      "price_implied_eur_mwh": 88.26969388465847,
+      "price_implied_eur_mwh": 82.20130500816069,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10689,7 +10689,7 @@
         "actual": -697.6860149999993
       },
       "price_eur_mwh": 110.1,
-      "price_implied_eur_mwh": 94.5004705275238,
+      "price_implied_eur_mwh": 84.26636170080432,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10725,7 +10725,7 @@
         "actual": -1626.4150090000003
       },
       "price_eur_mwh": 94.98,
-      "price_implied_eur_mwh": 89.78122216340695,
+      "price_implied_eur_mwh": 78.07478794042964,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10761,7 +10761,7 @@
         "actual": -1771.9476899999981
       },
       "price_eur_mwh": 81.0,
-      "price_implied_eur_mwh": 88.70804164072165,
+      "price_implied_eur_mwh": 75.48890813119715,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -10797,7 +10797,7 @@
         "actual": -2184.6464879999994
       },
       "price_eur_mwh": 49.56,
-      "price_implied_eur_mwh": 88.97740276468386,
+      "price_implied_eur_mwh": 74.78015459512856,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": true
@@ -10833,7 +10833,7 @@
         "actual": -2632.458012000001
       },
       "price_eur_mwh": 45.08,
-      "price_implied_eur_mwh": 89.91435448359333,
+      "price_implied_eur_mwh": 75.47059570942746,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": true
@@ -10869,7 +10869,7 @@
         "actual": -2193.4283769999993
       },
       "price_eur_mwh": 51.42,
-      "price_implied_eur_mwh": 93.74559101020942,
+      "price_implied_eur_mwh": 79.34895213324039,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": true
@@ -10905,7 +10905,7 @@
         "actual": -1252.9472689999993
       },
       "price_eur_mwh": 64.07,
-      "price_implied_eur_mwh": 103.2550743499372,
+      "price_implied_eur_mwh": 88.59139917565861,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10941,7 +10941,7 @@
         "actual": 36.165430000000015
       },
       "price_eur_mwh": 92.07,
-      "price_implied_eur_mwh": 107.350853461172,
+      "price_implied_eur_mwh": 94.19775070428483,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -10977,7 +10977,7 @@
         "actual": -1169.998364000001
       },
       "price_eur_mwh": 114.31,
-      "price_implied_eur_mwh": 108.30291142609924,
+      "price_implied_eur_mwh": 97.82893900374376,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11013,7 +11013,7 @@
         "actual": 1232.6603130000003
       },
       "price_eur_mwh": 125.0,
-      "price_implied_eur_mwh": 113.38042648984056,
+      "price_implied_eur_mwh": 105.11543470208903,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -11049,7 +11049,7 @@
         "actual": 535.8968349999996
       },
       "price_eur_mwh": 141.7,
-      "price_implied_eur_mwh": 118.31722033228421,
+      "price_implied_eur_mwh": 112.41884193191311,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11085,7 +11085,7 @@
         "actual": 649.3291690000005
       },
       "price_eur_mwh": 172.0,
-      "price_implied_eur_mwh": 114.10143764845695,
+      "price_implied_eur_mwh": 112.28847243013465,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11121,7 +11121,7 @@
         "actual": 568.4253120000003
       },
       "price_eur_mwh": 176.24,
-      "price_implied_eur_mwh": 108.1692267917215,
+      "price_implied_eur_mwh": 110.46270324841258,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11157,7 +11157,7 @@
         "actual": 299.15345699999943
       },
       "price_eur_mwh": 169.0,
-      "price_implied_eur_mwh": 107.15091651418359,
+      "price_implied_eur_mwh": 112.05587293870119,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11193,7 +11193,7 @@
         "actual": 319.6193659999999
       },
       "price_eur_mwh": 147.98,
-      "price_implied_eur_mwh": 106.07865262968645,
+      "price_implied_eur_mwh": 112.9222722318642,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11229,7 +11229,7 @@
         "actual": 902.0001360000006
       },
       "price_eur_mwh": 140.1,
-      "price_implied_eur_mwh": 106.40803604761078,
+      "price_implied_eur_mwh": 114.11089351488079,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11265,7 +11265,7 @@
         "actual": 570.2214409999997
       },
       "price_eur_mwh": 136.57,
-      "price_implied_eur_mwh": 103.43578894735906,
+      "price_implied_eur_mwh": 111.78925154496983,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11301,7 +11301,7 @@
         "actual": 441.9112610000002
       },
       "price_eur_mwh": 133.51,
-      "price_implied_eur_mwh": 104.45879981897261,
+      "price_implied_eur_mwh": 111.80136359169549,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11337,7 +11337,7 @@
         "actual": 1053.6271930000003
       },
       "price_eur_mwh": 131.0,
-      "price_implied_eur_mwh": 104.04443301935437,
+      "price_implied_eur_mwh": 109.84825745680394,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11373,7 +11373,7 @@
         "actual": 377.39267500000005
       },
       "price_eur_mwh": 132.7,
-      "price_implied_eur_mwh": 102.17949858250229,
+      "price_implied_eur_mwh": 106.02983104948906,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11409,7 +11409,7 @@
         "actual": 592.6073469999992
       },
       "price_eur_mwh": 137.67,
-      "price_implied_eur_mwh": 96.80325789381874,
+      "price_implied_eur_mwh": 98.85285243844592,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11445,7 +11445,7 @@
         "actual": 877.2919939999992
       },
       "price_eur_mwh": 150.78,
-      "price_implied_eur_mwh": 91.03019457781741,
+      "price_implied_eur_mwh": 91.00890502345703,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11481,7 +11481,7 @@
         "actual": 688.9737249999998
       },
       "price_eur_mwh": 150.66,
-      "price_implied_eur_mwh": 93.74630630683357,
+      "price_implied_eur_mwh": 89.83896924476504,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11517,7 +11517,7 @@
         "actual": 31.91059200000018
       },
       "price_eur_mwh": 137.0,
-      "price_implied_eur_mwh": 97.49853512108936,
+      "price_implied_eur_mwh": 89.59782045214803,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11553,7 +11553,7 @@
         "actual": -1148.3781439999993
       },
       "price_eur_mwh": 116.2,
-      "price_implied_eur_mwh": 94.85190992036952,
+      "price_implied_eur_mwh": 84.54802511121686,
       "coverage_status": "deficit",
       "covered": false,
       "demand_covered": false
@@ -11589,7 +11589,7 @@
         "actual": -1320.2963419999996
       },
       "price_eur_mwh": 97.0,
-      "price_implied_eur_mwh": 90.28864404579085,
+      "price_implied_eur_mwh": 78.48146454191391,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11625,7 +11625,7 @@
         "actual": -1654.3255849999987
       },
       "price_eur_mwh": 81.98,
-      "price_implied_eur_mwh": 86.67737834237678,
+      "price_implied_eur_mwh": 73.86141968893689,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -11661,7 +11661,7 @@
         "actual": -2070.369495000001
       },
       "price_eur_mwh": 62.0,
-      "price_implied_eur_mwh": 86.90139943224099,
+      "price_implied_eur_mwh": 73.11632808464877,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -11697,7 +11697,7 @@
         "actual": -2121.0172349999993
       },
       "price_eur_mwh": 45.0,
-      "price_implied_eur_mwh": 91.93837804408857,
+      "price_implied_eur_mwh": 77.09276269016392,
       "coverage_status": "possible_surplus",
       "covered": false,
       "demand_covered": true
@@ -11733,7 +11733,7 @@
         "actual": -1494.688737999999
       },
       "price_eur_mwh": 42.09,
-      "price_implied_eur_mwh": 95.39900476168106,
+      "price_implied_eur_mwh": 80.67409144756567,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -11769,7 +11769,7 @@
         "actual": -1484.4081830000005
       },
       "price_eur_mwh": 53.29,
-      "price_implied_eur_mwh": 99.2287576718527,
+      "price_implied_eur_mwh": 85.3644812204254,
       "coverage_status": "possible_surplus",
       "covered": true,
       "demand_covered": true
@@ -11805,7 +11805,7 @@
         "actual": -764.5821819999992
       },
       "price_eur_mwh": 82.53,
-      "price_implied_eur_mwh": 108.70906888277709,
+      "price_implied_eur_mwh": 95.28630137763557,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11841,7 +11841,7 @@
         "actual": -396.1298339999994
       },
       "price_eur_mwh": 109.61,
-      "price_implied_eur_mwh": 111.77635651854068,
+      "price_implied_eur_mwh": 100.61275439420342,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11877,7 +11877,7 @@
         "actual": 203.86780800000088
       },
       "price_eur_mwh": 136.89,
-      "price_implied_eur_mwh": 111.12085670113743,
+      "price_implied_eur_mwh": 103.30448764917676,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11913,7 +11913,7 @@
         "actual": 317.47279700000036
       },
       "price_eur_mwh": 160.96,
-      "price_implied_eur_mwh": 111.87690337398853,
+      "price_implied_eur_mwh": 107.25720759171399,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -11949,7 +11949,7 @@
         "actual": 1361.3423819999998
       },
       "price_eur_mwh": 167.0,
-      "price_implied_eur_mwh": 109.6392389452418,
+      "price_implied_eur_mwh": 108.71221396204173,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": false
@@ -11985,7 +11985,7 @@
         "actual": 463.55410200000006
       },
       "price_eur_mwh": 170.06,
-      "price_implied_eur_mwh": 110.63574439463622,
+      "price_implied_eur_mwh": 112.43950998670692,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -12021,7 +12021,7 @@
         "actual": 676.7630469999995
       },
       "price_eur_mwh": 168.74,
-      "price_implied_eur_mwh": 111.35627610713341,
+      "price_implied_eur_mwh": 115.42628601439549,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -12057,7 +12057,7 @@
         "actual": 846.4315730000008
       },
       "price_eur_mwh": 153.67,
-      "price_implied_eur_mwh": 107.38478924618421,
+      "price_implied_eur_mwh": 113.96908400469508,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -12093,7 +12093,7 @@
         "actual": 1228.935015
       },
       "price_eur_mwh": 151.0,
-      "price_implied_eur_mwh": 109.23084524227264,
+      "price_implied_eur_mwh": 116.37325249027697,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -12129,7 +12129,7 @@
         "actual": 621.1897959999997
       },
       "price_eur_mwh": 142.31,
-      "price_implied_eur_mwh": 104.8695125989515,
+      "price_implied_eur_mwh": 112.93831878534579,
       "coverage_status": "deficit",
       "covered": true,
       "demand_covered": true
@@ -12144,16 +12144,17 @@
     "demand_naive_168h_mae": 484.0,
     "demand_mae_improvement_pct": 7.6,
     "demand_coverage_pct": 89.9,
-    "price_mae_eur_mwh": 38.3,
+    "price_mae_eur_mwh": 35.0,
     "price_model": {
-      "intercept": 95.6783551185547,
-      "coef_import_gap": 0.01237727137800333,
-      "coef_hour_sin": -9.953208603724077,
-      "coef_hour_cos": -2.727640768784675,
-      "coef_is_weekend": -28.331547893399087,
-      "r2": 0.05058725688038768,
-      "slope_eur_per_100mw": 1.237727137800333,
-      "n_obs": 56931
+      "intercept": 92.83109856199908,
+      "coef_import_gap": 0.009919845466669762,
+      "coef_hour_sin": -12.669137761494039,
+      "coef_hour_cos": 9.747034320333631,
+      "coef_is_weekend": -27.979149539129406,
+      "r2": 0.3011946116987575,
+      "slope_eur_per_100mw": 0.9919845466669762,
+      "n_obs": 8659,
+      "fit_window_days": 365
     }
   }
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 // Static, CI-refreshed backtest of the horizon_h-ahead forecast vs what
-// actually happened — regenerated every 6h alongside forecast.json.
+// actually happened, regenerated every 6h alongside forecast.json.
 export function useBacktest() {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)

@@ -1,72 +1,49 @@
-import { fmtMW, STATUS, fmtDateTime, fmtTime } from '../theme'
+import { fmtMW, fmtDateTime } from '../theme'
 
-const fmtWindow = (start, end) => {
-  const s = new Date(start), e = new Date(end)
-  const day = s.toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', timeZone: 'UTC' })
-  return `${day} ${fmtTime(s)}–${fmtTime(e)} UTC`
-}
-
-function nextWindow(forecasts, status) {
-  const i = forecasts.findIndex(f => f.coverage_status === status)
-  if (i === -1) return null
-  let j = i
-  while (j + 1 < forecasts.length && forecasts[j + 1].coverage_status === status) j++
-  // the window ends one hour after the last matching hour
-  return fmtWindow(forecasts[i].timestamp, new Date(new Date(forecasts[j].timestamp).getTime() + 36e5))
-}
-
-function Tile({ label, value, sub, accent }) {
+function Stat({ label, value, unit, sub, accent }) {
   return (
-    <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 transition-colors hover:border-gray-300 dark:hover:border-gray-600">
-      <p className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">{label}</p>
-      <p className="mt-1 text-2xl font-semibold tabular-nums" style={accent ? { color: accent } : undefined}>
-        {value}
+    <div className="flex-1 min-w-[9rem] py-4 px-5 first:pl-0">
+      <p className="text-xs uppercase tracking-[0.08em] text-zinc-500 dark:text-zinc-500">{label}</p>
+      <p className="mt-1.5 text-2xl font-semibold font-mono tabular-nums tracking-tight" style={accent ? { color: accent } : undefined}>
+        {value}{unit && <span className="ml-1 text-sm font-normal text-zinc-400 dark:text-zinc-500">{unit}</span>}
       </p>
-      {sub && <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{sub}</p>}
+      {sub && <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-500">{sub}</p>}
     </div>
   )
 }
 
-export default function StatTiles({ forecasts, summary, backtest }) {
+// Three facts, not three cards: a data strip divided by hairlines. Here's
+// the forecast, here's proof it beats a real baseline, here's what that
+// means for price.
+export default function StatTiles({ forecasts, backtest }) {
   const peakDemand = forecasts.reduce((a, b) => (b.demand.point > a.demand.point ? b : a))
-  const peakPressure = forecasts.reduce((a, b) => (b.import_gap.point > a.import_gap.point ? b : a))
-  const surplusWin = nextWindow(forecasts, 'confirmed_surplus') || nextWindow(forecasts, 'possible_surplus')
-  const surplusKind = nextWindow(forecasts, 'confirmed_surplus') ? 'confirmed' : 'possible'
-  const demandCoverage = backtest?.summary?.demand_coverage_pct
   const demandMaE = backtest?.summary?.demand_mae
+  const demandCoverage = backtest?.summary?.demand_coverage_pct
   const demandImprovementPct = backtest?.summary?.demand_mae_improvement_pct
-  const priceModel = backtest?.summary?.price_model
+
+  const priced = forecasts.filter(f => f.price_implied_eur_mwh != null)
+  const priciest = priced.length ? priced.reduce((a, b) => (b.price_implied_eur_mwh > a.price_implied_eur_mwh ? b : a)) : null
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
-      <Tile
+    <div className="flex flex-wrap divide-x divide-zinc-200 dark:divide-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50">
+      <Stat
         label="Peak demand"
         value={fmtMW(peakDemand.demand.point)}
-        sub={`at ${fmtDateTime(peakDemand.timestamp)}`}
-        accent={STATUS.deficit}
+        sub={fmtDateTime(peakDemand.timestamp)}
       />
-      <Tile
-        label="Peak import gap"
-        value={fmtMW(peakPressure.import_gap.point)}
-        sub={`tightest balance at ${fmtDateTime(peakPressure.timestamp)}`}
-        accent={STATUS.deficit}
+      <Stat
+        label="Beats baseline by"
+        value={demandImprovementPct != null ? `${demandImprovementPct >= 0 ? '-' : '+'}${Math.abs(demandImprovementPct).toFixed(0)}%` : (demandMaE != null ? fmtMW(demandMaE) : 'n/a')}
+        sub={demandCoverage != null ? `${fmtMW(demandMaE)} MAE vs. last week` : 'stability check'}
       />
-      <Tile
-        label="Demand MAE vs seasonal-naive"
-        value={demandImprovementPct != null ? `${demandImprovementPct >= 0 ? '−' : '+'}${Math.abs(demandImprovementPct).toFixed(0)}% error` : (demandMaE != null ? fmtMW(demandMaE) : '—')}
-        sub={demandCoverage != null ? `${fmtMW(demandMaE)} MAE · ${demandCoverage.toFixed(1)}% interval coverage` : 'stability check'}
-        accent={STATUS.confirmed_surplus}
-      />
-      <Tile
-        label="Next relief window"
-        value={surplusWin ?? 'none'}
-        sub={surplusWin ? `${surplusKind} surplus` : 'none in the next 48h'}
-      />
-      <Tile
-        label="Import gap → price"
-        value={priceModel ? `+${priceModel.slope_eur_per_100mw.toFixed(2)} EUR/100MW` : '—'}
-        sub={priceModel ? `r²=${priceModel.r2.toFixed(2)} on ${priceModel.n_obs.toLocaleString()}h — weak but real link` : 'no price data'}
-      />
+      {priciest && (
+        <Stat
+          label="Priciest hour"
+          value={`~${priciest.price_implied_eur_mwh.toFixed(0)}`}
+          unit="EUR/MWh"
+          sub={fmtDateTime(priciest.timestamp)}
+        />
+      )}
     </div>
   )
 }

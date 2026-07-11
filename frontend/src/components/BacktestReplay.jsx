@@ -5,21 +5,20 @@ import {
 } from 'recharts'
 import { SERIES, fmtMW, fmtAxis, fmtDateTime, fmtHourOrDay } from '../theme'
 
-const ACTUAL = { light: '#0891b2', dark: '#22d3ee' }
-const STEP_MS = 60
+const STEP_MS = 55
 
 function ReplayTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null
   const row = payload.find(p => p.dataKey === 'predPoint')?.payload
   if (!row || row.actual == null) return null
   return (
-    <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-xs shadow-md">
-      <p className="font-medium text-gray-900 dark:text-gray-100">{fmtDateTime(label)}</p>
-      <p className="tabular-nums text-gray-700 dark:text-gray-300">
-        predicted demand {fmtMW(row.predPoint)} <span className="text-gray-400">({fmtMW(row.predLower)} … {fmtMW(row.predUpper)})</span>
+    <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-xs shadow-lg shadow-zinc-950/10 dark:shadow-black/40">
+      <p className="font-medium text-zinc-900 dark:text-zinc-100">{fmtDateTime(label)}</p>
+      <p className="mt-0.5 font-mono tabular-nums text-zinc-600 dark:text-zinc-400">
+        predicted {fmtMW(row.predPoint)} <span className="text-zinc-400 dark:text-zinc-600">({fmtMW(row.predLower)} to {fmtMW(row.predUpper)})</span>
       </p>
-      <p className="tabular-nums" style={{ color: row.covered ? '#16a34a' : '#ef4444' }}>
-        actual demand {fmtMW(row.actual)} {row.covered ? '✓ covered' : '✕ missed'}
+      <p className="font-mono tabular-nums" style={{ color: row.covered ? '#0d9488' : '#dc2626' }}>
+        actual {fmtMW(row.actual)} {row.covered ? 'covered' : 'missed'}
       </p>
     </div>
   )
@@ -57,80 +56,68 @@ export default function BacktestReplay({ backtest, dark }) {
 
   const midnightTicks = chartData.filter(d => new Date(d.t).getUTCHours() % 12 === 0).map(d => d.t)
   const colors = dark ? SERIES.dark : SERIES.light
-  const actualColor = dark ? ACTUAL.dark : ACTUAL.light
-  const grid = dark ? '#27272a' : '#f3f4f6'
-  const ink = dark ? '#a1a1aa' : '#6b7280'
-  const maxAbs = Math.max(...points.map(p => Math.abs(p.import_gap.upper)), ...points.map(p => Math.abs(p.import_gap.actual)))
-  const pct = revealed > 0 ? ((coveredSoFar / revealed) * 100).toFixed(1) : '—'
+  const grid = dark ? '#27272a' : '#e4e4e7'
+  const ink = dark ? '#71717a' : '#a1a1aa'
+  const maxAbs = Math.max(...points.map(p => Math.abs(p.demand.upper)), ...points.map(p => Math.abs(p.demand.actual)))
+  const pct = revealed > 0 ? ((coveredSoFar / revealed) * 100).toFixed(1) : '0.0'
   const demandMae = backtest.summary?.demand_mae
   const demandNaiveMae = backtest.summary?.demand_naive_168h_mae
   const demandImprovementPct = backtest.summary?.demand_mae_improvement_pct
   const demandCoverage = backtest.summary?.demand_coverage_pct
 
   return (
-    <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 space-y-3 transition-colors hover:border-gray-300 dark:hover:border-gray-600">
-      <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <div>
-          <h2 className="font-semibold text-gray-900 dark:text-gray-100">
-            Demand backtest: {backtest.horizon_h}h ahead
-          </h2>
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            Each point is one observed hour in UTC.
-          </p>
-        </div>
-        <span className="text-xs text-gray-500 dark:text-gray-400">
-          {coveredSoFar} / {revealed} covered
-          <span className="ml-1 font-mono tabular-nums font-medium text-gray-700 dark:text-gray-300">({pct}%)</span>
+    <div className="space-y-3">
+      <div className="flex items-baseline justify-between gap-2 text-xs text-zinc-500 dark:text-zinc-500">
+        <span>each point is one observed hour, UTC</span>
+        <span className="font-mono tabular-nums">
+          {coveredSoFar}/{revealed} covered ({pct}%)
         </span>
       </div>
 
       <ResponsiveContainer width="100%" height={220}>
-        <ComposedChart data={chartData} margin={{ top: 12, right: 20, left: 0, bottom: 0 }}>
+        <ComposedChart data={chartData} margin={{ top: 8, right: 20, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke={grid} vertical={false} />
           <XAxis dataKey="t" ticks={midnightTicks} tickFormatter={fmtHourOrDay}
-                 tick={{ fontSize: 10, fill: ink }} axisLine={false} tickLine={false} />
-          <YAxis tickFormatter={v => fmtAxis(v, maxAbs)} tick={{ fontSize: 10, fill: ink }} width={68}
+                 tick={{ fontSize: 10, fill: ink, fontFamily: '"JetBrains Mono", monospace' }} axisLine={false} tickLine={false} />
+          <YAxis tickFormatter={v => fmtAxis(v, maxAbs)} tick={{ fontSize: 10, fill: ink, fontFamily: '"JetBrains Mono", monospace' }} width={60}
                  axisLine={false} tickLine={false} domain={['auto', 'auto']} />
-          <Tooltip content={<ReplayTooltip />} />
+          <Tooltip content={<ReplayTooltip />} cursor={{ stroke: ink, strokeDasharray: '3 3' }} />
           <Area dataKey="predLower" stackId="band" stroke="none" fill="transparent" activeDot={false} isAnimationActive={false} />
-          <Area dataKey="predBand" stackId="band" stroke="none" fill={colors.gap} fillOpacity={dark ? 0.2 : 0.14} activeDot={false} isAnimationActive={false} />
+          <Area dataKey="predBand" stackId="band" stroke="none" fill={colors.demand} fillOpacity={dark ? 0.15 : 0.1} activeDot={false} isAnimationActive={false} />
           <Line dataKey="predPoint" stroke={colors.demand} strokeWidth={2} dot={false} isAnimationActive={false} connectNulls={false} name="predicted" />
-          <Line dataKey="actual" stroke={actualColor} strokeWidth={1.5} strokeDasharray="4 3" dot={false} isAnimationActive={false} connectNulls={false} name="actual" />
+          <Line dataKey="actual" stroke={colors.actual} strokeWidth={1.5} strokeDasharray="4 3" dot={false} isAnimationActive={false} connectNulls={false} name="actual" />
         </ComposedChart>
       </ResponsiveContainer>
 
       <div className="flex items-center gap-3">
         <button
           onClick={() => { if (revealed >= points.length) setRevealed(0); setPlaying(p => !p) }}
-          className="text-xs px-3 py-1 rounded-full border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
-          {playing ? '⏸ pause' : revealed >= points.length ? '▶ replay' : '▶ play'}
+          className="shrink-0 text-xs px-3 py-1.5 rounded-md border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors duration-150 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500">
+          {playing ? 'pause' : revealed >= points.length ? 'replay' : 'play'}
         </button>
         <input
           type="range" min="0" max={points.length} step="1" value={revealed}
           onChange={e => { setPlaying(false); setRevealed(parseInt(e.target.value, 10)) }}
-          className="w-full accent-gray-500"
+          className="w-full accent-zinc-500"
         />
       </div>
-      <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-zinc-500 dark:text-zinc-500">
         <span className="inline-flex items-center gap-1.5">
           <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: colors.demand }} /> forecast range
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: actualColor, borderTop: `1.5px dashed ${actualColor}` }} /> actual
+          <span className="inline-block w-3 h-0.5 rounded-full" style={{ backgroundColor: colors.actual }} /> actual
         </span>
         {demandMae != null && (
-          <span className="ml-auto tabular-nums">
-            model MAE {fmtMW(demandMae)}
-            {demandNaiveMae != null && (
-              <> vs seasonal-naive {fmtMW(demandNaiveMae)}
-                {demandImprovementPct != null && (
-                  <span className={demandImprovementPct >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500'}>
-                    {' '}({demandImprovementPct >= 0 ? '−' : '+'}{Math.abs(demandImprovementPct).toFixed(1)}% error)
-                  </span>
-                )}
-              </>
+          <span className="ml-auto font-mono tabular-nums">
+            model {fmtMW(demandMae)}
+            {demandNaiveMae != null && <> vs. baseline {fmtMW(demandNaiveMae)}</>}
+            {demandImprovementPct != null && (
+              <span className={demandImprovementPct >= 0 ? 'text-teal-600 dark:text-teal-400' : 'text-red-500'}>
+                {' '}({demandImprovementPct >= 0 ? '-' : '+'}{Math.abs(demandImprovementPct).toFixed(1)}%)
+              </span>
             )}
-            {' '}· coverage {demandCoverage != null ? `${demandCoverage.toFixed(1)}%` : '—'}
+            {' '}· {demandCoverage != null ? `${demandCoverage.toFixed(1)}%` : '0%'} coverage
           </span>
         )}
       </div>
