@@ -169,26 +169,28 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-3xl md:text-[2.75rem] font-semibold tracking-tightest leading-[1.1] text-balance">
-              Swiss day-ahead power prices, forecast before the auction clears.
+              What tomorrow's Swiss power price looks like, hour by hour.
             </h1>
             <p className="mt-3 text-base text-zinc-600 dark:text-zinc-400 max-w-[60ch] leading-relaxed">
-              Built on four bidding zones of real ENTSO-E market data and only on information that
-              exists before each auction. Every number below is out-of-sample.
+              Forecast before the day-ahead auction clears, using only information a trader would
+              actually have at that moment.
             </p>
           </div>
-          <StatTiles walkforward={priceDA.walkforward} />
-          <DataFreshness priceDA={priceDA} backtest={backtest} />
         </header>
 
         <Section
           title={liveWindow ? `Next auction: ${priceDA.next_auction.delivery_day}` : 'Latest auction, replayed blind'}
-          meta={liveWindow ? 'pre-auction window open' : priceDA.latest_auction?.delivery_day}
-          delay={80}>
+          meta={liveWindow ? 'pre-auction window open' : priceDA.latest_auction?.delivery_day}>
           <PriceAuction priceDA={priceDA} dark={dark} />
+          <DataFreshness priceDA={priceDA} backtest={backtest} />
+        </Section>
+
+        <Section title="Why you can trust that chart" delay={80}>
+          <StatTiles walkforward={priceDA.walkforward} />
         </Section>
 
         {walkforward && (
-          <Section title="The evidence: 24-month walk-forward" delay={140}>
+          <Section title="The full evidence: 24 months, replayed one at a time" delay={140}>
             <WalkforwardChart walkforward={walkforward} dark={dark} />
           </Section>
         )}
