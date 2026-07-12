@@ -1,4 +1,4 @@
-# Alpine Grid Pulse | Deployed https://swissgridforecast.vercel.app
+# Alpine Power Pulse | https://swisspowerforecast.vercel.app
 
 A day-ahead electricity price forecast for the Swiss bidding zone, built only on information that
 exists before each auction clears, and evaluated the way a trading desk would evaluate it: a
