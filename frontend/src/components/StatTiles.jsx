@@ -1,4 +1,4 @@
-import { series } from '../theme'
+import { series, f } from '../theme'
 
 // A win/loss strip: one cell per walk-forward month, filled when the model
 // beat the naive baseline that month. Turns "23/24" into something you see.
@@ -47,21 +47,21 @@ export default function StatTiles({ walkforward, dark }) {
       <Metric
         first
         label="Beats naive by"
-        value={`${Math.abs(wf.mae_improvement_pct).toFixed(0)}%`}
+        value={`${f(Math.abs(wf.mae_improvement_pct))}%`}
         unit="lower error"
-        sub={`${wf.model_mae.toFixed(1)} vs ${wf.naive24_mae.toFixed(1)} €/MWh MAE`}
+        sub={`${f(wf.model_mae, 1)} vs ${f(wf.naive24_mae, 1)} €/MWh MAE`}
         accent={c.price}
       />
       <Metric
         label="Months won"
-        value={`${wf.months_beating_naive24}`}
-        unit={`/ ${wf.n_fold_months}`}
+        value={wf.months_beating_naive24 ?? '—'}
+        unit={`/ ${wf.n_fold_months ?? '—'}`}
         sub="out-of-sample, one month at a time">
         <WinStrip folds={wf.folds} dark={dark} />
       </Metric>
       <Metric
         label="Direction hit rate"
-        value={`${wf.direction_hit_rate_pct.toFixed(0)}%`}
+        value={`${f(wf.direction_hit_rate_pct)}%`}
         sub="up or down vs. yesterday, hourly"
       />
     </div>

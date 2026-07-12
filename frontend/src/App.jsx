@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, Component } from 'react'
 import { useForecast } from './hooks/useForecast'
 import { useBacktest } from './hooks/useBacktest'
 import { usePriceDA } from './hooks/usePriceDA'
@@ -9,7 +9,16 @@ import PriceAuction from './components/PriceAuction'
 import WalkforwardChart from './components/WalkforwardChart'
 import ForecastChart from './components/ForecastChart'
 import BacktestReplay from './components/BacktestReplay'
-import { fmtDateTime } from './theme'
+import { fmtDateTime, f } from './theme'
+
+// A crash in any one panel must never blank the whole page. This is the
+// safety net that was missing when a late fetch's partial data threw.
+class Boundary extends Component {
+  constructor(props) { super(props); this.state = { failed: false } }
+  static getDerivedStateFromError() { return { failed: true } }
+  componentDidCatch(err) { console.error('[panel error]', err) }
+  render() { return this.state.failed ? (this.props.fallback ?? null) : this.props.children }
+}
 
 function useDarkMode() {
   const [dark, setDark] = useState(() =>
@@ -142,45 +151,57 @@ export default function App() {
         </div>
 
         {/* hero: the forecast itself */}
-        <PriceAuction priceDA={priceDA} dark={dark} />
+        <Boundary><PriceAuction priceDA={priceDA} dark={dark} /></Boundary>
 
         {/* scorecard */}
-        <div className="rise" style={{ animationDelay: '60ms' }}>
-          <div className="flex items-center gap-2.5 mb-3 px-1">
-            <span className="eyebrow">Track record</span>
-            <span className="text-xs" style={{ color: 'var(--text-3)' }}>· why you can trust that curve</span>
-          </div>
-          <StatTiles walkforward={walkforward} dark={dark} />
-        </div>
+        <Boundary>
+          {walkforward && (
+            <div className="rise" style={{ animationDelay: '60ms' }}>
+              <div className="flex items-center gap-2.5 mb-3 px-1">
+                <span className="eyebrow">Track record</span>
+                <span className="text-xs" style={{ color: 'var(--text-3)' }}>· why you can trust that curve</span>
+              </div>
+              <StatTiles walkforward={walkforward} dark={dark} />
+            </div>
+          )}
+        </Boundary>
 
         {/* evidence */}
-        {walkforward && (
-          <Panel index="01" title="24-month walk-forward" delay={100}
-                 meta={`${walkforward.total_hours?.toLocaleString?.() ?? ''} hours out-of-sample`}>
-            <p className="text-sm leading-relaxed mb-4 max-w-2xl" style={{ color: 'var(--text-2)' }}>
-              Each month is trained only on data strictly before it, then predicted blind. Monthly MAE,
-              lower is better. The baseline is yesterday's price at the same hour, the strongest simple
-              guess in this market.
-            </p>
-            <WalkforwardChart walkforward={walkforward} dark={dark} />
-          </Panel>
-        )}
+        <Boundary>
+          {walkforward?.folds?.length > 0 && (
+            <Panel index="01" title="24-month walk-forward" delay={100}
+                   meta={`${walkforward.total_hours?.toLocaleString?.() ?? ''} hours out-of-sample`}>
+              <p className="text-sm leading-relaxed mb-4 max-w-2xl" style={{ color: 'var(--text-2)' }}>
+                Each month is trained only on data strictly before it, then predicted blind. Monthly MAE,
+                lower is better. The baseline is yesterday's price at the same hour, the strongest simple
+                guess in this market.
+              </p>
+              <WalkforwardChart walkforward={walkforward} dark={dark} />
+            </Panel>
+          )}
+        </Boundary>
 
         {/* supporting demand model */}
-        <div className="pt-3 flex items-center gap-2.5 px-1 rise" style={{ animationDelay: '140ms' }}>
-          <span className="eyebrow">Supporting model</span>
-          <span className="text-xs" style={{ color: 'var(--text-3)' }}>· demand is a core price input, so it earns a place here</span>
-        </div>
-        {demand && (
-          <Panel index="02" title="Swiss demand forecast, next 48h" delay={160}>
-            <ForecastChart forecasts={demand.forecasts} dark={dark} />
-          </Panel>
+        {(demand || backtest) && (
+          <div className="pt-3 flex items-center gap-2.5 px-1 rise" style={{ animationDelay: '140ms' }}>
+            <span className="eyebrow">Supporting model</span>
+            <span className="text-xs" style={{ color: 'var(--text-3)' }}>· demand is a core price input, so it earns a place here</span>
+          </div>
         )}
-        {backtest && (
-          <Panel index="03" title="Demand backtest, 24h ahead" meta="last 14 days" delay={200}>
-            <BacktestReplay backtest={backtest} dark={dark} />
-          </Panel>
-        )}
+        <Boundary>
+          {demand?.forecasts?.length > 0 && (
+            <Panel index="02" title="Swiss demand forecast, next 48h" delay={160}>
+              <ForecastChart forecasts={demand.forecasts} dark={dark} />
+            </Panel>
+          )}
+        </Boundary>
+        <Boundary>
+          {backtest?.points?.length > 0 && (
+            <Panel index="03" title="Demand backtest, 24h ahead" meta="last 14 days" delay={200}>
+              <BacktestReplay backtest={backtest} dark={dark} />
+            </Panel>
+          )}
+        </Boundary>
 
         {/* footnotes */}
         <div className="pt-4 space-y-3 text-sm leading-relaxed rise" style={{ color: 'var(--text-2)', animationDelay: '240ms' }}>
@@ -194,7 +215,7 @@ export default function App() {
             <p>
               <span className="eyebrow" style={{ color: 'var(--text-3)' }}>Demand driver&nbsp;&nbsp;</span>
               most weight on <span style={{ color: 'var(--text)' }} className="font-medium">{humanizeFeature(topFeature.feature)}</span>
-              {' '}(<span className="num">{(topFeature.importance * 100).toFixed(0)}%</span>), then hour of day, weekday, and weather.
+              {' '}(<span className="num">{f(topFeature.importance * 100)}%</span>), then hour of day, weekday, and weather.
             </p>
           )}
           <p>

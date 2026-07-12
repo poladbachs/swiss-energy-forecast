@@ -2,7 +2,7 @@ import {
   ResponsiveContainer, ComposedChart, Line, Area,
   XAxis, YAxis, Tooltip, CartesianGrid, ReferenceLine,
 } from 'recharts'
-import { series, chartTheme, MONO, fmtDateTime, fmtDay, fmtTime } from '../theme'
+import { series, chartTheme, MONO, f, fmtDateTime, fmtDay, fmtTime } from '../theme'
 
 function AuctionTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null
@@ -13,10 +13,10 @@ function AuctionTooltip({ active, payload, label }) {
          style={{ background: 'var(--panel)', borderColor: 'var(--border-strong)' }}>
       <p className="font-sans font-medium" style={{ color: 'var(--text)' }}>{fmtDateTime(label)}</p>
       <p className="mt-1" style={{ color: 'var(--price)' }}>
-        forecast {row.forecast.toFixed(1)}
-        <span style={{ color: 'var(--text-3)' }}> ({row.band_low.toFixed(0)}&ndash;{row.band_high.toFixed(0)})</span>
+        forecast {f(row.forecast, 1)}
+        <span style={{ color: 'var(--text-3)' }}> ({f(row.band_low)}&ndash;{f(row.band_low + row.band)})</span>
       </p>
-      {row.actual != null && <p style={{ color: 'var(--actual)' }}>cleared {row.actual.toFixed(1)}</p>}
+      {row.actual != null && <p style={{ color: 'var(--actual)' }}>cleared {f(row.actual, 1)}</p>}
     </div>
   )
 }
@@ -40,18 +40,22 @@ export default function PriceAuction({ priceDA, dark }) {
   const auction = live ?? priceDA.latest_auction
   if (!auction?.hours?.length) return null
 
-  const data = auction.hours.map(h => ({
+  // Only hours with a real forecast number; a partial/stale artifact must
+  // degrade, never crash the page.
+  const hours = auction.hours.filter(h => Number.isFinite(h.forecast))
+  if (hours.length === 0) return null
+  const data = hours.map(h => ({
     t: h.timestamp,
     forecast: h.forecast,
     band_low: h.band_low,
-    band: h.band_high - h.band_low,
+    band: (h.band_high ?? h.forecast) - (h.band_low ?? h.forecast),
     actual: h.actual ?? null,
   }))
   const ticks = data.filter(d => new Date(d.t).getUTCHours() % 4 === 0).map(d => d.t)
 
-  const peak = auction.hours.reduce((a, b) => (b.forecast > a.forecast ? b : a))
-  const low = auction.hours.reduce((a, b) => (b.forecast < a.forecast ? b : a))
-  const avg = auction.hours.reduce((s, h) => s + h.forecast, 0) / auction.hours.length
+  const peak = hours.reduce((a, b) => (b.forecast > a.forecast ? b : a))
+  const low = hours.reduce((a, b) => (b.forecast < a.forecast ? b : a))
+  const avg = hours.reduce((s, h) => s + h.forecast, 0) / hours.length
 
   return (
     <div className="panel panel-hover p-5 md:p-6"
@@ -72,9 +76,9 @@ export default function PriceAuction({ priceDA, dark }) {
           </p>
         </div>
         <div className="flex gap-6 md:gap-8">
-          <Kpi label="Peak" value={`~${peak.forecast.toFixed(0)}`} unit="€" sub={fmtTime(peak.timestamp)} color={c.price} />
-          <Kpi label="Low" value={`~${low.forecast.toFixed(0)}`} unit="€" sub={fmtTime(low.timestamp)} />
-          <Kpi label="Avg" value={`~${avg.toFixed(0)}`} unit="€/MWh" sub="over 24h" />
+          <Kpi label="Peak" value={`~${f(peak.forecast)}`} unit="€" sub={fmtTime(peak.timestamp)} color={c.price} />
+          <Kpi label="Low" value={`~${f(low.forecast)}`} unit="€" sub={fmtTime(low.timestamp)} />
+          <Kpi label="Avg" value={`~${f(avg)}`} unit="€/MWh" sub="over 24h" />
         </div>
       </div>
 
@@ -119,10 +123,10 @@ export default function PriceAuction({ priceDA, dark }) {
             <span className="inline-block w-4 h-0 border-t-2 border-dashed" style={{ borderColor: c.actual }} /> cleared price
           </span>
         )}
-        {!live && auction.mae != null && (
+        {!live && Number.isFinite(auction.mae) && (
           <span className="num ml-auto" style={{ color: 'var(--text)' }}>
-            {auction.mae.toFixed(1)}
-            <span style={{ color: 'var(--text-3)' }}> vs naive {auction.naive24_mae.toFixed(1)} €/MWh</span>
+            {f(auction.mae, 1)}
+            <span style={{ color: 'var(--text-3)' }}> vs naive {f(auction.naive24_mae, 1)} €/MWh</span>
           </span>
         )}
       </div>

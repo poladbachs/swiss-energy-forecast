@@ -17,6 +17,11 @@ export const chartTheme = dark => dark
 
 export const MONO = '"JetBrains Mono", ui-monospace, monospace'
 
+// Safe numeric format: never throws on undefined/null/NaN (which is what
+// white-screened the page when a late fetch returned a partial shape).
+export const f = (v, digits = 0) =>
+  Number.isFinite(v) ? v.toFixed(digits) : '—'
+
 export const fmtMW = v =>
   Math.abs(v) >= 1000 ? `${(v / 1000).toFixed(1)} GW` : `${Math.round(v)} MW`
 

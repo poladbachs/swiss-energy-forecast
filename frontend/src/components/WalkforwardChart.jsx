@@ -2,7 +2,7 @@ import {
   ResponsiveContainer, ComposedChart, Line,
   XAxis, YAxis, Tooltip, CartesianGrid,
 } from 'recharts'
-import { series, chartTheme, MONO } from '../theme'
+import { series, chartTheme, MONO, f } from '../theme'
 
 function FoldTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null
@@ -13,10 +13,10 @@ function FoldTooltip({ active, payload, label }) {
     <div className="rounded-xl border px-3 py-2 text-xs num shadow-[var(--shadow)]"
          style={{ background: 'var(--panel)', borderColor: 'var(--border-strong)' }}>
       <p className="font-sans font-medium" style={{ color: 'var(--text)' }}>{label}</p>
-      <p className="mt-1" style={{ color: 'var(--price)' }}>model {row.model.toFixed(1)}</p>
-      <p style={{ color: 'var(--text-3)' }}>naive {row.naive.toFixed(1)} €/MWh</p>
+      <p className="mt-1" style={{ color: 'var(--price)' }}>model {f(row.model, 1)}</p>
+      <p style={{ color: 'var(--text-3)' }}>naive {f(row.naive, 1)} €/MWh</p>
       <p style={{ color: win ? 'var(--pos)' : '#ef4444' }}>
-        {win ? '−' : '+'}{Math.abs(100 * (1 - row.model / row.naive)).toFixed(0)}% error
+        {win ? '−' : '+'}{f(Math.abs(100 * (1 - row.model / row.naive)))}% error
       </p>
     </div>
   )
